@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IndiaKaAI - Discover AI Tools</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="description" content="Discover 100+ best AI tools for every need. Find AI for writing, coding, design, video, productivity and more. India's favourite AI directory.">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TX4HKQW73M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TX4HKQW73M');
+</script>
+
+<!-- Google Search Console Verification -->
+<meta name="google-site-verification" content="NRIBCPlSJ5ndZK0WGZXBDWo6oKt4H0zkYHmmgaF4sR0" />
+
+<!-- Google AdSense Account -->
+<meta name="google-adsense-account" content="ca-pub-5886831210668178">
+
+<!-- Open Graph / Social Media Meta Tags -->
+<meta property="og:title" content="IndiaKaAI – India's #1 AI Tools Directory" />
+<meta property="og:description" content="Discover 200+ hand-picked AI tools for writing, coding, design, video, productivity and more. India's favourite AI directory." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://indiakaai.com" />
+<meta property="og:image" content="https://indiakaai.com/favicon.svg" />
+<meta property="og:site_name" content="IndiaKaAI" />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="IndiaKaAI – India's #1 AI Tools Directory" />
+<meta name="twitter:description" content="Discover 200+ hand-picked AI tools for writing, coding, design, video, productivity and more." />
+<meta name="twitter:image" content="https://indiakaai.com/favicon.svg" />
+
+<!-- Additional SEO Meta Tags -->
+<meta name="keywords" content="AI tools, artificial intelligence, AI directory, ChatGPT, Midjourney, AI writing, AI coding, AI design, India AI, best AI tools" />
+<meta name="author" content="IndiaKaAI" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://indiakaai.com" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "IndiaKaAI",
+  "alternateName": "India Ka AI",
+  "url": "https://indiakaai.com",
+  "description": "Discover 200+ hand-picked AI tools for writing, coding, design, video, productivity and more. India's favourite AI directory.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://indiakaai.com/?search={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "IndiaKaAI",
+    "url": "https://indiakaai.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://indiakaai.com/favicon.svg"
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "AI Tools Directory",
+  "description": "Comprehensive directory of AI tools for various use cases",
+  "numberOfItems": 100,
+  "itemListElement": [
+    {
+      "@type": "SoftwareApplication",
+      "position": 1,
+      "name": "ChatGPT",
+      "applicationCategory": "AI Writing Tool",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<!-- Supabase JS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Firebase Auth (compat — works in single-file HTML, no bundler needed) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          // Clay Design System Colors
+          'clay-cream': '#faf9f7',
+          'clay-black': '#000000',
+          'clay-white': '#ffffff',
+          'oat-border': '#dad4c8',
+          'oat-light': '#eee9df',
+          'warm-silver': '#9f9b93',
+          'warm-charcoal': '#55534e',
+          'dark-charcoal': '#333333',
+          // Swatch Palette
+          'matcha-300': '#84e7a5',
+          'matcha-600': '#078a52',
+          'matcha-800': '#02492a',
+          'slushie-500': '#3bd3fd',
+          'slushie-800': '#0089ad',
+          'lemon-400': '#f8cc65',
+          'lemon-500': '#fbbd41',
+          'lemon-700': '#d08a11',
+          'lemon-800': '#9d6a09',
+          'ube-300': '#c1b0ff',
+          'ube-800': '#43089f',
+          'ube-900': '#32037d',
+          'pomegranate-400': '#fc7981',
+          'blueberry-800': '#01418d',
+          'dragonfruit': '#e91e63',
+          // Legacy (for compatibility)
+          saffron: '#FF6500',
+          'saffron-light': '#FF8500',
+        },
+        fontFamily: {
+          'roobert': ['Roobert', 'Arial', 'sans-serif'],
+          'space-mono': ['"Space Mono"', 'monospace'],
+          'bebas': ['"Bebas Neue"', 'sans-serif'],
+          'outfit': ['Outfit', 'sans-serif'],
+        },
+        maxWidth: {
+          '1400': '1400px',
+        },
+        boxShadow: {
+          'clay': '0px 1px 1px rgba(0,0,0,0.1), 0px -1px 1px rgba(0,0,0,0.04) inset, 0px -0.5px 1px rgba(0,0,0,0.05)',
+          'clay-hard': '-7px 7px 0 rgb(0,0,0)',
+        },
+        borderRadius: {
+          'clay-card': '24px',
+          'clay-section': '40px',
+          'clay-pill': '1584px',
+        },
+      }
+    }
+  }
+</script>
+<link rel="stylesheet" href="css/custom.css">
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5886831210668178"
+     crossorigin="anonymous"></script>
+
+<!-- 
+═══════════════════════════════════════════════════════════════════════
+SEO SETUP CHECKLIST - TODO AFTER DEPLOYMENT
+═══════════════════════════════════════════════════════════════════════
+
+1. GOOGLE SEARCH CONSOLE VERIFICATION:
+   - Go to: https://search.google.com/search-console
+   - Add property: indiakaai.com
+   - Choose "HTML tag" verification method
+   - Copy the verification code
+   - Replace "YOUR_VERIFICATION_CODE" in the meta tag above (line 18)
+   - Click "Verify" in Search Console
+
+2. SITEMAP.XML:
+   - Create sitemap.xml in root directory
+   - Add URLs: /, /blog, /contact
+   - Submit to Search Console: Sitemaps → Add new sitemap
+   - URL: https://indiakaai.com/sitemap.xml
+
+3. ROBOTS.TXT:
+   - Create robots.txt in root directory
+   - Content:
+     User-agent: *
+     Allow: /
+     Sitemap: https://indiakaai.com/sitemap.xml
+   - This allows all search engines to index your site
+
+4. GOOGLE ANALYTICS:
+   - Analytics is already configured with ID: G-TX4HKQW73M
+   - Verify tracking: https://analytics.google.com
+   - Check Real-Time reports to confirm data collection
+
+═══════════════════════════════════════════════════════════════════════
+-->
+
+</head>
+<body class="bg-clay-cream font-outfit">
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-[1000] bg-clay-white border-b border-oat-border shadow-clay">
+  <div class="max-w-[1400px] mx-auto flex items-center gap-5 px-6 h-[58px]">
+    <div class="logo font-bebas text-[1.6rem] tracking-[0.06em] flex-shrink-0 cursor-pointer" onclick="showPage('home')"><span class="text-saffron">India</span><span class="text-clay-black">Ka</span><span class="text-matcha-600">AI</span></div>
+    <div class="nav-links flex gap-0.5 items-center flex-1 md:hidden">
+      <a onclick="showPage('home')" id="nav-home" class="active text-warm-charcoal no-underline px-3 py-[5px] rounded-md text-[0.82rem] font-medium transition-all duration-150 cursor-pointer tracking-[0.01em] hover:text-clay-black hover:bg-oat-light">🏠 Home</a>
+      <a onclick="showPage('blog')" id="nav-blog" class="text-warm-charcoal no-underline px-3 py-[5px] rounded-md text-[0.82rem] font-medium transition-all duration-150 cursor-pointer tracking-[0.01em] hover:text-clay-black hover:bg-oat-light">📝 Blog</a>
+      <a onclick="showPage('about')" id="nav-about" class="text-warm-charcoal no-underline px-3 py-[5px] rounded-md text-[0.82rem] font-medium transition-all duration-150 cursor-pointer tracking-[0.01em] hover:text-clay-black hover:bg-oat-light">👤 About</a>
+      <a onclick="showPage('contact')" id="nav-contact" class="text-warm-charcoal no-underline px-3 py-[5px] rounded-md text-[0.82rem] font-medium transition-all duration-150 cursor-pointer tracking-[0.01em] hover:text-clay-black hover:bg-oat-light">✉️ Contact</a>
+      <a onclick="showContactTab('submit')" id="nav-submit" class="text-warm-charcoal no-underline px-3 py-[5px] rounded-md text-[0.82rem] font-medium transition-all duration-150 cursor-pointer tracking-[0.01em] hover:text-clay-black hover:bg-oat-light">➕ Submit Tool</a>
+    </div>
+    <div class="nav-search flex-1 max-w-[280px] relative">
+      <i class="fas fa-search absolute left-[11px] top-1/2 -translate-y-1/2 text-warm-silver text-xs"></i>
+      <input type="text" id="navSearch" placeholder="Search AI tools…" oninput="navSearchHandler(this.value)" class="w-full bg-clay-white border border-oat-border rounded-lg py-[7px] px-[14px] pl-[34px] text-clay-black text-[0.82rem] font-outfit outline-none transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+    </div>
+    <button class="clay-btn bg-lemon-500 text-clay-black border-none px-4 py-[7px] rounded-xl font-semibold text-[0.82rem] font-outfit cursor-pointer flex-shrink-0 transition-all duration-200 tracking-[0.01em] hover:bg-lemon-700 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard" onclick="showContactTab('advertise')">Advertise</button>
+    <div class="nav-auth flex gap-1.5 items-center flex-shrink-0" id="navAuth">
+      <button class="btn-signin bg-transparent border border-oat-border text-warm-charcoal px-3.5 py-1.5 rounded-lg text-[0.82rem] font-medium font-outfit cursor-pointer transition-all duration-150 hover:border-matcha-600 hover:text-clay-black" onclick="showPage('signin')">Sign In</button>
+      <button class="btn-signup bg-matcha-600 text-white border-none px-3.5 py-1.5 rounded-xl text-[0.82rem] font-semibold font-outfit cursor-pointer transition-all duration-200 hover:bg-matcha-800 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard" onclick="showPage('signup')">Sign Up</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ████████ HOME PAGE ████████ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero bg-clay-cream py-20 px-6 text-center relative border-b border-oat-border">
+    <div class="inline-flex items-center gap-2 bg-ube-300 bg-opacity-20 border-2 border-ube-800 border-dashed rounded-xl px-4 py-2 text-[0.75rem] font-bold text-ube-900 mb-6 tracking-[0.04em] uppercase"> India's #1 AI Tools Directory</div>
+    <h1 class="font-bebas text-[clamp(3.5rem,9vw,5rem)] font-semibold leading-[0.95] tracking-[-0.04em] text-clay-black mb-4">Find the Perfect<br><span class="text-matcha-600">AI Tool</span> for You</h1>
+    <p class="text-warm-charcoal text-[1.1rem] max-w-[520px] mx-auto mb-8 leading-[1.6] font-normal">Discover 200+ hand-picked AI tools sorted by category.<br>Save time, work smarter, grow faster.</p>
+    
+    <!-- Stats Row -->
+    <div class="flex items-center justify-center gap-8 flex-wrap mb-10">
+      <div class="flex items-center gap-2 px-4 py-2 bg-lemon-400 bg-opacity-30 border-2 border-lemon-700 border-dashed rounded-xl">
+        <span class="font-bold text-clay-black text-[1.1rem]" id="statsToolCount">100</span>
+        <span class="text-[1rem]"></span>
+        <span class="text-warm-charcoal text-[0.9rem] font-medium">AI Tools</span>
+      </div>
+      <div class="flex items-center gap-2 px-4 py-2 bg-slushie-500 bg-opacity-20 border-2 border-slushie-800 border-dashed rounded-xl">
+        <span class="font-bold text-clay-black text-[1.1rem]">12</span>
+        <span class="text-[1rem]"></span>
+        <span class="text-warm-charcoal text-[0.9rem] font-medium">Categories</span>
+      </div>
+      <div class="flex items-center gap-2 px-4 py-2 bg-matcha-300 bg-opacity-30 border-2 border-matcha-600 border-dashed rounded-xl">
+        <span class="font-bold text-clay-black text-[1.1rem]" id="statsSubmittedCount">0</span>
+        <span class="text-[1rem]"></span>
+        <span class="text-warm-charcoal text-[0.9rem] font-medium">Tools Submitted</span>
+      </div>
+    </div>
+    
+    <!-- Search -->
+    <div class="flex max-w-[600px] mx-auto mb-6 bg-clay-white border-2 border-oat-border rounded-clay-card overflow-hidden shadow-clay">
+      <input type="text" id="heroSearch" placeholder="Search for AI tools, categories…" oninput="heroSearchHandler(this.value)" class="flex-1 bg-transparent border-none py-4 px-6 text-clay-black text-[1rem] font-outfit outline-none placeholder:text-warm-silver">
+      <button onclick="heroSearchHandler(document.getElementById('heroSearch').value)" class="clay-btn bg-matcha-600 border-none py-3 px-8 text-white font-bold cursor-pointer text-[0.95rem] font-outfit transition-all duration-200 rounded-r-clay-card hover:bg-matcha-800 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard"><i class="fas fa-search"></i> Search</button>
+    </div>
+    <p class="text-[0.8rem] text-warm-silver">Press <kbd class="bg-clay-white border-2 border-oat-border rounded px-2 py-1 text-[0.75rem] text-warm-charcoal font-space-mono">K</kbd> to search · <kbd class="bg-clay-white border-2 border-oat-border rounded px-2 py-1 text-[0.75rem] text-warm-charcoal font-space-mono">Tab</kbd> to browse categories</p>
+  </section>
+
+  <!-- Ad Placement #1: Below Hero -->
+  <div class="adsense-container max-w-1400 mx-auto px-6 py-8 flex justify-center">
+    <div class="adsense-wrapper bg-clay-white border-2 border-oat-border rounded-clay-card p-4 shadow-clay">
+      <div class="text-center text-warm-silver text-[0.75rem] py-8">
+        <i class="fas fa-ad text-[2rem] mb-2 opacity-30"></i>
+        <p>Advertisement Space</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3: TOOL OF THE WEEK -->
+  <div class="max-w-1400 mx-auto px-6 py-8">
+    <div id="toolOfWeekContainer"></div>
+  </div>
+
+  <!-- PHASE 3: RECENTLY ADDED -->
+  <div class="max-w-1400 mx-auto px-6 py-8">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="font-bebas text-[2.5rem] text-clay-black tracking-wide mb-1">Recently Added</h2>
+        <p class="text-warm-charcoal text-sm">Check out the newest AI tools in our directory</p>
+      </div>
+      <span class="bg-lemon-500 text-clay-black text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">🆕 New</span>
+    </div>
+    <div id="recentlyAddedContainer"></div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="max-w-1400 mx-auto py-8 px-6">
+    <div class="text-[0.75rem] font-bold mb-4 text-warm-charcoal tracking-[0.08em] uppercase">Browse by Category</div>
+    <div class="cat-tabs flex gap-2 flex-wrap mb-6" id="catTabs">
+      <div class="cat-tab active bg-clay-white border-2 border-matcha-600 rounded-xl px-4 py-2 text-[0.85rem] font-semibold text-clay-black cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-800 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('all',this)"> All Tools</div>
+      <div class="cat-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-2 text-[0.85rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('Writing',this)"> Writing</div>
+      <div class="cat-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-2 text-[0.85rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('Image',this)"> Image Gen</div>
+      <div class="cat-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-2 text-[0.85rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('Video',this)"> Video</div>
+      <div class="cat-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-2 text-[0.85rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('Audio',this)"> Audio & Music</div>
+      <div class="cat-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-2 text-[0.85rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('Coding',this)"> Coding</div>
+      <div class="cat-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-2 text-[0.85rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('Productivity',this)"> Productivity</div>
+      <div class="cat-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-2 text-[0.85rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('Research',this)"> Research</div>
+      <div class="cat-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-2 text-[0.85rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('Marketing',this)"> Marketing</div>
+      <div class="cat-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-2 text-[0.85rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('Chatbot',this)"> Chatbots</div>
+      <div class="cat-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-2 text-[0.85rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('Data',this)"> Data</div>
+      <div class="cat-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-2 text-[0.85rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('Design',this)"> Design</div>
+      <div class="cat-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-2 text-[0.85rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 whitespace-nowrap font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="filterCat('Finance',this)"> Finance</div>
+    </div>
+  </div>
+
+  <!-- AI GRID HEADER -->
+  <div class="max-w-1400 mx-auto px-6 pb-4 flex items-center justify-between">
+    <span class="text-[0.75rem] font-bold text-warm-charcoal uppercase tracking-[0.08em]" id="gridLabel"> All Tools</span>
+    <span class="text-[0.75rem] font-medium text-warm-silver" id="gridCount"></span>
+  </div>
+
+  <!-- AI GRID -->
+  <div class="ai-grid max-w-1400 mx-auto px-6 pb-16 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4" id="aiGrid"></div>
+
+  <!-- Ad Placement #2: Between Grid & Newsletter -->
+  <div class="adsense-container max-w-1400 mx-auto px-6 py-8 flex justify-center">
+    <div class="adsense-wrapper bg-clay-white border-2 border-oat-border rounded-clay-card p-6 shadow-clay max-w-[728px] w-full">
+      <div class="text-center text-warm-silver text-[0.75rem] py-12">
+        <i class="fas fa-rectangle-ad text-[2.5rem] mb-3 opacity-30"></i>
+        <p class="font-semibold mb-1">Sponsored Content</p>
+        <p class="text-[0.7rem]">Ad space available after approval</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWSLETTER -->
+  <section class="bg-matcha-800 border-t-2 border-b-2 border-matcha-600 py-16 px-6 text-center">
+    <h2 class="font-bebas text-[3rem] font-semibold tracking-[-0.02em] text-white mb-3"> Stay Ahead with Weekly AI News</h2>
+    <p class="text-matcha-300 mb-8 text-[1rem] max-w-[500px] mx-auto">Get the best new AI tools, tips & exclusive deals delivered every Monday — free.</p>
+    <div class="flex max-w-[480px] mx-auto gap-0 bg-clay-white border-2 border-matcha-600 rounded-clay-card overflow-hidden shadow-clay">
+      <input type="email" id="nlEmail" placeholder="Enter your email…" class="flex-1 bg-transparent border-none py-3.5 px-5 text-clay-black text-[0.95rem] font-outfit outline-none placeholder:text-warm-silver">
+      <button onclick="subscribeNL()" class="clay-btn bg-lemon-500 border-none py-3 px-6 text-clay-black font-bold cursor-pointer text-[0.9rem] font-outfit whitespace-nowrap transition-all duration-200 hover:bg-lemon-700 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard">Subscribe Free</button>
+    </div>
+    <div class="text-[0.8rem] text-matcha-300 mt-4">Get weekly AI tool updates · No spam ever</div>
+  </section>
+
+</div><!-- /home -->
+
+<!-- ████████ BLOG PAGE ████████ -->
+<div class="page" id="page-blog">
+  <div class="bg-navy py-12 px-6 text-center border-b border-border">
+    <h1 class="font-bebas text-[3.5rem] font-normal tracking-[0.04em] mb-2"> IndiaKaAI Blog</h1>
+    <p class="text-muted2 text-[0.88rem]">In-depth guides, tutorials and insights about AI tools — in English & Hindi</p>
+    <div class="flex gap-1.5 flex-wrap justify-center mt-5">
+      <div class="blog-cat-tab active bg-card border border-[#1e1e1e] rounded-md px-3.5 py-[5px] text-[0.78rem] font-medium text-muted2 cursor-pointer transition-all duration-150 font-outfit hover:bg-white hover:border-white hover:text-black hover:font-semibold" onclick="filterBlog('all',this)">All Articles</div>
+      <div class="blog-cat-tab bg-card border border-[#1e1e1e] rounded-md px-3.5 py-[5px] text-[0.78rem] font-medium text-muted2 cursor-pointer transition-all duration-150 font-outfit hover:bg-white hover:border-white hover:text-black hover:font-semibold" onclick="filterBlog('students',this)"> AI for Students</div>
+      <div class="blog-cat-tab bg-card border border-[#1e1e1e] rounded-md px-3.5 py-[5px] text-[0.78rem] font-medium text-muted2 cursor-pointer transition-all duration-150 font-outfit hover:bg-white hover:border-white hover:text-black hover:font-semibold" onclick="filterBlog('money',this)"> Make Money with AI</div>
+      <div class="blog-cat-tab bg-card border border-[#1e1e1e] rounded-md px-3.5 py-[5px] text-[0.78rem] font-medium text-muted2 cursor-pointer transition-all duration-150 font-outfit hover:bg-white hover:border-white hover:text-black hover:font-semibold" onclick="filterBlog('tools',this)"> Tool Reviews</div>
+      <div class="blog-cat-tab bg-card border border-[#1e1e1e] rounded-md px-3.5 py-[5px] text-[0.78rem] font-medium text-muted2 cursor-pointer transition-all duration-150 font-outfit hover:bg-white hover:border-white hover:text-black hover:font-semibold" onclick="filterBlog('news',this)"> AI News</div>
+      <div id="adminBlogBtn" style="display:none;"><div class="blog-cat-tab" style="background:rgba(255,107,0,.2);color:var(--saffron);border-color:rgba(255,107,0,.3);" onclick="showPage('admin')"> Manage Posts</div></div>
+    </div>
+  </div>
+  <div class="blog-grid max-w-1400 mx-auto py-7 px-6 pb-[60px] grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-[1px] bg-border" id="blogGrid"></div>
+  
+  <!-- Ad Placement #3: Below Blog Grid -->
+  <div class="adsense-container max-w-1400 mx-auto px-6 pb-12 flex justify-center">
+    <div class="adsense-wrapper bg-clay-white border-2 border-oat-border rounded-clay-card p-4 shadow-clay">
+      <div class="text-center text-warm-silver text-[0.75rem] py-8">
+        <i class="fas fa-newspaper text-[2rem] mb-2 opacity-30"></i>
+        <p>Sponsored Content</p>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<!-- ████████ ABOUT PAGE ████████ -->
+<div class="page" id="page-about">
+  <div class="bg-ube-300 bg-opacity-20 border-b-2 border-ube-800 py-16 px-6 text-center">
+    <h1 class="font-bebas text-[3.5rem] font-semibold tracking-[-0.02em] text-clay-black mb-4">About IndiaKaAI</h1>
+    <p class="text-warm-charcoal text-[1rem]">Helping India discover and adopt AI tools</p>
+  </div>
+
+  <div class="max-w-[900px] mx-auto my-12 px-6 pb-[80px]">
+    
+    <!-- Founder Section -->
+    <div class="bg-clay-white border-2 border-oat-border rounded-clay-card p-10 shadow-clay mb-8">
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <div class="w-32 h-32 bg-gradient-to-br from-saffron to-matcha-600 rounded-2xl flex items-center justify-center text-white text-5xl font-bebas flex-shrink-0 shadow-clay-hard">
+          DK
+        </div>
+        <div class="flex-1">
+          <h2 class="font-bebas text-[2.5rem] text-clay-black mb-2 tracking-wide">Devansh Kumar</h2>
+          <p class="text-matcha-600 font-semibold mb-4 text-lg">Founder & Curator</p>
+          <p class="text-warm-charcoal leading-relaxed mb-4 text-[0.95rem]">
+            Hey! I'm Devansh, a tech enthusiast from Mumbai who's passionate about making AI accessible to everyone in India. I started IndiaKaAI because I noticed how difficult it was to find reliable, curated information about AI tools that actually work for Indian users.
+          </p>
+          <p class="text-warm-charcoal leading-relaxed mb-6 text-[0.95rem]">
+            Every tool in this directory is personally tested and reviewed. I focus on tools that support Indian languages, accept Indian payment methods, and provide value to Indian students, professionals, and businesses.
+          </p>
+          <div class="flex gap-3 flex-wrap">
+            <a href="https://www.linkedin.com/in/devanshup416" target="_blank" rel="noopener noreferrer" class="bg-slushie-800 text-white px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-slushie-500 transition-all duration-200 hover:-translate-y-1 hover:shadow-clay-hard inline-flex items-center gap-2">
+              <i class="fab fa-linkedin"></i> Connect on LinkedIn
+            </a>
+            <a href="mailto:devanshup416@gmail.com" class="bg-oat-border text-clay-black px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-warm-charcoal hover:text-white transition-all duration-200 hover:-translate-y-1 hover:shadow-clay-hard inline-flex items-center gap-2">
+              <i class="fas fa-envelope"></i> Email Me
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mission Section -->
+    <div class="bg-clay-white border-2 border-oat-border rounded-clay-card p-10 shadow-clay mb-8">
+      <h2 class="font-bebas text-[2.2rem] text-clay-black mb-4 tracking-wide">Our Mission</h2>
+      <p class="text-warm-charcoal leading-relaxed mb-4 text-[0.95rem]">
+        IndiaKaAI exists to bridge the gap between cutting-edge AI technology and Indian users. We believe AI should be accessible, affordable, and useful for everyone — from students preparing for exams to businesses looking to scale.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+        <div class="bg-lemon-400 bg-opacity-20 border-2 border-lemon-700 rounded-xl p-5 text-center">
+          <div class="text-3xl mb-2">🎯</div>
+          <h3 class="font-bold text-clay-black mb-2">Curated Quality</h3>
+          <p class="text-sm text-warm-charcoal">Every tool is personally tested and reviewed</p>
+        </div>
+        <div class="bg-matcha-300 bg-opacity-20 border-2 border-matcha-600 rounded-xl p-5 text-center">
+          <div class="text-3xl mb-2">🇮🇳</div>
+          <h3 class="font-bold text-clay-black mb-2">India-First</h3>
+          <p class="text-sm text-warm-charcoal">Focus on tools that work for Indian users</p>
+        </div>
+        <div class="bg-slushie-500 bg-opacity-20 border-2 border-slushie-800 rounded-xl p-5 text-center">
+          <div class="text-3xl mb-2">💡</div>
+          <h3 class="font-bold text-clay-black mb-2">Educational</h3>
+          <p class="text-sm text-warm-charcoal">Guides, tutorials, and honest reviews</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="bg-clay-white border-2 border-oat-border rounded-clay-card p-10 shadow-clay mb-8">
+      <h2 class="font-bebas text-[2.2rem] text-clay-black mb-6 tracking-wide text-center">By The Numbers</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="text-4xl font-bebas text-matcha-600 mb-1" id="aboutToolCount">100</div>
+          <div class="text-sm text-warm-charcoal font-medium">AI Tools Listed</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bebas text-matcha-600 mb-1">12</div>
+          <div class="text-sm text-warm-charcoal font-medium">Categories</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bebas text-matcha-600 mb-1">8</div>
+          <div class="text-sm text-warm-charcoal font-medium">Blog Articles</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bebas text-matcha-600 mb-1" id="aboutSubmittedCount">0</div>
+          <div class="text-sm text-warm-charcoal font-medium">Community Submissions</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="bg-clay-white border-2 border-oat-border rounded-clay-card p-10 shadow-clay">
+      <h2 class="font-bebas text-[2.2rem] text-clay-black mb-6 tracking-wide text-center">What Users Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="testimonialsContainer">
+        <!-- Testimonial 1 -->
+        <div class="bg-oat-light border-2 border-oat-border rounded-xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-ube-800 to-ube-300 rounded-full flex items-center justify-center text-white font-bold">
+              RS
+            </div>
+            <div>
+              <div class="font-bold text-clay-black">Rahul Sharma</div>
+              <div class="text-xs text-warm-charcoal">Engineering Student, Delhi</div>
+            </div>
+          </div>
+          <p class="text-warm-charcoal text-sm leading-relaxed italic">
+            "IndiaKaAI helped me discover free AI tools that made my final year project so much easier. The blog articles are super helpful!"
+          </p>
+          <div class="mt-3 text-lemon-700">⭐⭐⭐⭐⭐</div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="bg-oat-light border-2 border-oat-border rounded-xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-matcha-600 to-matcha-300 rounded-full flex items-center justify-center text-white font-bold">
+              PK
+            </div>
+            <div>
+              <div class="font-bold text-clay-black">Priya Kapoor</div>
+              <div class="text-xs text-warm-charcoal">Content Creator, Mumbai</div>
+            </div>
+          </div>
+          <p class="text-warm-charcoal text-sm leading-relaxed italic">
+            "Finally, a directory that focuses on tools that actually work in India. The pricing in INR is a game-changer!"
+          </p>
+          <div class="mt-3 text-lemon-700">⭐⭐⭐⭐⭐</div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-oat-light border-2 border-oat-border rounded-xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-slushie-800 to-slushie-500 rounded-full flex items-center justify-center text-white font-bold">
+              AM
+            </div>
+            <div>
+              <div class="font-bold text-clay-black">Amit Mehta</div>
+              <div class="text-xs text-warm-charcoal">Small Business Owner, Bangalore</div>
+            </div>
+          </div>
+          <p class="text-warm-charcoal text-sm leading-relaxed italic">
+            "I found 5 AI tools through IndiaKaAI that saved me hours every week. The reviews are honest and detailed."
+          </p>
+          <div class="mt-3 text-lemon-700">⭐⭐⭐⭐⭐</div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="bg-oat-light border-2 border-oat-border rounded-xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-pomegranate-400 to-dragonfruit rounded-full flex items-center justify-center text-white font-bold">
+              SK
+            </div>
+            <div>
+              <div class="font-bold text-clay-black">Sneha Kulkarni</div>
+              <div class="text-xs text-warm-charcoal">Marketing Manager, Pune</div>
+            </div>
+          </div>
+          <p class="text-warm-charcoal text-sm leading-relaxed italic">
+            "The Hindi language support filter is brilliant! Helped me find tools my team can actually use."
+          </p>
+          <div class="mt-3 text-lemon-700">⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ████████ CONTACT PAGE ████████ -->
+<div class="page" id="page-contact">
+  <div class="bg-slushie-500 bg-opacity-20 border-b-2 border-slushie-800 py-16 px-6 text-center">
+    <h1 class="font-bebas text-[3.5rem] font-semibold tracking-[-0.02em] text-clay-black mb-4"> Contact IndiaKaAI</h1>
+    <p class="text-warm-charcoal text-[1rem] mb-2">We're here to help — reach out anytime</p>
+    <div class="flex gap-2 flex-wrap justify-center mt-7">
+      <div class="contact-tab active bg-clay-white border-2 border-matcha-600 rounded-xl px-4 py-1.5 text-[0.8rem] font-semibold text-clay-black cursor-pointer transition-all duration-200 font-outfit shadow-clay hover:border-matcha-800 hover:-rotate-1 hover:-translate-y-0.5" onclick="showContactTab('contactus')" id="ctab-contactus">✉ Contact Us</div>
+      <div class="contact-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-1.5 text-[0.8rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="showContactTab('submit')" id="ctab-submit"> Submit a Tool</div>
+      <div class="contact-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-1.5 text-[0.8rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="showContactTab('advertise')" id="ctab-advertise"> Advertise</div>
+      <div class="contact-tab bg-clay-white border-2 border-oat-border rounded-xl px-4 py-1.5 text-[0.8rem] font-medium text-warm-charcoal cursor-pointer transition-all duration-200 font-outfit shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5" onclick="showContactTab('getintouch')" id="ctab-getintouch">� Get In Touch</div>
+    </div>
+  </div>
+
+  <div class="max-w-[900px] mx-auto my-12 px-6 pb-[80px]">
+
+    <!-- Contact Us -->
+    <div class="contact-section active" id="csec-contactus">
+      <div class="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4 mb-8">
+        <div class="bg-clay-white border-2 border-oat-border rounded-clay-card p-6 text-center shadow-clay"><i class="fas fa-paper-plane text-[1.5rem] text-matcha-600 mb-3"></i><h4 class="text-[0.95rem] font-semibold mb-2 text-clay-black">Send a Message</h4><p class="text-[0.85rem] text-warm-charcoal leading-[1.5]">Use the form below</p></div>
+        <div class="bg-clay-white border-2 border-oat-border rounded-clay-card p-6 text-center shadow-clay"><i class="fab fa-whatsapp text-[1.5rem] text-matcha-600 mb-3"></i><h4 class="text-[0.95rem] font-semibold mb-2 text-clay-black">WhatsApp</h4><p class="text-[0.85rem] text-warm-charcoal leading-[1.5]">Available on request</p></div>
+        <div class="bg-clay-white border-2 border-oat-border rounded-clay-card p-6 text-center shadow-clay"><i class="fas fa-map-marker-alt text-[1.5rem] text-matcha-600 mb-3"></i><h4 class="text-[0.95rem] font-semibold mb-2 text-clay-black">Location</h4><p class="text-[0.85rem] text-warm-charcoal leading-[1.5]">Mumbai, India </p></div>
+        <div class="bg-clay-white border-2 border-oat-border rounded-clay-card p-6 text-center shadow-clay"><i class="fas fa-clock text-[1.5rem] text-matcha-600 mb-3"></i><h4 class="text-[0.95rem] font-semibold mb-2 text-clay-black">Response Time</h4><p class="text-[0.85rem] text-warm-charcoal leading-[1.5]">Within 24 hours</p></div>
+      </div>
+      <div class="contact-card bg-clay-white border-2 border-oat-border rounded-clay-card p-10 shadow-clay">
+        <h2 class="font-bebas text-[2.2rem] font-semibold tracking-[-0.02em] mb-3 text-clay-black">Send us a Message</h2>
+        <p class="text-warm-charcoal mb-8 leading-[1.7] text-[0.95rem]">Have a question, suggestion or feedback? We'd love to hear from you.</p>
+        <form id="contactForm" onsubmit="sendEmail(event,'contactForm','contact')">
+          <div class="form-row grid grid-cols-2 gap-4 mb-5">
+            <div class="form-group">
+              <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Your Name</label>
+              <input type="text" name="from_name" placeholder="Rahul Sharma" required autocomplete="name" class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+            </div>
+            <div class="form-group">
+              <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Email Address</label>
+              <input type="email" name="reply_to" placeholder="rahul@example.com" required autocomplete="email" class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+            </div>
+          </div>
+          <div class="form-group mb-5">
+            <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Subject</label>
+            <input type="text" name="subject" placeholder="How can we help?" required class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+          </div>
+          <div class="form-group mb-6">
+            <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Message</label>
+            <textarea name="message" placeholder="Write your message here…" required class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300 resize-y min-h-[140px]"></textarea>
+          </div>
+          <button type="submit" class="submit-btn clay-btn bg-matcha-600 border-none rounded-xl py-4 px-8 text-white font-bold text-[1rem] font-outfit cursor-pointer w-full transition-all duration-200 hover:bg-matcha-800 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard" id="contactBtn">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Submit Tool -->
+    <div class="contact-section" id="csec-submit">
+      <div class="contact-card bg-clay-white border-2 border-oat-border rounded-clay-card p-10 shadow-clay">
+        <h2 class="font-bebas text-[2.2rem] font-semibold tracking-[-0.02em] mb-3 text-clay-black"> Submit Your AI Tool</h2>
+        <p class="text-warm-charcoal mb-8 leading-[1.7] text-[0.95rem]">Have an AI tool you'd like to list on IndiaKaAI? Fill in the details below and our team will review it within 48 hours. Listing is free for indie developers!</p>
+        <form id="submitToolForm" onsubmit="sendEmail(event,'submitToolForm','tool')">
+          <div class="grid grid-cols-2 gap-4 mb-5">
+            <div class="form-group">
+              <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Tool Name</label>
+              <input type="text" name="tool_name" placeholder="e.g. SuperWriteAI" required class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+            </div>
+            <div class="form-group">
+              <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Tool Website URL</label>
+              <input type="url" name="tool_url" placeholder="https://youraitool.com" required class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mb-5">
+            <div class="form-group">
+              <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Category</label>
+              <select name="tool_category" class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+                <option>Writing & Content</option><option>Image Generation</option><option>Video</option>
+                <option>Audio & Music</option><option>Coding</option><option>Productivity</option>
+                <option>Research & Education</option><option>Marketing & SEO</option>
+                <option>Chatbots</option><option>Data Analysis</option><option>Design</option><option>Finance</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Pricing Model</label>
+              <select name="tool_pricing" class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+                <option>Free</option><option>Freemium</option><option>Paid</option><option>Open Source</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group mb-5">
+            <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Short Description (max 150 chars)</label>
+            <input type="text" name="tool_short_desc" placeholder="What does your AI tool do?" maxlength="150" required class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+          </div>
+          <div class="form-group mb-5">
+            <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Detailed Description</label>
+            <textarea name="message" placeholder="Tell us more about features, use cases, target users…" required class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300 resize-y min-h-[140px]"></textarea>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="form-group">
+              <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Your Name</label>
+              <input type="text" name="from_name" placeholder="Founder / Developer name" required class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+            </div>
+            <div class="form-group">
+              <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Contact Email</label>
+              <input type="email" name="reply_to" placeholder="you@company.com" required class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+            </div>
+          </div>
+          <button type="submit" class="submit-btn clay-btn bg-matcha-600 border-none rounded-xl py-4 px-8 text-white font-bold text-[1rem] font-outfit cursor-pointer w-full transition-all duration-200 hover:bg-matcha-800 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard" id="submitToolBtn">Submit Tool for Review</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Advertise -->
+    <div class="contact-section" id="csec-advertise">
+      <div class="contact-card bg-clay-white border-2 border-oat-border rounded-clay-card p-10 shadow-clay">
+        <h2 class="font-bebas text-[2.2rem] font-semibold tracking-[-0.02em] mb-3 text-clay-black"> Advertise on IndiaKaAI</h2>
+        <p class="text-warm-charcoal mb-10 leading-[1.7] text-[0.95rem]">Reach 50,000+ monthly Indian AI enthusiasts, developers, students and entrepreneurs who are actively looking for AI tools. High intent audience = high ROI for your brand.</p>
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-5 mb-8">
+          <div class="bg-clay-white border-2 border-oat-border rounded-clay-card p-7 shadow-clay">
+            <div class="text-[0.8rem] font-bold text-warm-charcoal uppercase tracking-[0.08em] mb-3">Starter</div>
+            <div class="text-[2.8rem] font-bold text-clay-black font-bebas tracking-[-0.02em] leading-[1]">₹2,999</div>
+            <div class="text-[0.85rem] text-warm-silver mb-6">per month</div>
+            <ul class="space-y-3 mb-7 text-[0.9rem] text-warm-charcoal leading-[1.6]">
+              <li class="flex items-start gap-2.5"><span class="text-matcha-600 text-[1.1rem]">✓</span> Featured card in tool grid</li>
+              <li class="flex items-start gap-2.5"><span class="text-matcha-600 text-[1.1rem]">✓</span> Category page banner</li>
+              <li class="flex items-start gap-2.5"><span class="text-matcha-600 text-[1.1rem]">✓</span> 5,000 impressions/mo</li>
+              <li class="flex items-start gap-2.5"><span class="text-matcha-600 text-[1.1rem]">✓</span> Email support</li>
+            </ul>
+            <button class="clay-btn bg-lemon-500 text-clay-black border-none rounded-xl py-3 px-6 font-semibold text-[0.9rem] font-outfit cursor-pointer w-full transition-all duration-200 hover:bg-lemon-700 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard" onclick="showContactTab('getintouch')">Get Started</button>
+          </div>
+          <div class="bg-matcha-600 border-2 border-matcha-800 rounded-clay-card p-7 shadow-clay relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-lemon-500 border-2 border-lemon-800 rounded-full px-4 py-1.5 text-[0.72rem] font-bold text-clay-black uppercase tracking-[0.04em]">⭐ Most Popular</div>
+            <div class="text-[0.8rem] font-bold text-matcha-300 uppercase tracking-[0.08em] mb-3">Growth</div>
+            <div class="text-[2.8rem] font-bold text-white font-bebas tracking-[-0.02em] leading-[1]">₹7,999</div>
+            <div class="text-[0.85rem] text-matcha-300 mb-6">per month</div>
+            <ul class="space-y-3 mb-7 text-[0.9rem] text-white leading-[1.6]">
+              <li class="flex items-start gap-2.5"><span class="text-lemon-400 text-[1.1rem]">✓</span> Homepage hero banner</li>
+              <li class="flex items-start gap-2.5"><span class="text-lemon-400 text-[1.1rem]">✓</span> Newsletter feature</li>
+              <li class="flex items-start gap-2.5"><span class="text-lemon-400 text-[1.1rem]">✓</span> Dedicated blog article</li>
+              <li class="flex items-start gap-2.5"><span class="text-lemon-400 text-[1.1rem]">✓</span> 20,000 impressions/mo</li>
+              <li class="flex items-start gap-2.5"><span class="text-lemon-400 text-[1.1rem]">✓</span> Priority support</li>
+            </ul>
+            <button class="clay-btn bg-lemon-500 text-clay-black border-none rounded-xl py-3 px-6 font-semibold text-[0.9rem] font-outfit cursor-pointer w-full transition-all duration-200 hover:bg-lemon-700 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard" onclick="showContactTab('getintouch')">Get Started</button>
+          </div>
+          <div class="bg-clay-white border-2 border-oat-border rounded-clay-card p-7 shadow-clay">
+            <div class="text-[0.8rem] font-bold text-warm-charcoal uppercase tracking-[0.08em] mb-3">Enterprise</div>
+            <div class="text-[2.8rem] font-bold text-clay-black font-bebas tracking-[-0.02em] leading-[1]">₹19,999</div>
+            <div class="text-[0.85rem] text-warm-silver mb-6">per month</div>
+            <ul class="space-y-3 mb-7 text-[0.9rem] text-warm-charcoal leading-[1.6]">
+              <li class="flex items-start gap-2.5"><span class="text-matcha-600 text-[1.1rem]">✓</span> All Growth features</li>
+              <li class="flex items-start gap-2.5"><span class="text-matcha-600 text-[1.1rem]">✓</span> Category sponsorship</li>
+              <li class="flex items-start gap-2.5"><span class="text-matcha-600 text-[1.1rem]">✓</span> Social media promotion</li>
+              <li class="flex items-start gap-2.5"><span class="text-matcha-600 text-[1.1rem]">✓</span> 60,000 impressions/mo</li>
+              <li class="flex items-start gap-2.5"><span class="text-matcha-600 text-[1.1rem]">✓</span> Dedicated account manager</li>
+              <li class="flex items-start gap-2.5"><span class="text-matcha-600 text-[1.1rem]">✓</span> Custom landing page</li>
+            </ul>
+            <button class="clay-btn bg-lemon-500 text-clay-black border-none rounded-xl py-3 px-6 font-semibold text-[0.9rem] font-outfit cursor-pointer w-full transition-all duration-200 hover:bg-lemon-700 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard" onclick="showContactTab('getintouch')">Get Started</button>
+          </div>
+        </div>
+        <p class="text-center text-warm-silver text-[0.9rem] leading-[1.6]">All packages include detailed analytics report. Custom packages available — use the Get In Touch form to connect.</p>
+      </div>
+    </div>
+
+    <!-- Get In Touch -->
+    <div class="contact-section" id="csec-getintouch">
+      <div class="contact-card bg-clay-white border-2 border-oat-border rounded-clay-card p-10 shadow-clay">
+        <h2 class="font-bebas text-[2.2rem] font-semibold tracking-[-0.02em] mb-3 text-clay-black">� Get In Touch</h2>
+        <p class="text-warm-charcoal mb-8 leading-[1.7] text-[0.95rem]">Whether you're a startup, agency, or content creator — let's collaborate and grow together in India's booming AI space.</p>
+        <div class="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-10">
+          <div class="bg-ube-300 bg-opacity-20 border-2 border-ube-800 border-dashed rounded-clay-card p-7">
+            <h3 class="font-bebas text-[1.6rem] text-clay-black mb-4 tracking-[-0.01em]">Let's Connect �</h3>
+            <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-5">We partner with AI startups, EdTech companies, SaaS founders and digital marketers to help them reach India's fastest-growing AI-savvy audience.</p>
+            <p class="text-warm-charcoal text-[0.95rem] leading-[1.8]">We're building India's most comprehensive AI tools directory. Use the form to reach out — we respond within 24 hours.</p>
+          </div>
+          <div>
+            <form id="gitForm" onsubmit="sendEmail(event,'gitForm','collab')">
+              <div class="form-group mb-5">
+                <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Full Name</label>
+                <input type="text" name="from_name" placeholder="Your name" required autocomplete="name" class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+              </div>
+              <div class="form-group mb-5">
+                <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Email</label>
+                <input type="email" name="reply_to" placeholder="your@email.com" required autocomplete="email" class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+              </div>
+              <div class="form-group mb-5">
+                <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Company / Website</label>
+                <input type="text" name="company" placeholder="yourcompany.com" class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+              </div>
+              <div class="form-group mb-6">
+                <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">How can we collaborate?</label>
+                <textarea name="message" placeholder="Tell us about your idea…" required class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300 resize-y min-h-[130px]"></textarea>
+              </div>
+              <button type="submit" class="submit-btn clay-btn bg-matcha-600 border-none rounded-xl py-4 px-8 text-white font-bold text-[1rem] font-outfit cursor-pointer w-full transition-all duration-200 hover:bg-matcha-800 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard" id="gitBtn">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /contact -->
+
+<!-- ████████ SIGN IN / SIGN UP PAGE (Google Only) ████████ -->
+<div class="page" id="page-signin">
+  <div class="min-h-screen flex items-center justify-center bg-clay-cream py-10 px-6">
+    <div class="auth-card bg-clay-white border-2 border-oat-border rounded-clay-card py-[52px] px-11 w-full max-w-[420px] text-center shadow-clay">
+      <span class="auth-logo text-[1.4rem] font-black mb-6 block font-bebas text-clay-black">IndiaKa<span class="text-matcha-600">AI</span></span>
+      <h2 class="text-[1.9rem] font-extrabold mb-2 text-clay-black font-bebas tracking-[-0.02em]">Welcome �</h2>
+      <p class="text-warm-charcoal text-[0.9rem] mb-9 leading-[1.5]">Sign in to explore India's #1 AI Tools Directory and save your favourite tools.</p>
+      <button class="btn-google clay-btn flex items-center justify-center gap-3 w-full py-3.5 px-5 bg-matcha-600 text-white border-none rounded-xl text-[0.95rem] font-semibold font-outfit cursor-pointer transition-all duration-200 shadow-clay hover:bg-matcha-800 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard" id="googleSignInBtn" onclick="signInWithGoogle()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" class="w-5 h-5 flex-shrink-0">
+        Continue with Google
+      </button>
+      <div class="auth-err text-pomegranate-400 text-[0.83rem] mt-4 font-medium" id="authErr"></div>
+      <p class="auth-note mt-6 text-[0.78rem] text-warm-silver leading-[1.7]">By continuing, you agree to our <a onclick="showPage('terms')" class="text-matcha-600 cursor-pointer font-medium hover:text-matcha-800">Terms of Use</a> and <a onclick="showPage('privacy')" class="text-matcha-600 cursor-pointer font-medium hover:text-matcha-800">Privacy Policy</a>. No password needed — your Google account keeps you secure.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ████████ SIGN UP → redirect to signin ████████ -->
+<div class="page" id="page-signup">
+  <div class="min-h-screen flex items-center justify-center bg-clay-cream py-10 px-6">
+    <div class="auth-card bg-clay-white border-2 border-oat-border rounded-clay-card py-[52px] px-11 w-full max-w-[420px] text-center shadow-clay">
+      <span class="auth-logo text-[1.4rem] font-black mb-6 block font-bebas text-clay-black">IndiaKa<span class="text-matcha-600">AI</span></span>
+      <h2 class="text-[1.9rem] font-extrabold mb-2 text-clay-black font-bebas tracking-[-0.02em]">Welcome �</h2>
+      <p class="text-warm-charcoal text-[0.9rem] mb-9 leading-[1.5]">Create your free account using Google — no password needed.</p>
+      <button class="btn-google clay-btn flex items-center justify-center gap-3 w-full py-3.5 px-5 bg-matcha-600 text-white border-none rounded-xl text-[0.95rem] font-semibold font-outfit cursor-pointer transition-all duration-200 shadow-clay hover:bg-matcha-800 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard" onclick="signInWithGoogle()">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" class="w-5 h-5 flex-shrink-0">
+        Continue with Google
+      </button>
+      <p class="auth-note mt-6 text-[0.78rem] text-warm-silver leading-[1.7]">By continuing, you agree to our <a onclick="showPage('terms')" class="text-matcha-600 cursor-pointer font-medium hover:text-matcha-800">Terms of Use</a> and <a onclick="showPage('privacy')" class="text-matcha-600 cursor-pointer font-medium hover:text-matcha-800">Privacy Policy</a>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ████████ ADMIN PAGE ████████ -->
+<div class="page" id="page-admin">
+  <div class="bg-gradient-to-br from-[#0a0a1a] to-[#1a0a00] py-12 px-6 border-b border-border">
+    <h1 class="text-[2rem] font-extrabold mb-1.5"> Admin Panel</h1>
+    <p class="text-muted">Manage blog posts for IndiaKaAI</p>
+  </div>
+  <div class="admin-body max-w-[1100px] mx-auto py-8 px-6 pb-[60px]">
+    <!-- Admin tabs -->
+    <div class="flex gap-2 mb-7 flex-wrap">
+      <button class="admin-tab-btn active bg-[rgba(255,255,255,0.06)] border border-border rounded-[10px] py-[9px] px-5 text-muted text-[0.875rem] font-semibold cursor-pointer transition-all duration-200 font-inherit hover:border-saffron hover:text-white" id="atab-blog" onclick="switchAdminTab('blog')"> Blog Posts</button>
+      <button class="admin-tab-btn bg-[rgba(255,255,255,0.06)] border border-border rounded-[10px] py-[9px] px-5 text-muted text-[0.875rem] font-semibold cursor-pointer transition-all duration-200 font-inherit hover:border-saffron hover:text-white" id="atab-tools" onclick="switchAdminTab('tools')"> AI Tools</button>
+      <button class="admin-tab-btn bg-[rgba(255,255,255,0.06)] border border-border rounded-[10px] py-[9px] px-5 text-muted text-[0.875rem] font-semibold cursor-pointer transition-all duration-200 font-inherit hover:border-saffron hover:text-white" id="atab-guide" onclick="switchAdminTab('guide')"> How to Use</button>
+    </div>
+
+    <!-- Blog Posts Tab -->
+    <div id="asec-blog">
+      <div class="admin-toolbar flex justify-between items-center mb-7 flex-wrap gap-3">
+        <h2 class="text-[1.2rem] font-bold"> All Blog Posts <span id="postCount" class="text-muted text-[0.9rem] font-medium"></span></h2>
+        <button class="add-post-btn border-none rounded-xl py-2.5 px-6 text-white font-bold cursor-pointer text-[0.9rem] flex items-center gap-2" onclick="openBlogModal()"><i class="fas fa-plus"></i> Add New Post</button>
+      </div>
+      <div class="admin-posts grid gap-4" id="adminPostsList"></div>
+    </div>
+
+    <!-- AI Tools Tab -->
+    <div id="asec-tools" style="display:none;">
+      <div class="admin-toolbar flex justify-between items-center mb-7 flex-wrap gap-3">
+        <h2 class="text-[1.2rem] font-bold"> AI Tools Directory <span id="toolCount" class="text-muted text-[0.9rem] font-medium"></span></h2>
+        <button class="add-post-btn border-none rounded-xl py-2.5 px-6 text-white font-bold cursor-pointer text-[0.9rem] flex items-center gap-2" onclick="openToolModal(0)"><i class="fas fa-plus"></i> Add New Tool</button>
+      </div>
+      <div class="admin-posts grid gap-4" id="adminToolsList"></div>
+    </div>
+
+    <!-- How to Use Guide Tab -->
+    <div id="asec-guide" style="display:none;">
+      <div class="bg-card border border-border rounded-[20px] p-9 max-w-[760px]">
+        <h2 class="mb-5"> Admin Guide — IndiaKaAI</h2>
+        <div class="grid gap-5">
+          <div class="bg-[rgba(255,107,0,0.08)] border border-[rgba(255,107,0,0.2)] rounded-[14px] p-5">
+            <h3 class="text-saffron mb-2.5">� How to Sign In as Admin</h3>
+            <p class="text-muted text-[0.9rem] leading-[1.8]">1. Click <b>Sign In</b> in the top nav<br>2. Use your registered admin email<br>3. Enter your password<br>4. You'll see the <b> Admin</b> badge appear in the navbar<br>5. Click it or go to Blog → <b>Manage Posts</b></p>
+          </div>
+          <div class="bg-[rgba(59,130,246,0.08)] border border-[rgba(59,130,246,0.2)] rounded-[14px] p-5">
+            <h3 class="text-[#60a5fa] mb-2.5"> How to Add a Blog Post</h3>
+            <p class="text-muted text-[0.9rem] leading-[1.8]">1. Go to <b>Admin → Blog Posts</b> tab<br>2. Click <b>Add New Post</b><br>3. Fill in: Title, Category, Emoji, Excerpt, Source URL, Author, Read Time<br>4. Click <b>Save Post</b> — it appears live on the Blog page instantly<br>5. To edit or delete, click  or  on any post card</p>
+          </div>
+          <div class="bg-[rgba(34,197,94,0.08)] border border-[rgba(34,197,94,0.2)] rounded-[14px] p-5">
+            <h3 class="text-[#4ade80] mb-2.5"> How to Add an AI Tool</h3>
+            <p class="text-muted text-[0.9rem] leading-[1.8]">1. Go to <b>Admin → AI Tools</b> tab<br>2. Click <b>Add New Tool</b><br>3. Fill in: Tool Name, Website URL (logo auto-loads!), Category, Description, Pricing<br>4. Click <b>Save Tool</b> — it appears live on the Home page immediately<br>5. To edit or delete, click  or  directly on any tool card (visible only to you)</p>
+          </div>
+          <div class="bg-[rgba(168,85,247,0.08)] border border-[rgba(168,85,247,0.2)] rounded-[14px] p-5">
+            <h3 class="text-[#c084fc] mb-2.5"> Email Notifications</h3>
+            <p class="text-muted text-[0.9rem] leading-[1.8]">You automatically receive email notifications when:<br>• Someone <b>signs up</b> (with their name, email, time)<br>• Someone <b>signs in</b> (with their name, email, time)<br>• Someone fills any <b>contact form</b> (Contact Us, Submit Tool, Get In Touch)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Blog Post Modal -->
+<function_calls>
+<invoke name="strReplace">
+<parameter name="newStr"><!-- Blog Post Modal -->
+<div class="modal-overlay fixed inset-0 bg-[rgba(0,0,0,0.7)] z-[2000] flex items-center justify-center p-6 opacity-0 pointer-events-none transition-all duration-[0.25s]" id="blogModal" onclick="closeBlogModal(event)">
+  <div class="modal bg-card border border-border rounded-[20px] p-9 w-full max-w-[560px] max-h-[90vh] overflow-y-auto translate-y-5 transition-all duration-[0.25s]">
+    <h3 id="modalTitle" class="text-[1.3rem] font-extrabold mb-5"> Add New Blog Post</h3>
+    <input type="hidden" id="editPostId">
+    <div class="form-group mb-3"><label class="block text-[0.75rem] font-semibold text-muted2 mb-[5px] uppercase tracking-[0.04em]">Post Title</label><input type="text" id="postTitle" placeholder="e.g. Top 10 AI Tools for Students 2025" required class="w-full bg-card border border-[#222] rounded-[7px] py-2.5 px-3.5 text-[#f0f0f0] text-[0.88rem] outline-none font-outfit transition-all duration-150 placeholder:text-muted focus:border-[#444]"></div>
+    <div class="form-row grid grid-cols-2 gap-3 mb-3">
+      <div class="form-group mb-3"><label class="block text-[0.75rem] font-semibold text-muted2 mb-[5px] uppercase tracking-[0.04em]">Category</label>
+        <select id="postTag" class="w-full bg-card border border-[#222] rounded-[7px] py-2.5 px-3.5 text-[#f0f0f0] text-[0.88rem] outline-none font-outfit transition-all duration-150 focus:border-[#444]">
+          <option value="students">AI for Students</option>
+          <option value="money">Make Money with AI</option>
+          <option value="tools">Tool Reviews</option>
+          <option value="news">AI News</option>
+        </select>
+      </div>
+      <div class="form-group mb-3"><label class="block text-[0.75rem] font-semibold text-muted2 mb-[5px] uppercase tracking-[0.04em]">Emoji Icon</label><input type="text" id="postEmoji" placeholder="" maxlength="2" class="w-full bg-card border border-[#222] rounded-[7px] py-2.5 px-3.5 text-[#f0f0f0] text-[0.88rem] outline-none font-outfit transition-all duration-150 placeholder:text-muted focus:border-[#444]"></div>
+    </div>
+    <div class="form-group mb-3"><label class="block text-[0.75rem] font-semibold text-muted2 mb-[5px] uppercase tracking-[0.04em]">Short Excerpt</label><textarea id="postExcerpt" placeholder="Brief summary shown on the card…" style="min-height:80px;" class="w-full bg-card border border-[#222] rounded-[7px] py-2.5 px-3.5 text-[#f0f0f0] text-[0.88rem] outline-none font-outfit transition-all duration-150 placeholder:text-muted focus:border-[#444] resize-y"></textarea></div>
+    <div class="form-group mb-3"><label class="block text-[0.75rem] font-semibold text-muted2 mb-[5px] uppercase tracking-[0.04em]">Source / Article URL</label><input type="url" id="postUrl" placeholder="https://source-article.com/article-title" class="w-full bg-card border border-[#222] rounded-[7px] py-2.5 px-3.5 text-[#f0f0f0] text-[0.88rem] outline-none font-outfit transition-all duration-150 placeholder:text-muted focus:border-[#444]"></div>
+    <div class="form-row grid grid-cols-2 gap-3 mb-3">
+      <div class="form-group mb-3"><label class="block text-[0.75rem] font-semibold text-muted2 mb-[5px] uppercase tracking-[0.04em]">Author</label><input type="text" id="postAuthor" placeholder="IndiaKaAI Team" class="w-full bg-card border border-[#222] rounded-[7px] py-2.5 px-3.5 text-[#f0f0f0] text-[0.88rem] outline-none font-outfit transition-all duration-150 placeholder:text-muted focus:border-[#444]"></div>
+      <div class="form-group mb-3"><label class="block text-[0.75rem] font-semibold text-muted2 mb-[5px] uppercase tracking-[0.04em]">Read Time</label><input type="text" id="postReadTime" placeholder="5 min read" class="w-full bg-card border border-[#222] rounded-[7px] py-2.5 px-3.5 text-[#f0f0f0] text-[0.88rem] outline-none font-outfit transition-all duration-150 placeholder:text-muted focus:border-[#444]"></div>
+    </div>
+    <div class="modal-footer flex gap-3 justify-end mt-5">
+      <button class="btn-cancel bg-transparent border border-border text-muted rounded-[10px] py-2.5 px-5 text-[0.9rem] cursor-pointer" onclick="document.getElementById('blogModal').classList.remove('open')">Cancel</button>
+      <button class="btn-save border-none rounded-[10px] py-2.5 px-6 text-white font-bold text-[0.9rem] cursor-pointer" onclick="saveBlogPost()">Save Post</button>
+    </div>
+  </div>
+</div>
+
+<!-- AI Tool Modal -->
+<div class="modal-overlay fixed inset-0 bg-[rgba(0,0,0,0.75)] backdrop-blur-sm z-[2000] flex items-center justify-center p-6 opacity-0 pointer-events-none transition-all duration-[0.25s]" id="toolModal" onclick="closeToolModal(event)">
+  <div class="modal bg-clay-white border-2 border-oat-border rounded-clay-card p-8 w-full max-w-[600px] max-h-[90vh] overflow-y-auto translate-y-5 transition-all duration-[0.25s] shadow-clay">
+    <h3 id="toolModalTitle" class="font-bebas text-[2rem] font-semibold tracking-[-0.02em] text-clay-black mb-6"> Add New AI Tool</h3>
+    <input type="hidden" id="editToolId">
+    <div class="form-row grid grid-cols-2 gap-4 mb-5">
+      <div class="form-group">
+        <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Tool Name</label>
+        <input type="text" id="toolName" placeholder="e.g. SuperWrite AI" required class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+      </div>
+      <div class="form-group">
+        <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Website URL <span class="text-lemon-700 text-[0.75rem]">(logo auto-loads!)</span></label>
+        <input type="url" id="toolUrl" placeholder="https://example.com" oninput="previewToolLogo(this.value)" class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+      </div>
+    </div>
+    <!-- Logo preview -->
+    <div class="flex items-center gap-4 bg-oat-light border-2 border-oat-border rounded-xl py-4 px-5 mb-5">
+      <div id="toolLogoPreview" class="w-12 h-12 rounded-xl bg-lemon-400 bg-opacity-30 border-2 border-lemon-700 flex items-center justify-center text-[1.5rem] overflow-hidden"></div>
+      <div class="text-[0.85rem] text-warm-charcoal leading-[1.5]">Logo preview — updates automatically when you enter the URL above</div>
+    </div>
+    <div class="form-row grid grid-cols-2 gap-4 mb-5">
+      <div class="form-group">
+        <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Category</label>
+        <select id="toolCat" class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+          <option value="Writing"> Writing</option>
+          <option value="Image"> Image Gen</option>
+          <option value="Video"> Video</option>
+          <option value="Audio"> Audio & Music</option>
+          <option value="Coding"> Coding</option>
+          <option value="Productivity"> Productivity</option>
+          <option value="Research"> Research</option>
+          <option value="Marketing"> Marketing</option>
+          <option value="Chatbot"> Chatbots</option>
+          <option value="Data"> Data</option>
+          <option value="Design"> Design</option>
+          <option value="Finance"> Finance</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Pricing</label>
+        <select id="toolPricing" class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+          <option value="Free">Free</option>
+          <option value="Freemium">Freemium</option>
+          <option value="Paid">Paid</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group mb-5">
+      <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Short Description</label>
+      <textarea id="toolDesc" placeholder="What does this AI tool do? (1–2 sentences)" required class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300 resize-y min-h-[100px]"></textarea>
+    </div>
+    <div class="form-row grid grid-cols-2 gap-4 mb-6">
+      <div class="form-group">
+        <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Emoji Icon <span class="text-warm-silver text-[0.75rem]">(fallback)</span></label>
+        <input type="text" id="toolEmoji" placeholder="" maxlength="2" class="w-full bg-clay-white border-2 border-oat-border rounded-lg py-3 px-4 text-clay-black text-[0.95rem] outline-none font-outfit transition-all duration-150 placeholder:text-warm-silver focus:border-matcha-600 focus:ring-2 focus:ring-matcha-300">
+      </div>
+      <div class="form-group">
+        <label class="block text-[0.8rem] font-semibold text-warm-charcoal mb-2 uppercase tracking-[0.04em]">Accent Colour</label>
+        <input type="color" id="toolColor" value="#FF6B00" class="h-12 p-1 rounded-lg bg-clay-white border-2 border-oat-border w-full cursor-pointer">
+      </div>
+    </div>
+    <div class="modal-footer flex gap-3 justify-end mt-6">
+      <button class="btn-cancel bg-clay-white border-2 border-oat-border text-warm-charcoal rounded-xl py-3 px-6 text-[0.95rem] font-semibold cursor-pointer transition-all duration-200 hover:border-pomegranate-400 hover:text-pomegranate-400" onclick="document.getElementById('toolModal').classList.remove('open')">Cancel</button>
+      <button class="btn-save clay-btn bg-matcha-600 border-none rounded-xl py-3 px-7 text-white font-bold text-[0.95rem] cursor-pointer transition-all duration-200 hover:bg-matcha-800 hover:-rotate-2 hover:-translate-y-1 hover:shadow-clay-hard" onclick="saveToolEntry()">� Save Tool</button>
+    </div>
+  </div>
+</div>
+
+<!-- ████████ PRIVACY POLICY PAGE ████████ -->
+<div class="page" id="page-privacy">
+  <div class="bg-ube-300 bg-opacity-20 border-b-2 border-ube-800 py-16 px-6 text-center">
+    <h1 class="font-bebas text-[3.5rem] font-semibold tracking-[-0.02em] text-clay-black mb-3">Privacy Policy</h1>
+    <p class="text-warm-charcoal text-[0.95rem]">Last updated: April 2026 · Effective under India's Digital Personal Data Protection Act, 2023</p>
+  </div>
+  <div class="max-w-[900px] mx-auto px-6 py-16 pb-20">
+    <div class="bg-clay-white border-2 border-oat-border rounded-clay-card p-10 shadow-clay">
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">1. Who We Are</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">IndiaKaAI is an independent AI tools directory operated in India. We curate and list AI tools to help individuals and businesses discover the right software for their needs. We are not a marketplace and do not facilitate transactions between users and tool providers.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">2. What Data We Collect</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-4">We collect only the minimum data necessary to operate this service:</p>
+      <ul class="space-y-3 mb-8 text-warm-charcoal text-[0.95rem] leading-[1.8] pl-6">
+        <li class="list-disc"><strong class="text-clay-black">Account data:</strong> Name and email address, collected when you voluntarily create an account (Sign Up). Passwords are hashed locally and never transmitted to our servers.</li>
+        <li class="list-disc"><strong class="text-clay-black">Contact form data:</strong> Name, email and message content submitted via our Contact Us, Submit a Tool, or Get In Touch forms.</li>
+        <li class="list-disc"><strong class="text-clay-black">Newsletter data:</strong> Email address submitted voluntarily for our weekly newsletter.</li>
+        <li class="list-disc"><strong class="text-clay-black">Browser storage:</strong> We use your browser's <code class="bg-oat-light px-2 py-1 rounded text-[0.9rem] font-space-mono">localStorage</code> to store your account session and preferences. No cookies are set by IndiaKaAI itself.</li>
+      </ul>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">3. How We Use Your Data</h2>
+      <ul class="space-y-3 mb-4 text-warm-charcoal text-[0.95rem] leading-[1.8] pl-6">
+        <li class="list-disc">To create and manage your account on this platform.</li>
+        <li class="list-disc">To respond to enquiries, tool submissions and collaboration requests sent via our contact forms.</li>
+        <li class="list-disc">To send the weekly AI newsletter you subscribed to (you may unsubscribe at any time).</li>
+        <li class="list-disc">To improve the directory and add new tools based on submissions.</li>
+      </ul>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">We do <strong class="text-clay-black">not</strong> use your data for advertising, profiling, automated decision-making or any purpose beyond what is listed above.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">4. Data Sharing &amp; Third Parties</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">We do not sell, rent or trade your personal data. The only third-party service we use is <strong class="text-clay-black">EmailJS</strong> (emailjs.com) solely to route contact form submissions to our inbox. EmailJS processes data in accordance with its own privacy policy. No other third parties receive your data.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">5. Data Storage &amp; Security</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">Account data (name, email, hashed password) is stored in your browser's <code class="bg-oat-light px-2 py-1 rounded text-[0.9rem] font-space-mono">localStorage</code> on your own device — we do not maintain a centralised user database. Contact form data is transmitted via EmailJS and stored in our email inbox. We take reasonable precautions to protect this data but cannot guarantee absolute security over email.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">6. Your Rights under the DPDP Act 2023</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-4">Under India's Digital Personal Data Protection Act, 2023, you have the right to:</p>
+      <ul class="space-y-3 mb-4 text-warm-charcoal text-[0.95rem] leading-[1.8] pl-6">
+        <li class="list-disc"><strong class="text-clay-black">Access</strong> — request a summary of personal data we hold about you.</li>
+        <li class="list-disc"><strong class="text-clay-black">Correction</strong> — request correction of inaccurate personal data.</li>
+        <li class="list-disc"><strong class="text-clay-black">Erasure</strong> — request deletion of your personal data (account data can be cleared from your browser's localStorage directly; for form/email data, contact us).</li>
+        <li class="list-disc"><strong class="text-clay-black">Withdraw consent</strong> — unsubscribe from our newsletter or stop using our service at any time.</li>
+        <li class="list-disc"><strong class="text-clay-black">Grievance redressal</strong> — raise a complaint with the Data Protection Board of India if your rights are not honoured.</li>
+      </ul>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">To exercise any of these rights, use the Contact Us form on this site.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">7. Children's Data</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">This service is not directed at children under 18. We do not knowingly collect personal data from minors. If you believe a minor has submitted data to us, please contact us and we will delete it promptly.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">8. Changes to This Policy</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">We may update this policy periodically. The "Last updated" date at the top will reflect any changes. Continued use of the service after updates constitutes acceptance of the revised policy.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">9. Contact</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8]">For any privacy-related queries or to exercise your rights, please use the <a onclick="showContactTab('contactus')" class="text-matcha-600 font-medium cursor-pointer hover:text-matcha-800 underline">Contact Us form</a> on this site. We will respond within 30 days as required under the DPDP Act 2023.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ████████ TERMS OF USE PAGE ████████ -->
+<div class="page" id="page-terms">
+  <div class="bg-lemon-400 bg-opacity-30 border-b-2 border-lemon-700 py-16 px-6 text-center">
+    <h1 class="font-bebas text-[3.5rem] font-semibold tracking-[-0.02em] text-clay-black mb-3">Terms of Use</h1>
+    <p class="text-warm-charcoal text-[0.95rem]">Last updated: April 2026 · Governing law: Republic of India</p>
+  </div>
+  <div class="max-w-[900px] mx-auto px-6 py-16 pb-20">
+    <div class="bg-clay-white border-2 border-oat-border rounded-clay-card p-10 shadow-clay">
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">1. Nature of Service</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">IndiaKaAI is a <strong class="text-clay-black">directory</strong> of AI tools. We list, categorise and link to third-party AI products. We are not a marketplace, reseller, affiliate aggregator or transaction platform. We do not sell AI tools, receive commissions or guarantee the availability, accuracy or quality of any listed tool.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">2. Acceptance of Terms</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">By accessing or using IndiaKaAI, you agree to these Terms of Use. If you do not agree, please do not use this service. These terms apply to all visitors, registered users and tool submitters.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">3. User Accounts</h2>
+      <ul class="space-y-3 mb-8 text-warm-charcoal text-[0.95rem] leading-[1.8] pl-6">
+        <li class="list-disc">You must provide accurate information when creating an account.</li>
+        <li class="list-disc">You are responsible for maintaining the confidentiality of your account.</li>
+        <li class="list-disc">You must not create accounts on behalf of others without authorisation.</li>
+        <li class="list-disc">We reserve the right to suspend accounts that violate these terms.</li>
+      </ul>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">4. Tool Submissions</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-4">When you submit a tool for listing, you confirm that:</p>
+      <ul class="space-y-3 mb-4 text-warm-charcoal text-[0.95rem] leading-[1.8] pl-6">
+        <li class="list-disc">You have the right to submit information about that tool.</li>
+        <li class="list-disc">The information provided is accurate to the best of your knowledge.</li>
+        <li class="list-disc">The tool does not violate any laws or third-party rights.</li>
+      </ul>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">We reserve the right to accept, reject or remove any listing at our discretion. Submission does not guarantee listing.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">5. Prohibited Conduct</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-4">You must not use IndiaKaAI to:</p>
+      <ul class="space-y-3 mb-8 text-warm-charcoal text-[0.95rem] leading-[1.8] pl-6">
+        <li class="list-disc">Submit false, misleading or fraudulent tool listings.</li>
+        <li class="list-disc">Attempt to gain unauthorised access to admin features.</li>
+        <li class="list-disc">Scrape, crawl or systematically download our content without permission.</li>
+        <li class="list-disc">Harass, spam or abuse other users or our team.</li>
+        <li class="list-disc">Violate any applicable law or regulation of India.</li>
+      </ul>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">6. Intellectual Property</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">All original content on IndiaKaAI — including our curation, descriptions, design and branding — is owned by IndiaKaAI. Tool names, logos and descriptions belong to their respective owners. We claim no ownership over third-party tool content.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">7. Disclaimers &amp; Limitation of Liability</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">IndiaKaAI is provided "as is" without warranties of any kind. We do not guarantee the accuracy, completeness or availability of any listed tool. We are not liable for any loss, damage or harm resulting from your use of tools listed in our directory. Links to third-party services are provided for convenience — we have no control over those services and are not responsible for their content or practices.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">8. Governing Law &amp; Jurisdiction</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">These terms are governed by the laws of the Republic of India. Any disputes arising from use of this service shall be subject to the exclusive jurisdiction of courts in Mumbai, Maharashtra, India.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">9. Modifications</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8] mb-8">We may update these terms at any time. Continued use of the service after changes constitutes acceptance of the updated terms. The "Last updated" date above will reflect the most recent revision.</p>
+
+      <h2 class="font-bebas text-[1.8rem] text-clay-black mb-3 tracking-[-0.01em]">10. Contact</h2>
+      <p class="text-warm-charcoal text-[0.95rem] leading-[1.8]">For any questions about these terms, please use the <a onclick="showContactTab('contactus')" class="text-matcha-600 font-medium cursor-pointer hover:text-matcha-800 underline">Contact Us form</a> on this site.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-clay-cream border-t-2 border-oat-border py-[60px] px-6 pb-7">
+  <div class="max-w-[1300px] mx-auto grid grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-10">
+    <div class="footer-brand">
+      <span class="logo font-bebas text-[1.6rem] tracking-[0.06em] text-clay-black block mb-3">IndiaKa<span class="text-matcha-600">AI</span></span>
+      <p class="text-warm-charcoal text-[0.85rem] leading-[1.7] mb-5">India's most trusted AI tools directory. Discover, compare and use the best AI tools for every task — curated by Indians, for India.</p>
+      <div class="flex gap-1 items-center text-[0.82rem] text-warm-silver"> Made with ❤ in India</div>
+    </div>
+    <div>
+      <h4 class="text-[0.9rem] font-bold text-clay-black mb-4 uppercase tracking-[0.04em] text-[0.75rem]">Explore</h4>
+      <a onclick="filterCat('Writing',null);showPage('home')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Writing AI</a>
+      <a onclick="filterCat('Image',null);showPage('home')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Image Gen AI</a>
+      <a onclick="filterCat('Coding',null);showPage('home')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Coding AI</a>
+      <a onclick="filterCat('Video',null);showPage('home')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Video AI</a>
+      <a onclick="filterCat('Productivity',null);showPage('home')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Productivity AI</a>
+    </div>
+    <div>
+      <h4 class="text-[0.9rem] font-bold text-clay-black mb-4 uppercase tracking-[0.04em] text-[0.75rem]">Blog</h4>
+      <a onclick="filterBlog('students',null);showPage('blog')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">AI for Students</a>
+      <a onclick="filterBlog('money',null);showPage('blog')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Make Money with AI</a>
+      <a onclick="filterBlog('tools',null);showPage('blog')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Tool Reviews</a>
+      <a onclick="filterBlog('news',null);showPage('blog')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">AI News</a>
+    </div>
+    <div>
+      <h4 class="text-[0.9rem] font-bold text-clay-black mb-4 uppercase tracking-[0.04em] text-[0.75rem]">Company</h4>
+      <a onclick="showContactTab('contactus')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Contact Us</a>
+      <a onclick="showContactTab('submit')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Submit a Tool</a>
+      <a onclick="showContactTab('advertise')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Advertise</a>
+      <a onclick="showContactTab('getintouch')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Get In Touch</a>
+      <a onclick="showPage('privacy')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Privacy Policy</a>
+      <a onclick="showPage('terms')" class="block text-warm-charcoal no-underline text-[0.85rem] mb-2 transition-all duration-200 cursor-pointer hover:text-matcha-600 hover:font-medium">Terms of Use</a>
+    </div>
+  </div>
+  <div class="max-w-[1300px] mx-auto border-t-2 border-oat-border pt-6 flex justify-between items-center flex-wrap gap-3">
+    <p class="text-warm-silver text-[0.82rem]">© 2026 IndiaKaAI. All rights reserved.</p>
+    <p class="text-warm-silver text-[0.82rem]">India's #1 AI Tools Directory</p>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast fixed bottom-6 right-6 bg-[#1a1f2e] border border-saffron rounded-xl py-3.5 px-[22px] text-white text-[0.9rem] font-semibold z-[9999] opacity-0 translate-y-5 transition-all duration-300 pointer-events-none" id="toast"></div>
+
+<script src="js/api.js"></script>
+<script src="js/firebase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+</body>

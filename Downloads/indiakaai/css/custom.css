@@ -1,0 +1,436 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   CLAY DESIGN SYSTEM - Custom CSS
+   Warm, playful, craft-like design inspired by Clay
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* CSS Variables for Clay Design System */
+:root {
+  --clay-cream: #faf9f7;
+  --clay-black: #000000;
+  --clay-white: #ffffff;
+  --oat-border: #dad4c8;
+  --oat-light: #eee9df;
+  --warm-silver: #9f9b93;
+  --warm-charcoal: #55534e;
+  --matcha-600: #078a52;
+  --matcha-800: #02492a;
+  --slushie-500: #3bd3fd;
+  --lemon-500: #fbbd41;
+  --ube-800: #43089f;
+  --pomegranate-400: #fc7981;
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CLAY BUTTON HOVER ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.clay-btn:hover {
+  transform: rotateZ(-2deg) translateY(-2px);
+  box-shadow: -4px 4px 0 rgb(0, 0, 0);
+}
+
+.clay-btn:active {
+  transform: rotateZ(0deg) translateY(0);
+  box-shadow: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NAVIGATION ACTIVE STATES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.nav-links a.active {
+  color: var(--clay-black);
+  background: var(--oat-light);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CATEGORY TABS ACTIVE STATE
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.cat-tab.active {
+  background: var(--clay-white);
+  border-color: var(--matcha-600);
+  color: var(--clay-black);
+  font-weight: 600;
+  transform: rotateZ(-1deg) translateY(-1px);
+}
+
+.cat-tab:hover {
+  transform: rotateZ(-1deg) translateY(-1px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BLOG & CONTACT TABS ACTIVE STATE
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.blog-cat-tab.active,
+.contact-tab.active {
+  background: var(--matcha-600);
+  border-color: var(--matcha-800);
+  color: var(--clay-white);
+  font-weight: 600;
+  transform: rotateZ(-1deg) translateY(-1px);
+}
+
+.blog-cat-tab:hover,
+.contact-tab:hover {
+  transform: rotateZ(-1deg) translateY(-1px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ADMIN TAB ACTIVE STATE
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.admin-tab-btn.active {
+  background: var(--matcha-600);
+  border-color: var(--matcha-800);
+  color: var(--clay-white);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PRICING BADGES (Clay Style)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.badge-free {
+  background: rgba(8, 138, 82, 0.15);
+  color: var(--matcha-800);
+  border: 2px solid var(--matcha-600);
+  font-weight: 600;
+}
+
+.badge-paid {
+  background: rgba(251, 189, 65, 0.15);
+  color: #9d6a09;
+  border: 2px solid var(--lemon-500);
+  font-weight: 600;
+}
+
+.badge-freemium {
+  background: rgba(67, 8, 159, 0.15);
+  color: var(--ube-800);
+  border: 2px solid var(--ube-800);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PAGE VISIBILITY (JavaScript Controlled)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.page {
+  display: none;
+  padding-top: 58px;
+}
+
+.page.active {
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CONTACT SECTIONS (JavaScript Controlled)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.contact-section {
+  display: none;
+}
+
+.contact-section.active {
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HIDDEN CARDS (JavaScript Controlled)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ai-card.hidden,
+.blog-card.hidden {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MODAL ANIMATIONS (Clay Style)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.modal-overlay {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-overlay.open .modal {
+  transform: translateY(0) rotateZ(0deg);
+}
+
+.modal {
+  transform: translateY(20px) rotateZ(-1deg);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TOAST ANIMATION (Clay Style)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0) rotateZ(-2deg);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ADMIN GATE (JavaScript Controlled)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+#page-admin {
+  display: none !important;
+}
+
+#page-admin.admin-unlocked.active {
+  display: block !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   WEBKIT LINE CLAMP
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.card-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LOGO FADE-IN ANIMATION
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85) rotateZ(-5deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotateZ(0deg);
+  }
+}
+
+.card-icon img {
+  animation: logoFadeIn 0.4s ease both;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NAV USER SECTION (JavaScript Generated)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--matcha-600), var(--slushie-500));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--clay-white);
+  border: 2px solid var(--oat-border);
+}
+
+.nav-username {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--clay-black);
+}
+
+.btn-signout {
+  background: transparent;
+  border: 2px solid var(--oat-border);
+  color: var(--warm-charcoal);
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-signout:hover {
+  border-color: var(--pomegranate-400);
+  color: var(--pomegranate-400);
+  transform: rotateZ(-2deg);
+}
+
+.admin-badge {
+  background: var(--lemon-500);
+  color: var(--clay-black);
+  border: 2px solid #9d6a09;
+  border-radius: 8px;
+  padding: 3px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all 0.2s;
+}
+
+.admin-badge:hover {
+  transform: rotateZ(-2deg) translateY(-1px);
+  box-shadow: -3px 3px 0 rgb(0, 0, 0);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   AUTH ERROR DISPLAY
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.auth-err {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUTTON LOADING STATE
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.btn-google.loading {
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DASHED BORDER ELEMENTS (Clay Signature)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.dashed-border {
+  border-style: dashed !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESPONSIVE ADJUSTMENTS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .clay-btn:hover {
+    transform: rotateZ(0deg) translateY(0);
+    box-shadow: none;
+  }
+  
+  .cat-tab:hover,
+  .blog-cat-tab:hover,
+  .contact-tab:hover {
+    transform: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GOOGLE ADSENSE STYLING
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.adsense-container {
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.adsense-wrapper {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.adsense-wrapper::before {
+  content: 'Advertisement';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 0.65rem;
+  color: var(--warm-silver);
+  background: var(--clay-cream);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--oat-border);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.adsense-wrapper:hover {
+  border-color: var(--matcha-600);
+  transform: rotateZ(-0.5deg) translateY(-1px);
+  box-shadow: -3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.adsbygoogle {
+  display: block;
+  min-height: 90px;
+  background: var(--clay-white);
+}
+
+.adsense-wrapper .text-center {
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, rgba(218, 212, 200, 0.1), rgba(250, 249, 247, 0.1));
+  border-radius: 16px;
+}
+
+@media (max-width: 768px) {
+  .adsense-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .adsense-wrapper {
+    padding: 1rem;
+  }
+  
+  .adsense-wrapper:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .adsense-wrapper::before {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .adsense-wrapper {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.adsense-container * {
+  max-width: 100%;
+}
+
+.adsense-wrapper.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.adsense-wrapper.ad-failed {
+  display: none;
+}
