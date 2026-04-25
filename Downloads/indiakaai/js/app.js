@@ -1,4 +1,238 @@
 /* ══════════════════════════════════════════════════════════════════════
+   PHASE 7: MOBILE UX - NAVIGATION FUNCTIONS
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── MOBILE MENU FUNCTIONS ── */
+function toggleMobileMenu() {
+  const overlay = document.getElementById('mobileMenuOverlay');
+  const drawer = document.getElementById('mobileMenuDrawer');
+  const hamburgerLine1 = document.getElementById('hamburger-line-1');
+  const hamburgerLine2 = document.getElementById('hamburger-line-2');
+  const hamburgerLine3 = document.getElementById('hamburger-line-3');
+  
+  const isOpen = !drawer.classList.contains('translate-x-full');
+  
+  if (isOpen) {
+    closeMobileMenu();
+  } else {
+    openMobileMenu();
+  }
+}
+
+function openMobileMenu() {
+  const overlay = document.getElementById('mobileMenuOverlay');
+  const drawer = document.getElementById('mobileMenuDrawer');
+  const hamburgerLine1 = document.getElementById('hamburger-line-1');
+  const hamburgerLine2 = document.getElementById('hamburger-line-2');
+  const hamburgerLine3 = document.getElementById('hamburger-line-3');
+  
+  // Show overlay
+  overlay.classList.remove('hidden');
+  
+  // Slide in drawer
+  drawer.classList.remove('translate-x-full');
+  
+  // Animate hamburger to X
+  hamburgerLine1.style.transform = 'rotate(45deg) translate(6px, 6px)';
+  hamburgerLine2.style.opacity = '0';
+  hamburgerLine3.style.transform = 'rotate(-45deg) translate(6px, -6px)';
+  
+  // Prevent body scroll
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+  const overlay = document.getElementById('mobileMenuOverlay');
+  const drawer = document.getElementById('mobileMenuDrawer');
+  const hamburgerLine1 = document.getElementById('hamburger-line-1');
+  const hamburgerLine2 = document.getElementById('hamburger-line-2');
+  const hamburgerLine3 = document.getElementById('hamburger-line-3');
+  
+  // Hide overlay
+  overlay.classList.add('hidden');
+  
+  // Slide out drawer
+  drawer.classList.add('translate-x-full');
+  
+  // Reset hamburger animation
+  hamburgerLine1.style.transform = 'rotate(0) translate(0, 0)';
+  hamburgerLine2.style.opacity = '1';
+  hamburgerLine3.style.transform = 'rotate(0) translate(0, 0)';
+  
+  // Restore body scroll
+  document.body.style.overflow = '';
+}
+
+/* ── MOBILE NAVIGATION SYNC ── */
+function updateMobileNavActive(pageId) {
+  // Update desktop nav
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.classList.remove('active', 'text-white', 'bg-gray-700');
+    link.classList.add('text-gray-700');
+  });
+  
+  // Update mobile nav - remove active states
+  document.querySelectorAll('#mobileMenuDrawer a').forEach(link => {
+    link.classList.remove('active', 'bg-matcha-100', 'border-2', 'border-matcha-200', 'text-gray-900', 'font-semibold');
+    link.classList.add('text-gray-700', 'font-medium');
+  });
+  
+  // Set active states (skip home since it's removed)
+  if (pageId !== 'home') {
+    const desktopActive = document.getElementById(`nav-${pageId}`);
+    const mobileActive = document.getElementById(`mobile-nav-${pageId}`);
+    
+    if (desktopActive) {
+      desktopActive.classList.add('active', 'text-white', 'bg-gray-700');
+      desktopActive.classList.remove('text-gray-700');
+    }
+    
+    if (mobileActive) {
+      mobileActive.classList.add('active', 'bg-matcha-100', 'border-2', 'border-matcha-200', 'text-gray-900', 'font-semibold');
+      mobileActive.classList.remove('text-gray-700', 'font-medium');
+    }
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   PHASE 6: INTERNAL LINKING SYSTEM
+   ══════════════════════════════════════════════════════════════════════
+   1. Related Tools - Show similar tools by category
+   2. Blog to Tools Links - Link blog articles to relevant tools
+   3. Tool to Blog Links - Link tool pages to relevant blog articles
+   4. Cross-linking for better SEO and user experience
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── RELATED TOOLS FUNCTIONALITY ── */
+function getRelatedTools(currentToolId, limit = 4) {
+  const currentTool = AI_TOOLS.find(tool => tool.id === currentToolId);
+  if (!currentTool) return [];
+  
+  // Find tools in the same category, excluding the current tool
+  const relatedTools = AI_TOOLS
+    .filter(tool => tool.id !== currentToolId && tool.cat === currentTool.cat)
+    .slice(0, limit);
+  
+  // If not enough tools in same category, add tools from other categories
+  if (relatedTools.length < limit) {
+    const additionalTools = AI_TOOLS
+      .filter(tool => tool.id !== currentToolId && tool.cat !== currentTool.cat)
+      .slice(0, limit - relatedTools.length);
+    relatedTools.push(...additionalTools);
+  }
+  
+  return relatedTools;
+}
+
+/* ── BLOG TO TOOLS MAPPING ── */
+const BLOG_TOOL_LINKS = {
+  "best-free-ai-tools-indian-students": [1, 9, 11, 8, 7, 69, 44, 20, 10, 66], // ChatGPT, Gemini, Perplexity, QuillBot, Grammarly, Wolfram Alpha, Otter.ai, Canva AI, Notion AI, Elicit
+  "chatgpt-vs-gemini-india": [1, 9], // ChatGPT, Gemini
+  "ai-tools-hindi-support": [1, 9, 11, 7, 8, 27, 35, 43], // ChatGPT, Gemini, Perplexity, Grammarly, QuillBot, HeyGen, ElevenLabs, Speechify
+  "chatgpt-kaise-use-karein": [1, 9, 2], // ChatGPT, Gemini, Claude
+  "best-ai-tools-india-2026": [1, 9, 13, 14, 25, 35, 45, 57, 11, 73, 81, 87, 93, 97], // Top tools from each category
+  "midjourney-vs-dalle-comparison": [13, 14, 15, 16, 17, 18], // Image generation tools
+  "ai-tools-for-business-india": [1, 9, 57, 58, 73, 74, 75, 76, 81, 82, 87, 88], // Business-focused tools
+  "free-ai-tools-content-creation": [1, 9, 15, 19, 20, 39, 47, 56, 65, 96], // Free tools for creators
+  "ai-content-creation-workflow-2026": [1, 9, 13, 14, 20, 25, 35, 36, 73, 76, 3, 4] // Complete workflow tools
+};
+
+/* ── TOOL TO BLOG MAPPING ── */
+const TOOL_BLOG_LINKS = {
+  1: ["chatgpt-vs-gemini-india", "best-free-ai-tools-indian-students", "chatgpt-kaise-use-karein"], // ChatGPT
+  9: ["chatgpt-vs-gemini-india", "best-free-ai-tools-indian-students", "ai-tools-hindi-support"], // Gemini
+  13: ["midjourney-vs-dalle-comparison", "best-ai-tools-india-2026"], // Midjourney
+  14: ["midjourney-vs-dalle-comparison", "best-ai-tools-india-2026"], // DALL-E 3
+  45: ["best-ai-tools-india-2026"], // GitHub Copilot
+  46: ["best-ai-tools-india-2026"], // Cursor
+  57: ["ai-tools-for-business-india", "best-ai-tools-india-2026"], // Fireflies.ai
+  73: ["ai-tools-for-business-india", "best-ai-tools-india-2026"], // Surfer SEO
+  81: ["ai-tools-for-business-india", "best-ai-tools-india-2026"], // Tidio
+  87: ["ai-tools-for-business-india", "best-ai-tools-india-2026"] // Julius AI
+};
+
+/* ── GENERATE RELATED TOOLS HTML ── */
+function generateRelatedToolsHTML(currentToolId) {
+  const relatedTools = getRelatedTools(currentToolId, 4);
+  if (relatedTools.length === 0) return '';
+  
+  const toolsHTML = relatedTools.map(tool => `
+    <div class="bg-white border-2 border-gray-200 rounded-xl p-4 hover:border-matcha-600 transition">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center text-lg" style="background-color: ${tool.color}20; color: ${tool.color};">
+          ${getToolIcon(tool.name)}
+        </div>
+        <div>
+          <h3 class="font-bold text-sm">${tool.name}</h3>
+          <span class="text-xs text-gray-500">${tool.cat}</span>
+        </div>
+      </div>
+      <p class="text-xs text-gray-600 mb-3">${tool.desc}</p>
+      <div class="flex justify-between items-center">
+        <span class="text-xs font-semibold px-2 py-1 rounded ${getPricingColor(tool.pricing)}">${tool.pricing}</span>
+        <a href="${tool.url}" target="_blank" class="text-xs text-matcha-600 font-semibold hover:underline">Visit →</a>
+      </div>
+    </div>
+  `).join('');
+  
+  return `
+    <div class="bg-clay-cream border-2 border-oat-border rounded-2xl p-6 mt-8">
+      <h3 class="text-lg font-bold mb-4">Related AI Tools</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        ${toolsHTML}
+      </div>
+    </div>
+  `;
+}
+
+/* ── GENERATE BLOG LINKS HTML ── */
+function generateBlogLinksHTML(toolId) {
+  const blogLinks = TOOL_BLOG_LINKS[toolId];
+  if (!blogLinks || blogLinks.length === 0) return '';
+  
+  const linksHTML = blogLinks.map(blogSlug => {
+    const blog = DEFAULT_BLOGS.find(b => b.url.includes(blogSlug));
+    if (!blog) return '';
+    
+    return `
+      <a href="${blog.url}" class="block text-matcha-600 font-semibold hover:underline">
+        → ${blog.title}
+      </a>
+    `;
+  }).join('');
+  
+  return `
+    <div class="bg-matcha-600 bg-opacity-10 border-2 border-matcha-600 rounded-2xl p-6 mt-8">
+      <h3 class="text-lg font-bold mb-3">Learn More</h3>
+      <p class="mb-4">Read our detailed guides and tutorials:</p>
+      <div class="space-y-2">
+        ${linksHTML}
+      </div>
+    </div>
+  `;
+}
+
+/* ── HELPER FUNCTIONS ── */
+function getToolIcon(toolName) {
+  const iconMap = {
+    'ChatGPT': '🤖', 'Gemini': '💎', 'Claude': '🧠', 'Midjourney': '🎨', 'DALL·E 3': '🖼️',
+    'Stable Diffusion': '🎭', 'Runway ML': '🎬', 'ElevenLabs': '🎙️', 'GitHub Copilot': '👨‍💻',
+    'Cursor': '⚡', 'Fireflies.ai': '📝', 'Grammarly': '✍️', 'QuillBot': '📚', 'Perplexity AI': '🔍',
+    'Wolfram Alpha': '🧮', 'Otter.ai': '🎧', 'Canva AI': '🎨', 'Notion AI': '📋', 'Elicit': '📄'
+  };
+  return iconMap[toolName] || '🔧';
+}
+
+function getPricingColor(pricing) {
+  switch(pricing) {
+    case 'Free': return 'bg-green-100 text-green-800';
+    case 'Freemium': return 'bg-blue-100 text-blue-800';
+    case 'Paid': return 'bg-orange-100 text-orange-800';
+    default: return 'bg-gray-100 text-gray-800';
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
    PHASE 3: PRODUCT FEATURES
    ══════════════════════════════════════════════════════════════════════
    1. Tool of the Week - Featured card with editorial
@@ -74,7 +308,7 @@ const AI_TOOLS = [
 
   // CODING (45-56)
   {id:45,name:"GitHub Copilot",cat:"Coding",icon:"",color:"#000000",desc:"AI pair programmer — suggests code, functions and fixes right in your editor.",pricing:"Paid",url:"https://github.com/features/copilot"},
-  {id:46,name:"Cursor",cat:"Coding",icon:"",color:"#000000",desc:"AI-first code editor built on VS Code — chat with your codebase and ship faster.",pricing:"Freemium",url:"https://cursor.sh"},
+  {id:46,name:"Cursor",cat:"Coding",icon:"",color:"#000000",desc:"AI-first code editor built on VS Code — chat with your codebase and ship faster.",pricing:"Freemium",url:"https://cursor.com/learn"},
   {id:47,name:"Codeium",cat:"Coding",icon:"",color:"#22C55E",desc:"Free AI code completion for 70+ languages — works in all popular IDEs.",pricing:"Free",url:"https://codeium.com"},
   {id:48,name:"Tabnine",cat:"Coding",icon:"",color:"#3B82F6",desc:"AI code completion that learns your codebase — runs locally for full privacy.",pricing:"Freemium",url:"https://tabnine.com"},
   {id:49,name:"Replit AI",cat:"Coding",icon:"",color:"#F97316",desc:"AI-powered cloud IDE — build, run and deploy apps with AI assistance in browser.",pricing:"Freemium",url:"https://replit.com"},
@@ -145,68 +379,86 @@ const AI_TOOLS = [
   {id:100,name:"Domo AI",cat:"Finance",icon:"",color:"#FF6B00",desc:"Business intelligence cloud with AI-driven insights and real-time data dashboards.",pricing:"Paid",url:"https://domo.com"},
 ];
 
-/* ── DEFAULT BLOG DATA (linking to our own blog articles) ── */
+/* ── DEFAULT BLOG DATA ── */
 const DEFAULT_BLOGS = [
   {id:1,tag:"students",emoji:"📚",bg:"linear-gradient(135deg,#4F46E5,#7C3AED)",
    title:"Best Free AI Tools for Indian Students in 2026",
    excerpt:"Discover 10 free AI tools that will help you study smarter, write better essays, and ace your exams.",
    date:"Apr 22, 2026",read:"6 min read",author:"IndiaKaAI Team",
-   url:"/blog/best-free-ai-tools-indian-students.html"},
+   url:"/blog/best-free-ai-tools-indian-students.html",
+   content:`<p>As a student in India, you have access to some of the most powerful AI tools ever built — and many of them are completely free. Whether you're preparing for JEE, NEET, board exams, or college assignments, these tools can save you hours every week.</p><h2>1. ChatGPT (Free Tier)</h2><p>ChatGPT by OpenAI is the most versatile AI tool for students. Use it to explain complex topics in simple language, generate essay outlines, solve math problems step-by-step, or even practice for interviews. The free tier (GPT-3.5) is more than enough for most student needs.</p><h2>2. Google Gemini</h2><p>Gemini is Google's answer to ChatGPT and it's deeply integrated with Google Workspace. If you use Google Docs or Gmail, Gemini can help you write, summarise, and research without leaving your browser. The free version is excellent for everyday academic tasks.</p><h2>3. QuillBot</h2><p>QuillBot is a must-have for students who write essays and reports. Its paraphrasing tool helps you rewrite content in your own words, while the summariser condenses long articles into key points. The grammar checker catches errors that even spell-check misses.</p><h2>4. Perplexity AI</h2><p>Think of Perplexity as a smarter Google. It searches the web in real-time and gives you cited, accurate answers — perfect for research assignments. Unlike ChatGPT, it always shows you the sources so you can verify information and use them in your bibliography.</p><h2>5. Grammarly</h2><p>Grammarly's free browser extension checks your grammar, spelling, and tone across every website — Gmail, Google Docs, WhatsApp Web, and more. For students writing in English, it's an invisible editor that makes your writing sound more professional.</p><h2>6. Bing Image Creator</h2><p>Need visuals for a presentation? Bing Image Creator (powered by DALL·E) lets you generate unlimited free images from text descriptions. Create diagrams, illustrations, and concept art for your projects without any design skills.</p><h2>7. Wolfram Alpha</h2><p>Wolfram Alpha is the ultimate tool for STEM students. It solves equations, plots graphs, explains chemistry reactions, and answers factual questions with step-by-step working. It's like having a maths tutor available 24/7.</p><h2>8. Notion AI</h2><p>Notion's free plan with AI features lets you organise your notes, create study schedules, and summarise lecture notes. Many students use it as their second brain — everything from class notes to project timelines in one place.</p><h2>9. Otter.ai</h2><p>Otter.ai transcribes lectures and meetings in real-time. If you attend online classes or record your professors, Otter converts the audio to searchable text automatically. The free plan gives you 300 minutes of transcription per month.</p><h2>10. Elicit</h2><p>Elicit is built specifically for academic research. It searches through millions of research papers and extracts the key findings relevant to your question. For literature reviews and research projects, it saves hours of manual reading.</p><h2>Final Thoughts</h2><p>You don't need to spend a single rupee to access world-class AI tools as a student. Start with ChatGPT and Grammarly for daily use, add Perplexity for research, and use Wolfram Alpha for STEM subjects. These tools won't do your work for you — but they'll make you significantly more efficient and effective.</p>`},
   {id:2,tag:"tools",emoji:"🤖",bg:"linear-gradient(135deg,#10a37f,#065F46)",
    title:"ChatGPT vs Gemini: Which is Better for India?",
    excerpt:"Detailed comparison of ChatGPT and Google Gemini for Indian users, including pricing and features.",
    date:"Apr 23, 2026",read:"8 min read",author:"IndiaKaAI Team",
-   url:"/blog/chatgpt-vs-gemini-india.html"},
+   url:"/blog/chatgpt-vs-gemini-india.html",
+   content:`<p>Two AI giants are competing for your attention — ChatGPT from OpenAI and Gemini from Google. Both are powerful, both have free tiers, and both work well in India. But which one should you use? Let's break it down.</p><h2>Pricing in India</h2><p>ChatGPT's free tier uses GPT-3.5, which is capable but limited. ChatGPT Plus costs $20/month (roughly ₹1,660), which is steep for most Indian users. Gemini's free tier uses Gemini 1.5 Flash, and Gemini Advanced costs ₹1,950/month but is included in Google One AI Premium — which also gives you 2TB storage.</p><h2>Language Support</h2><p>Both tools support Hindi and other Indian languages, but Gemini has a slight edge here because it's trained on more multilingual data from Google Search. For Hindi content creation, Gemini produces more natural-sounding text. ChatGPT is better for English-heavy tasks.</p><h2>Internet Access</h2><p>Gemini searches the web by default in its free tier — a huge advantage for current events and research. ChatGPT's free tier has no internet access; you need Plus for browsing. For Indian users who want up-to-date information without paying, Gemini wins.</p><h2>Google Integration</h2><p>If you use Gmail, Google Docs, Google Drive, or YouTube, Gemini is deeply integrated. It can summarise your emails, help draft documents, and even analyse files in your Drive. ChatGPT has no such native integration with Google services.</p><h2>Coding Ability</h2><p>ChatGPT (especially GPT-4) is widely considered the better coding assistant. It handles complex debugging, explains code clearly, and supports more programming languages. Gemini is catching up but still trails for serious development work.</p><h2>Image Understanding</h2><p>Both can analyse images you upload. Gemini handles this in the free tier; ChatGPT requires Plus. For students who want to photograph textbook problems and get explanations, Gemini's free image analysis is a significant advantage.</p><h2>Verdict for Indian Users</h2><p>Use <strong>Gemini</strong> if you want free internet access, Google integration, and Hindi support. Use <strong>ChatGPT</strong> if you need the best coding help, creative writing, or are willing to pay for GPT-4's superior reasoning. Many power users use both — Gemini for research and quick tasks, ChatGPT for deep work.</p>`},
   {id:3,tag:"news",emoji:"🇮🇳",bg:"linear-gradient(135deg,#FF6B00,#FF8C00)",
    title:"Top AI Tools with Hindi Language Support",
    excerpt:"AI tools that work perfectly in Hindi - for content creation, translation, and more.",
    date:"Apr 24, 2026",read:"5 min read",author:"IndiaKaAI Team",
-   url:"/blog/ai-tools-hindi-support.html"},
+   url:"/blog/ai-tools-hindi-support.html",
+   content:`<p>Hindi is spoken by over 600 million people, yet most AI tools are built primarily for English. The good news: in 2026, several top AI tools now offer excellent Hindi support. Here are the best ones.</p><h2>ChatGPT — Best for Hindi Conversations</h2><p>ChatGPT understands and responds in Hindi fluently. You can ask questions, get explanations, write essays, and even have full conversations in Hindi. Just type in Hindi (Devanagari script or Hinglish) and it responds naturally. It's the most versatile Hindi AI tool available.</p><h2>Google Gemini — Best for Hindi + Google Integration</h2><p>Gemini is trained on massive amounts of Hindi web content, making it particularly strong for Indian context. It understands regional references, idioms, and cultural nuances better than most tools. Combined with Google Search integration, it's ideal for Hindi research.</p><h2>ElevenLabs — Best for Hindi Voice</h2><p>ElevenLabs offers realistic Hindi text-to-speech voices. Content creators making Hindi YouTube videos or podcasts can use it to generate professional voiceovers without recording equipment. The Hindi voices sound natural and expressive.</p><h2>HeyGen — Best for Hindi Video Avatars</h2><p>HeyGen lets you create AI avatar videos that speak Hindi with lip-sync. Educators and businesses creating Hindi training videos or explainers can produce professional content without a camera or studio.</p><h2>Speechify — Best for Hindi Audio Reading</h2><p>Speechify converts Hindi text — articles, PDFs, books — into audio. If you prefer listening to reading, or want to consume Hindi content while commuting, Speechify is the tool for you.</p><h2>QuillBot — Best for Hindi Paraphrasing</h2><p>QuillBot's paraphrasing tool works reasonably well with Hindi text. Students writing Hindi essays can use it to rephrase content and improve their writing style.</p><h2>Tips for Using AI in Hindi</h2><p>Most AI tools work better when you're consistent with your script — either use Devanagari throughout or Hinglish throughout, not a mix. For best results with ChatGPT and Gemini, start your conversation in Hindi and the AI will maintain that language throughout the session.</p>`},
   {id:4,tag:"students",emoji:"💡",bg:"linear-gradient(135deg,#10B981,#059669)",
    title:"ChatGPT Kaise Use Karein - Complete Guide",
    excerpt:"ChatGPT ko Hindi mein kaise use karein - step by step guide with examples.",
    date:"Apr 25, 2026",read:"7 min read",author:"IndiaKaAI Team",
-   url:"/blog/chatgpt-kaise-use-karein.html"},
+   url:"/blog/chatgpt-kaise-use-karein.html",
+   content:`<p>ChatGPT ek powerful AI tool hai jo aapki study, writing, aur daily tasks mein madad kar sakta hai. Is guide mein hum step-by-step dekhenge ki ChatGPT ko kaise use karein.</p><h2>Step 1: Account Banayein</h2><p>chat.openai.com par jaayein aur "Sign Up" par click karein. Aap apni email ya Google account se register kar sakte hain. Free account mein GPT-3.5 milta hai jo beginners ke liye kaafi hai.</p><h2>Step 2: Pehla Prompt Likhein</h2><p>Chat box mein apna sawaal ya request likhein. Example: "Mujhe photosynthesis ke baare mein simple language mein samjhao" ya "Write a 500-word essay on climate change in India." ChatGPT turant jawab dega.</p><h2>Step 3: Better Prompts Likhna Seekhein</h2><p>ChatGPT ka output aapke prompt ki quality par depend karta hai. Vague prompts se vague answers milte hain. Specific prompts likhein: context do, format specify karein, aur audience batayein. Example: "Main ek 10th class student hoon. Mujhe Newton's laws of motion ko 3 real-life examples ke saath samjhao."</p><h2>Step 4: Follow-up Questions Poochein</h2><p>ChatGPT conversation yaad rakhta hai. Agar koi cheez samajh nahi aayi, toh seedha poochein: "Yeh point aur detail mein samjhao" ya "Iska ek aur example do." Conversation continue karte rahein jab tak aapko poori clarity na mil jaaye.</p><h2>Study ke liye Best Use Cases</h2><p><strong>Essay writing:</strong> Outline generate karwayein, phir khud likhein. <strong>Doubt clearing:</strong> Koi bhi concept explain karwayein. <strong>Practice questions:</strong> "Mujhe is topic par 10 MCQ questions do" likhein. <strong>Summarisation:</strong> Long notes paste karein aur summary maangein. <strong>Translation:</strong> English content ko Hindi mein translate karwayein.</p><h2>Important Warnings</h2><p>ChatGPT kabhi kabhi galat information de sakta hai — ise "hallucination" kehte hain. Important facts ko hamesha verify karein. Exams ke liye ChatGPT ke answers ko directly copy mat karein — samjhein aur apne words mein likhein.</p><h2>Free vs Paid</h2><p>Free tier (GPT-3.5) most students ke liye sufficient hai. Agar aapko latest GPT-4o model chahiye with image analysis aur better reasoning, toh ChatGPT Plus ($20/month) consider karein. Lekin pehle free version try karein.</p>`},
   {id:5,tag:"tools",emoji:"🎯",bg:"linear-gradient(135deg,#F59E0B,#D97706)",
    title:"Best AI Tools in India 2026 - Complete List",
    excerpt:"The ultimate guide to AI tools available in India, with pricing in INR and local alternatives.",
    date:"Apr 26, 2026",read:"10 min read",author:"IndiaKaAI Team",
-   url:"/blog/best-ai-tools-india-2026.html"},
+   url:"/blog/best-ai-tools-india-2026.html",
+   content:`<p>India's AI adoption is accelerating faster than almost any other country. In 2026, Indian users have access to world-class AI tools — many with INR pricing, UPI payment support, and Hindi language capabilities. Here's the definitive list.</p><h2>Best AI Writing Tools</h2><p><strong>ChatGPT</strong> remains the king for writing, coding, and general tasks. The free tier is excellent; Plus at ₹1,660/month unlocks GPT-4o. <strong>Gemini</strong> is Google's strong alternative with free internet access. <strong>Claude</strong> by Anthropic excels at long-form writing and document analysis — great for professionals.</p><h2>Best AI Image Tools</h2><p><strong>Midjourney</strong> produces the most artistic images but requires a Discord account and costs $10/month. <strong>DALL·E 3</strong> is accessible through ChatGPT Plus. <strong>Adobe Firefly</strong> is the safest choice for commercial use since it's trained on licensed content — important for Indian businesses.</p><h2>Best AI Video Tools</h2><p><strong>InVideo AI</strong> is particularly popular in India for creating YouTube and social media videos. It has INR pricing and Hindi voiceover support. <strong>HeyGen</strong> is the go-to for creating AI avatar videos in Indian languages.</p><h2>Best AI Coding Tools</h2><p><strong>GitHub Copilot</strong> at $10/month is the industry standard. <strong>Cursor</strong> is the rising star — an AI-first code editor that many Indian developers are switching to. <strong>Codeium</strong> is completely free and works across all major IDEs.</p><h2>Best AI Productivity Tools</h2><p><strong>Notion AI</strong> is excellent for note-taking and project management. <strong>Fireflies.ai</strong> automatically transcribes your Zoom and Google Meet calls — a game-changer for remote teams. <strong>Gamma</strong> creates beautiful presentations from text in seconds.</p><h2>Payment Methods Available in India</h2><p>Most major AI tools now accept international credit/debit cards (Visa, Mastercard). Some accept UPI through third-party services. For tools that don't accept Indian cards directly, a Wise or Niyo card works well. Always check if the tool has an India-specific pricing page — some offer discounts for Indian users.</p><h2>Our Top 5 Picks for Indian Users</h2><p>1. <strong>Gemini</strong> — Best free all-rounder with Google integration. 2. <strong>ChatGPT</strong> — Best for writing and coding. 3. <strong>InVideo AI</strong> — Best for video content with Hindi support. 4. <strong>Codeium</strong> — Best free coding assistant. 5. <strong>Fireflies.ai</strong> — Best for meeting productivity.</p>`},
   {id:6,tag:"tools",emoji:"🎨",bg:"linear-gradient(135deg,#7C3AED,#5B21B6)",
    title:"Midjourney vs DALL-E 3: Which AI Image Generator to Choose?",
    excerpt:"Compare features, pricing, and image quality of the two leading AI image generators.",
    date:"Apr 27, 2026",read:"8 min read",author:"IndiaKaAI Team",
-   url:"/blog/midjourney-vs-dalle-comparison.html"},
+   url:"/blog/midjourney-vs-dalle-comparison.html",
+   content:`<p>AI image generation has transformed creative work. Two tools dominate the space: Midjourney and DALL·E 3. Both produce stunning images, but they have very different strengths, workflows, and pricing. Here's a detailed comparison for Indian users.</p><h2>Image Quality</h2><p><strong>Midjourney</strong> consistently produces the most aesthetically pleasing, artistic images. Its outputs have a distinctive painterly quality that designers and artists love. It excels at portraits, landscapes, and stylised art. <strong>DALL·E 3</strong> is better at following precise instructions and generating images with accurate text. If you need an image that matches a very specific description, DALL·E 3 is more reliable.</p><h2>Ease of Use</h2><p>DALL·E 3 wins here. It's integrated directly into ChatGPT — just describe what you want in plain English and it generates the image. No special syntax needed. Midjourney requires using Discord, learning prompt syntax, and understanding parameters like --ar (aspect ratio) and --v (version). There's a learning curve.</p><h2>Pricing</h2><p>Midjourney starts at $10/month for ~200 images. DALL·E 3 is included in ChatGPT Plus ($20/month) with limited generations, or you can use it via the OpenAI API. For Indian users, Bing Image Creator offers free DALL·E 3 generations — an excellent option to try before paying.</p><h2>Commercial Use</h2><p>Both allow commercial use of generated images for paid subscribers. However, Adobe Firefly is the safest choice for commercial projects since it's trained exclusively on licensed content, eliminating copyright concerns.</p><h2>Style Variety</h2><p>Midjourney has a wider range of artistic styles and produces more visually impressive results for creative projects. DALL·E 3 is more versatile for practical use cases like product mockups, presentations, and illustrations.</p><h2>Which Should You Choose?</h2><p>Choose <strong>Midjourney</strong> if you're a designer, artist, or content creator who wants the highest quality artistic images and is willing to learn the tool. Choose <strong>DALL·E 3</strong> (via ChatGPT or Bing) if you want ease of use, accurate prompt following, and don't want to learn a new platform. For free options, try <strong>Bing Image Creator</strong> (DALL·E 3) or <strong>Leonardo AI</strong> which offers generous free credits.</p>`},
   {id:7,tag:"money",emoji:"💼",bg:"linear-gradient(135deg,#EC4899,#BE185D)",
    title:"AI Tools for Small Businesses in India",
    excerpt:"Affordable AI tools that can help Indian small businesses automate and grow.",
    date:"Apr 28, 2026",read:"9 min read",author:"IndiaKaAI Team",
-   url:"/blog/ai-tools-for-business-india.html"},
+   url:"/blog/ai-tools-for-business-india.html",
+   content:`<p>Running a small business in India is challenging — tight budgets, limited staff, and fierce competition. AI tools can level the playing field by automating repetitive tasks, improving customer service, and helping you create professional content at a fraction of the cost.</p><h2>Customer Support — Tidio</h2><p>Tidio's AI chatbot can handle common customer queries 24/7 without human intervention. For e-commerce businesses, it can answer questions about orders, returns, and product details automatically. The free plan handles up to 50 conversations/month — enough for small businesses starting out.</p><h2>Social Media — Predis.ai</h2><p>Predis.ai is built for Indian businesses. It generates social media posts, carousels, and reels in Hindi and English, and even analyses your competitors. The free plan gives you 15 posts/month. For businesses that need consistent social media presence without a dedicated team, it's invaluable.</p><h2>Meetings & Notes — Fireflies.ai</h2><p>If your business runs on calls and meetings, Fireflies.ai automatically records, transcribes, and summarises every meeting. No more manual note-taking. The free plan gives you unlimited transcription storage and is sufficient for most small teams.</p><h2>Content Writing — ChatGPT or Jasper</h2><p>Use ChatGPT (free) to write product descriptions, email campaigns, and blog posts. For businesses that need more structured marketing copy at scale, Jasper AI offers templates specifically for ads, landing pages, and social media.</p><h2>SEO — Surfer SEO or Frase</h2><p>If your business relies on organic search traffic, AI SEO tools can dramatically improve your content's ranking. Surfer SEO analyses top-ranking pages and tells you exactly what to include in your content. It's an investment but pays off quickly in organic traffic.</p><h2>Design — Canva AI</h2><p>Canva's AI features (Magic Design, text-to-image, background remover) make professional design accessible to non-designers. Create logos, banners, social posts, and presentations without hiring a graphic designer. The free plan is generous.</p><h2>ROI for Indian SMBs</h2><p>A typical small business spending ₹5,000-10,000/month on these tools can save 20-30 hours of work per week. That's the equivalent of a part-time employee. Start with free tiers, measure the impact, and upgrade only what delivers clear value.</p>`},
   {id:8,tag:"money",emoji:"🎬",bg:"linear-gradient(135deg,#06B6D4,#0284C7)",
    title:"Free AI Tools for Content Creators in 2026",
    excerpt:"Create videos, images, and written content using these completely free AI tools.",
    date:"Apr 29, 2026",read:"7 min read",author:"IndiaKaAI Team",
-   url:"/blog/free-ai-tools-content-creation.html"},
-  {id:9,tag:"tools",emoji:"⚡",bg:"linear-gradient(135deg,#374151,#111827)",
+   url:"/blog/free-ai-tools-content-creation.html",
+   content:`<p>You don't need a big budget to create professional content in 2026. These completely free AI tools cover every aspect of content creation — from writing and images to video and audio.</p><h2>Writing — ChatGPT Free</h2><p>ChatGPT's free tier is the best starting point for any content creator. Use it to brainstorm ideas, write first drafts, create captions, and repurpose content across formats. Pair it with Grammarly (also free) for polished, error-free writing.</p><h2>Images — Bing Image Creator</h2><p>Microsoft's Bing Image Creator gives you unlimited free AI image generation powered by DALL·E 3. Create thumbnails, social media graphics, blog illustrations, and more. No account needed beyond a Microsoft login.</p><h2>Video — CapCut AI</h2><p>CapCut's free AI features include auto-captions, background removal, AI effects, and smart cut. It's the most popular video editing app among Indian content creators and the AI features are genuinely useful for Reels and Shorts.</p><h2>Audio — Adobe Podcast Enhance</h2><p>Adobe Podcast's Enhance Speech tool is completely free and removes background noise from any audio recording. If you record voiceovers or podcasts in a noisy environment, this tool makes them sound studio-quality instantly.</p><h2>Music — Suno AI Free Tier</h2><p>Suno AI lets you generate complete songs with vocals from a text prompt. The free tier gives you 50 credits/day — enough to create background music for your videos without copyright issues.</p><h2>Thumbnails & Design — Canva Free</h2><p>Canva's free plan includes AI-powered Magic Design, which generates complete design layouts from a prompt. For YouTube thumbnails, Instagram posts, and presentation slides, it's the most accessible design tool available.</p><h2>SEO & Research — Perplexity AI</h2><p>Perplexity AI is free and searches the web in real-time. Use it to research topics, find trending questions in your niche, and discover what your audience is searching for — all with cited sources you can reference.</p><h2>Workflow Tip</h2><p>The most efficient free workflow: Use Perplexity to research → ChatGPT to write → Grammarly to polish → Bing Image Creator for visuals → CapCut to edit video → Adobe Podcast to clean audio. This entire stack costs ₹0.</p>`},
+  {id:9,tag:"tools",emoji:"🔄",bg:"linear-gradient(135deg,#7C3AED,#5B21B6)",
+   title:"Complete AI Content Creation Workflow for 2026",
+   excerpt:"Master the 5-stage AI workflow that top creators use to produce content 3x faster.",
+   date:"Apr 30, 2026",read:"12 min read",author:"IndiaKaAI Team",
+   url:"/blog/ai-content-creation-workflow-2026.html",
+   content:`<p>Top content creators aren't just using AI tools randomly — they've built systematic workflows that multiply their output without sacrificing quality. Here's the 5-stage AI content creation workflow used by India's most productive creators.</p><h2>Stage 1: Research & Ideation</h2><p>Start with <strong>Perplexity AI</strong> to research your topic with real-time web sources. Then use <strong>ChatGPT</strong> to brainstorm 20 content angles, identify the most compelling hook, and outline your content structure. This stage should take 15-20 minutes and gives you a solid foundation.</p><h2>Stage 2: Writing & Scripting</h2><p>Use <strong>ChatGPT</strong> or <strong>Claude</strong> to write your first draft based on the outline. Don't aim for perfection — aim for speed. A rough draft in 10 minutes beats a perfect draft in 2 hours. Then use <strong>Grammarly</strong> to catch errors and improve clarity. For video scripts, use the draft as a teleprompter guide, not a word-for-word script.</p><h2>Stage 3: Visual Creation</h2><p>For images: <strong>Midjourney</strong> or <strong>DALL·E 3</strong> for custom illustrations. <strong>Canva AI</strong> for social media graphics and thumbnails. For video: <strong>Runway ML</strong> or <strong>Pika Labs</strong> for AI-generated clips. <strong>HeyGen</strong> if you want an AI avatar presenter. <strong>InVideo AI</strong> for complete video production from a script.</p><h2>Stage 4: Audio & Voice</h2><p>Record your own voice and use <strong>Adobe Podcast Enhance</strong> to clean it up. Or use <strong>ElevenLabs</strong> to generate a professional voiceover from your script. For background music, <strong>Suno AI</strong> or <strong>Mubert</strong> generate royalty-free tracks that match your content's mood.</p><h2>Stage 5: Distribution & Optimisation</h2><p>Use <strong>Predis.ai</strong> to repurpose your content into platform-specific formats (Instagram carousel, Twitter thread, LinkedIn post). Use <strong>Opus Clip</strong> to automatically cut long videos into short clips for Reels and Shorts. Use <strong>Surfer SEO</strong> to optimise written content for search.</p><h2>Time Savings</h2><p>Without AI: A single YouTube video (research + script + thumbnail + editing) takes 8-12 hours. With this workflow: 3-4 hours. That's 3x more content with the same effort — or the same content with significantly less stress.</p><h2>Getting Started</h2><p>Don't try to implement all 5 stages at once. Start with Stage 1 (Perplexity + ChatGPT for research) and Stage 2 (ChatGPT + Grammarly for writing). Once those feel natural, add visual creation. Build the workflow gradually over 4-6 weeks.</p>`},
+  {id:10,tag:"tools",emoji:"⚡",bg:"linear-gradient(135deg,#374151,#111827)",
    title:"GitHub Copilot vs Cursor vs Codeium — Best AI Coding Tools",
    excerpt:"Developers share which AI code assistant made them 3x more productive.",
-   date:"Apr 30, 2026",read:"7 min read",author:"IndiaKaAI Team",
-   url:"https://www.techradar.com/best/best-ai-coding-assistants"},
-  {id:10,tag:"news",emoji:"🚀",bg:"linear-gradient(135deg,#DC2626,#991B1B)",
+   date:"May 1, 2026",read:"7 min read",author:"IndiaKaAI Team",
+   url:"https://www.techradar.com/best/best-ai-coding-assistants",
+   content:`<p>AI coding assistants have become essential tools for developers in 2026. Three tools dominate the conversation: GitHub Copilot, Cursor, and Codeium. Each has a distinct approach and target audience.</p><h2>GitHub Copilot</h2><p>The original AI coding assistant, now deeply integrated into VS Code, JetBrains, and other IDEs. Copilot suggests code completions, generates functions from comments, and explains code. At $10/month ($19 for Business), it's the industry standard. Indian developers get access through GitHub's standard pricing.</p><h2>Cursor</h2><p>Cursor is an AI-first code editor built on VS Code. Unlike Copilot which is a plugin, Cursor is the entire editor. Its "Chat with your codebase" feature lets you ask questions about your entire project, not just the current file. Many developers report it's the most transformative tool they've adopted. Free tier available; Pro is $20/month.</p><h2>Codeium</h2><p>Codeium is completely free for individual developers and supports 70+ programming languages. It works as a plugin for VS Code, JetBrains, Vim, and more. While it's not as powerful as Copilot or Cursor, the price-to-value ratio is unbeatable — especially for students and freelancers.</p><h2>Which to Choose?</h2><p>If you're a professional developer: try Cursor first. If you want the most widely-supported tool: GitHub Copilot. If you want free: Codeium. Many developers use Codeium for day-to-day completions and Cursor for complex refactoring tasks.</p>`},
+  {id:11,tag:"news",emoji:"🚀",bg:"linear-gradient(135deg,#DC2626,#991B1B)",
    title:"India's AI Startup Ecosystem: The 2026 Report",
    excerpt:"A deep dive into India's growing AI ecosystem — which sectors are exploding.",
-   date:"May 1, 2026",read:"6 min read",author:"IndiaKaAI Team",
-   url:"https://inc42.com/features/india-ai-ecosystem/"},
-  {id:11,tag:"students",emoji:"📖",bg:"linear-gradient(135deg,#10B981,#059669)",
+   date:"May 2, 2026",read:"6 min read",author:"IndiaKaAI Team",
+   url:"https://inc42.com/features/india-ai-ecosystem/",
+   content:`<p>India's AI startup ecosystem has exploded in 2025-26. With over $2 billion in AI-focused funding, India is now the third-largest AI startup hub globally after the US and China. Here's what's happening.</p><h2>Key Sectors Leading Growth</h2><p><strong>EdTech AI:</strong> Companies like BYJU's, Unacademy, and newer startups are embedding AI tutors, personalised learning paths, and automated assessment tools. <strong>HealthTech AI:</strong> AI-powered diagnostics, drug discovery, and telemedicine are attracting massive investment. <strong>FinTech AI:</strong> Fraud detection, credit scoring for the unbanked, and AI-powered wealth management are transforming financial services.</p><h2>Government Initiatives</h2><p>The Indian government's IndiaAI Mission with ₹10,372 crore in funding is building AI compute infrastructure, datasets, and startup support. The National AI Portal and AI centres of excellence at IITs are producing world-class AI talent.</p><h2>Homegrown AI Models</h2><p>Several Indian companies are building India-specific AI models trained on Indian languages, cultural context, and local data. Sarvam AI, Krutrim (by Ola's founder), and others are creating alternatives to Western AI models that better understand Indian users.</p><h2>Challenges</h2><p>Despite the growth, challenges remain: compute costs are high, AI talent is scarce and expensive, and regulatory clarity is still evolving. The Digital Personal Data Protection Act 2023 is shaping how AI companies handle user data.</p><h2>Opportunities for Indian Developers</h2><p>This is the best time in history to build AI products for India. The market is large, underserved, and growing rapidly. If you're a developer or entrepreneur, the AI wave in India is just beginning.</p>`},
+  {id:12,tag:"students",emoji:"📖",bg:"linear-gradient(135deg,#10B981,#059669)",
    title:"How to Use ChatGPT to Score Better in Exams",
    excerpt:"Smart strategies to use AI for revision, doubt-clearing and practice questions.",
-   date:"May 2, 2026",read:"8 min read",author:"IndiaKaAI Team",
-   url:"https://www.geeksforgeeks.org/how-to-use-chatgpt-for-studying/"},
-  {id:12,tag:"news",emoji:"🌐",bg:"linear-gradient(135deg,#FF6B00,#9333EA)",
+   date:"May 3, 2026",read:"8 min read",author:"IndiaKaAI Team",
+   url:"https://www.geeksforgeeks.org/how-to-use-chatgpt-for-studying/",
+   content:`<p>ChatGPT can be your most powerful study partner — if you use it correctly. Here are proven strategies that students are using to improve their exam scores.</p><h2>1. The Feynman Technique with AI</h2><p>Ask ChatGPT to explain a concept, then try to explain it back in your own words. Ask ChatGPT to quiz you on it. This active recall method is scientifically proven to improve retention far better than passive reading.</p><h2>2. Generate Practice Questions</h2><p>Prompt: "Give me 15 MCQ questions on [topic] at [difficulty level] with answers and explanations." This is especially powerful for competitive exams like JEE, NEET, UPSC, and CAT where question patterns matter.</p><h2>3. Simplify Complex Concepts</h2><p>Prompt: "Explain [concept] as if I'm a 10-year-old" or "Explain [concept] using a real-life example from India." When you understand the intuition behind a concept, you can answer any variation of the question.</p><h2>4. Create Study Summaries</h2><p>Paste your notes or a textbook chapter into ChatGPT and ask: "Summarise the 10 most important points from this text." Use these summaries for last-minute revision before exams.</p><h2>5. Solve Doubts Instantly</h2><p>Instead of waiting for a teacher or searching through forums, ask ChatGPT your doubt immediately. For maths and science, ask it to show step-by-step working. For conceptual doubts, ask for multiple explanations until one clicks.</p><h2>6. Essay and Answer Writing Practice</h2><p>Write your answer to a question, then ask ChatGPT: "Review my answer and suggest improvements for a [board/competitive] exam." It will point out missing points, structural issues, and ways to make your answer more impressive.</p><h2>Important Caution</h2><p>ChatGPT can make mistakes, especially with numerical problems and recent events. Always verify important facts from your textbook or official sources. Use AI as a supplement to your studies, not a replacement for understanding.</p>`},
+  {id:13,tag:"news",emoji:"🌐",bg:"linear-gradient(135deg,#FF6B00,#9333EA)",
    title:"Everything About the Latest GPT Models in 2026",
    excerpt:"Capabilities, pricing, API access for Indian developers and what changes for you.",
-   date:"May 3, 2026",read:"5 min read",author:"IndiaKaAI Team",
-   url:"https://techcrunch.com/tag/openai/"},
+   date:"May 4, 2026",read:"5 min read",author:"IndiaKaAI Team",
+   url:"https://techcrunch.com/tag/openai/",
+   content:`<p>OpenAI's GPT model lineup has evolved significantly in 2026. Here's everything Indian developers and users need to know about the current models, their capabilities, and how to access them.</p><h2>Current Model Lineup</h2><p><strong>GPT-4o</strong> is the flagship model — multimodal (text, image, audio), fast, and available to ChatGPT Plus subscribers. <strong>GPT-4o mini</strong> is the cost-efficient version, available free in ChatGPT and cheap via API. <strong>o1 and o3</strong> are reasoning models designed for complex maths, science, and coding problems — they "think" before answering.</p><h2>What's New in 2026</h2><p>The latest GPT models feature significantly improved reasoning, longer context windows (up to 128K tokens), better instruction following, and reduced hallucination rates. Real-time voice mode has improved dramatically, making AI voice assistants genuinely useful.</p><h2>API Access for Indian Developers</h2><p>OpenAI's API is accessible from India. You'll need an international payment method (Visa/Mastercard or Wise card). GPT-4o mini costs approximately ₹0.01 per 1,000 tokens — extremely affordable for building applications. Many Indian startups are building products on top of the OpenAI API.</p><h2>Free Access Options</h2><p>ChatGPT's free tier now includes limited GPT-4o access. Microsoft Copilot (free) uses GPT-4. For API access without payment, explore Google's Gemini API which has a generous free tier — ideal for Indian developers building their first AI applications.</p><h2>What This Means for You</h2><p>The gap between free and paid AI is narrowing. Free users now get access to models that were paid-only a year ago. For most everyday tasks, the free tier is sufficient. Upgrade to Plus only if you need higher usage limits or the latest reasoning models.</p>`},
 ];
 
 /* ── ADMIN BLOG MANAGEMENT ── */
@@ -361,7 +613,7 @@ function renderCards(tools){
     const isNew = t.id > 1000000000000 && (now - t.id) < thirtyDays;
     grid.innerHTML+=`
     <div class="ai-card bg-clay-white border-2 border-oat-border rounded-clay-card p-5 transition-all duration-200 cursor-default relative overflow-hidden shadow-clay hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-1 hover:shadow-clay-hard" data-cat="${t.cat}" data-name="${t.name.toLowerCase()}" data-desc="${t.desc.toLowerCase()}">
-      ${isNew?'<span class="card-new-badge absolute top-3 right-3 bg-matcha-600 text-white text-[0.65rem] font-bold px-2 py-1 rounded-lg tracking-[0.04em] uppercase border-2 border-matcha-800">NEW</span>':''}
+      ${isNew?'<span class="card-new-badge absolute top-3 right-3 bg-matcha-600 text-white text-[0.6rem] font-bold px-2 py-0.5 rounded tracking-[0.06em] uppercase">NEW</span>':''}
       <div class="card-header flex items-start gap-3 mb-3">
         <div class="card-icon w-[48px] h-[48px] rounded-xl flex items-center justify-center text-[1.3rem] flex-shrink-0 overflow-hidden bg-oat-light border-2 border-oat-border" style="background:${t.color||'#fbbd41'}22;border-color:${t.color||'#fbbd41'};">${iconHtml}</div>
         <div class="card-meta flex-1 min-w-0">
@@ -372,8 +624,8 @@ function renderCards(tools){
       <div class="card-desc text-[0.85rem] text-warm-charcoal leading-[1.6] mb-4">${t.desc}</div>
       <div class="card-footer flex items-center justify-between gap-2 mb-3">
         <span class="card-badge text-[0.7rem] font-bold px-2.5 py-1 rounded-lg ${pClass}">${t.pricing}</span>
-        ${user ? `<button onclick="toggleBookmark(${t.id}); event.stopPropagation();" class="bookmark-btn text-xl transition-all duration-200 hover:scale-125" title="${isBookmarked(t.id) ? 'Remove bookmark' : 'Bookmark this tool'}">${isBookmarked(t.id) ? '⭐' : '☆'}</button>` : ''}
-        <a href="${t.url}" target="_blank" rel="noopener noreferrer" class="visit-btn bg-matcha-600 text-white border-none px-4 py-2 rounded-xl text-[0.75rem] font-semibold cursor-pointer no-underline transition-all duration-200 font-outfit hover:bg-matcha-800 hover:-rotate-2 hover:-translate-y-0.5 hover:shadow-clay-hard">Visit →</a>
+        ${user ? `<button onclick="toggleBookmark(${t.id}); event.stopPropagation();" class="bookmark-btn text-xl transition-all duration-200 hover:scale-125" title="${isBookmarked(t.id) ? 'Remove bookmark' : 'Bookmark this tool'}">${isBookmarked(t.id) ? '★' : '☆'}</button>` : ''}
+        <a href="${t.url}" target="_blank" rel="noopener noreferrer" class="visit-btn bg-matcha-600 text-white border-none px-4 py-2 rounded-xl text-[0.75rem] font-semibold cursor-pointer no-underline transition-all duration-200 font-outfit hover:bg-matcha-800 hover:-rotate-2 hover:-translate-y-0.5 hover:shadow-clay-hard ml-auto">Visit</a>
       </div>
       <div class="card-rating border-t-2 border-oat-border pt-3" id="rating-${t.id}">
         <div class="flex items-center justify-between gap-2 mb-1">
@@ -394,8 +646,8 @@ function renderCards(tools){
         </div>
       </div>
       ${isAdmin?`<div class="flex gap-2 mt-3 pt-3 border-t-2 border-oat-border border-dashed">
-        <button class="btn-edit text-[0.73rem] px-2.5 py-1.5 flex-1 bg-slushie-500 bg-opacity-20 border-2 border-slushie-800 text-slushie-800 rounded-lg font-semibold hover:-rotate-1 hover:-translate-y-0.5" onclick="openToolModal(${t.id||0})">✏️ Edit</button>
-        <button class="btn-del text-[0.73rem] px-2.5 py-1.5 flex-1 bg-pomegranate-400 bg-opacity-20 border-2 border-pomegranate-400 text-pomegranate-400 rounded-lg font-semibold hover:-rotate-1 hover:-translate-y-0.5" onclick="deleteTool(${t.id||0})">🗑️ Delete</button>
+        <button class="btn-edit text-[0.73rem] px-2.5 py-1.5 flex-1 bg-slushie-500 bg-opacity-20 border-2 border-slushie-800 text-slushie-800 rounded-lg font-semibold hover:-rotate-1 hover:-translate-y-0.5" onclick="openToolModal(${t.id||0})">Edit</button>
+        <button class="btn-del text-[0.73rem] px-2.5 py-1.5 flex-1 bg-pomegranate-400 bg-opacity-20 border-2 border-pomegranate-400 text-pomegranate-400 rounded-lg font-semibold hover:-rotate-1 hover:-translate-y-0.5" onclick="deleteTool(${t.id||0})">Delete</button>
       </div>`:''}
     </div>`;
   });
@@ -414,29 +666,29 @@ function renderBlogs(arr){
   const isAdmin=user&&user.email===ADMIN_EMAIL;
   arr.forEach(b=>{
     const label=b.tag==='students'?'AI for Students':b.tag==='money'?'Make Money with AI':b.tag==='tools'?'Tool Review':'AI News';
-    const sourceHost=b.url?new URL(b.url).hostname.replace('www.',''):'';
+    // Determine link: use b.url directly (internal /blog/*.html or external)
+    const href = b.url || '#';
+    const isExternal = href.startsWith('http');
+    const targetAttr = isExternal ? 'target="_blank" rel="noopener noreferrer"' : '';
     g.innerHTML+=`
-    <div class="blog-card bg-card overflow-hidden transition-all duration-150 cursor-pointer hover:bg-card2" data-btag="${b.tag}">
-      <div class="blog-thumb h-[160px] flex items-center justify-center text-[3rem] border-b border-border" style="background:${b.bg||'linear-gradient(135deg,#4F46E5,#7C3AED)'};cursor:pointer;" onclick="${b.url?`window.open('${b.url}','_blank','noopener,noreferrer')`:''}">
+    <a href="${href}" ${targetAttr} class="blog-card block bg-white border-2 border-gray-200 rounded-xl overflow-hidden transition-all duration-200 hover:border-matcha-600 hover:shadow-lg hover:-translate-y-0.5 no-underline" data-btag="${b.tag}">
+      <div class="blog-thumb h-[160px] flex items-center justify-center border-b border-gray-100" style="background:${b.bg||'linear-gradient(135deg,#4F46E5,#7C3AED)'};">
         <span class="text-[3.5rem]">${b.emoji||'📝'}</span>
       </div>
-      <div class="blog-body p-[18px]">
-        <span class="blog-tag inline-block bg-[#1a1a1a] text-muted2 text-[0.68rem] font-semibold px-2 py-0.5 rounded mb-2 uppercase tracking-[0.06em]">${label}</span>
-        <div class="blog-title text-[0.95rem] font-semibold mb-1.5 leading-[1.4] text-[#f0f0f0] cursor-pointer" onclick="${b.url?`window.open('${b.url}','_blank','noopener,noreferrer')`:''}"> ${b.title}</div>
-        <div class="blog-excerpt text-[0.78rem] text-[#666] leading-[1.55] mb-3">${b.excerpt}</div>
-        <div class="blog-meta flex items-center justify-between text-[0.73rem] text-muted">
+      <div class="blog-body p-5">
+        <span class="blog-tag inline-block bg-gray-100 text-gray-600 text-[0.68rem] font-bold px-2 py-0.5 rounded mb-2 uppercase tracking-[0.06em]">${label}</span>
+        <div class="blog-title text-[0.97rem] font-semibold mb-2 leading-[1.4] text-gray-900">${b.title}</div>
+        <div class="blog-excerpt text-[0.78rem] text-gray-500 leading-[1.6] mb-3">${b.excerpt}</div>
+        <div class="flex items-center justify-between text-[0.72rem] text-gray-400">
           <span>${b.date||''} · ${b.read||''}</span>
-          <div class="flex gap-2 items-center">
-            ${b.url?`<a href="${b.url}" target="_blank" rel="noopener noreferrer" class="text-muted text-[0.72rem] no-underline" title="Source: ${sourceHost}">🔗 ${sourceHost}</a>`:''}
-            <span class="read-btn text-muted2 font-medium cursor-pointer text-[0.75rem]" onclick="${b.url?`window.open('${b.url}','_blank','noopener,noreferrer')`:''}">Read →</span>
-          </div>
+          <span class="text-matcha-600 font-semibold">${isExternal?'Read ↗':'Read →'}</span>
         </div>
-        ${isAdmin?`<div class="flex gap-2 mt-2.5 pt-2.5 border-t border-border">
+        ${isAdmin?`<div class="flex gap-2 mt-3 pt-3 border-t border-gray-100" onclick="event.preventDefault()">
           <button class="btn-edit text-[0.75rem] px-3 py-1" onclick="showPage('admin');openBlogModal(${b.id})">✏️ Edit</button>
           <button class="btn-del text-[0.75rem] px-3 py-1" onclick="deletePost(${b.id})">🗑️ Delete</button>
         </div>`:''}
       </div>
-    </div>`;
+    </a>`;
   });
 }
 
@@ -477,7 +729,7 @@ function filterCat(cat,el){
   // update grid label
   const labelEl=document.getElementById('gridLabel');
   if(labelEl){
-    const catLabels={all:'🔥 All Tools',Writing:'✍️ Writing',Image:'🎨 Image Gen',Video:'🎬 Video',Audio:'🎵 Audio & Music',Coding:'💻 Coding',Productivity:'⚡ Productivity',Research:'🔬 Research',Marketing:'📈 Marketing',Chatbot:'🤖 Chatbots',Data:'📊 Data',Design:'🖌️ Design',Finance:'💰 Finance'};
+    const catLabels={all:'All Tools',Writing:'Writing',Image:'Image Gen',Video:'Video',Audio:'Audio & Music',Coding:'Coding',Productivity:'Productivity',Research:'Research',Marketing:'Marketing',Chatbot:'Chatbots',Data:'Data',Design:'Design',Finance:'Finance'};
     labelEl.textContent=catLabels[cat]||cat;
   }
 }
@@ -530,9 +782,10 @@ function showPage(p){
   const target=document.getElementById('page-'+p);
   if(!target) return;
   target.classList.add('active');
-  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
-  const na=document.getElementById('nav-'+p);
-  if(na)na.classList.add('active');
+  
+  // Update both desktop and mobile navigation
+  updateMobileNavActive(p);
+  
   window.scrollTo(0,0);
 }
 function showContactTab(tab){
@@ -1179,14 +1432,14 @@ function renderToolOfTheWeek(){
             <p class="text-matcha-300 text-sm mb-3">${tool.cat} · ${tool.pricing}</p>
             <p class="text-white text-base leading-relaxed mb-4">${TOOL_OF_THE_WEEK.editorial}</p>
             <div class="flex gap-3">
-              <a href="${tool.url}" target="_blank" rel="noopener noreferrer" 
+              <a href="https://cursor.com" target="_blank" rel="noopener noreferrer" 
                  class="bg-clay-white text-matcha-800 px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-lemon-500 hover:text-clay-black transition-all duration-200 hover:-translate-y-1 hover:shadow-clay-hard inline-block">
                 Try ${tool.name} →
               </a>
-              <button onclick="showToolPreview(${tool.id})" 
-                      class="bg-matcha-600 border-2 border-matcha-300 text-white px-6 py-2.5 rounded-xl font-semibold text-sm hover:bg-matcha-800 transition-all duration-200">
+              <a href="https://cursor.com/learn" target="_blank" rel="noopener noreferrer"
+                 class="bg-matcha-600 border-2 border-matcha-300 text-white px-6 py-2.5 rounded-xl font-semibold text-sm hover:bg-matcha-800 transition-all duration-200 inline-block">
                 Learn More
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -1235,6 +1488,48 @@ function renderRecentlyAdded(){
   
   html += '</div>';
   container.innerHTML = html;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   CATEGORY PAGES
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── RENDER CATEGORY PAGE ── */
+/**
+ * Renders a category page with filtered tools
+ * @param {string} category - The category to filter by (e.g., 'Writing', 'Image', 'Coding', 'Video', 'Productivity')
+ */
+function renderCategoryPage(category) {
+  const grid = document.getElementById('aiGrid');
+  const toolCountEl = document.getElementById('toolCount');
+  
+  if (!grid) return;
+  
+  // Filter tools by category
+  const filteredTools = AI_TOOLS.filter(tool => tool.cat === category);
+  
+  // Update tool count
+  if (toolCountEl) {
+    toolCountEl.textContent = `${filteredTools.length} tools`;
+  }
+  
+  // Handle empty state
+  if (filteredTools.length === 0) {
+    grid.innerHTML = `
+      <div class="col-span-full text-center py-12">
+        <div class="text-6xl mb-4">🔍</div>
+        <h3 class="text-xl font-bold text-clay-black mb-2">No tools found</h3>
+        <p class="text-warm-charcoal mb-6">We're constantly adding new tools. Check back soon!</p>
+        <a href="/" class="inline-block bg-matcha-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-matcha-800 transition-all duration-200 no-underline">
+          Browse All Tools
+        </a>
+      </div>
+    `;
+    return;
+  }
+  
+  // Call existing renderCards() function with filtered tools array
+  renderCards(filteredTools);
 }
 
 /* ══════════════════════════════════════════════════════════════════════
