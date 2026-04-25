@@ -1,0 +1,31 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/explore/writing.html",
+      "destination": "/explore/writing",
+      "permanent": true
+    },
+    {
+      "source": "/explore/image.html",
+      "destination": "/explore/image",
+      "permanent": true
+    },
+    {
+      "source": "/explore/coding.html",
+      "destination": "/explore/coding",
+      "permanent": true
+    },
+    {
+      "source": "/explore/video.html",
+      "destination": "/explore/video",
+      "permanent": true
+    },
+    {
+      "source": "/explore/productivity.html",
+      "destination": "/explore/productivity",
+      "permanent": true
+    }
+  ]
+}
