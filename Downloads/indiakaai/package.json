@@ -1,0 +1,9 @@
+{
+  "name": "indiakaai",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./css/output.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}

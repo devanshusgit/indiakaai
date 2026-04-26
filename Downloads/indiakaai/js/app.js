@@ -589,6 +589,8 @@ function logoUrl(url){
 }
 
 function renderCards(tools){
+  const skeleton = document.getElementById('loadingSkeleton');
+  if (skeleton) skeleton.remove();
   const grid=document.getElementById('aiGrid');
   grid.innerHTML='';
   const user=getCurrentUser();

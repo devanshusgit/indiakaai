@@ -94,75 +94,14 @@
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://lnedatdaewcfukaqupze.supabase.co">
+<link rel="dns-prefetch" href="https://www.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <!-- Font Awesome fallback via jsDelivr -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" crossorigin="anonymous">
-<!-- EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<!-- Supabase JS -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<!-- Firebase Auth (compat — works in single-file HTML, no bundler needed) -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          // Clay Design System Colors
-          'clay-cream': '#faf9f7',
-          'clay-black': '#000000',
-          'clay-white': '#ffffff',
-          'oat-border': '#dad4c8',
-          'oat-light': '#eee9df',
-          'warm-silver': '#9f9b93',
-          'warm-charcoal': '#55534e',
-          'dark-charcoal': '#333333',
-          // Swatch Palette
-          'matcha-300': '#84e7a5',
-          'matcha-600': '#078a52',
-          'matcha-800': '#02492a',
-          'slushie-500': '#3bd3fd',
-          'slushie-800': '#0089ad',
-          'lemon-400': '#f8cc65',
-          'lemon-500': '#fbbd41',
-          'lemon-700': '#d08a11',
-          'lemon-800': '#9d6a09',
-          'ube-300': '#c1b0ff',
-          'ube-800': '#43089f',
-          'ube-900': '#32037d',
-          'pomegranate-400': '#fc7981',
-          'blueberry-800': '#01418d',
-          'dragonfruit': '#e91e63',
-          // Legacy (for compatibility)
-          saffron: '#FF6500',
-          'saffron-light': '#FF8500',
-        },
-        fontFamily: {
-          'roobert': ['Roobert', 'Arial', 'sans-serif'],
-          'space-mono': ['"Space Mono"', 'monospace'],
-          'bebas': ['"Bebas Neue"', 'sans-serif'],
-          'outfit': ['Outfit', 'sans-serif'],
-        },
-        maxWidth: {
-          '1400': '1400px',
-        },
-        boxShadow: {
-          'clay': '0px 1px 1px rgba(0,0,0,0.1), 0px -1px 1px rgba(0,0,0,0.04) inset, 0px -0.5px 1px rgba(0,0,0,0.05)',
-          'clay-hard': '-7px 7px 0 rgb(0,0,0)',
-        },
-        borderRadius: {
-          'clay-card': '24px',
-          'clay-section': '40px',
-          'clay-pill': '1584px',
-        },
-      }
-    }
-  }
-</script>
+<link rel="stylesheet" href="/css/output.css">
 <link rel="stylesheet" href="css/custom.css">
 
 <!-- Google AdSense -->
@@ -331,7 +270,16 @@
   </div>
 
   <!-- AI GRID -->
-  <div class="ai-grid max-w-1400 mx-auto px-4 sm:px-6 pb-12 sm:pb-16 grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3 sm:gap-4" id="aiGrid"></div>
+  <div class="ai-grid max-w-1400 mx-auto px-4 sm:px-6 pb-12 sm:pb-16 grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3 sm:gap-4" id="aiGrid">
+    <div id="loadingSkeleton" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;width:100%;padding:0.5rem;">
+      <div style="background:#e9e5df;border-radius:16px;height:200px;animation:ikSkeleton 1.2s ease-in-out infinite;"></div>
+      <div style="background:#e9e5df;border-radius:16px;height:200px;animation:ikSkeleton 1.2s ease-in-out infinite 0.1s;"></div>
+      <div style="background:#e9e5df;border-radius:16px;height:200px;animation:ikSkeleton 1.2s ease-in-out infinite 0.2s;"></div>
+      <div style="background:#e9e5df;border-radius:16px;height:200px;animation:ikSkeleton 1.2s ease-in-out infinite 0.3s;"></div>
+      <div style="background:#e9e5df;border-radius:16px;height:200px;animation:ikSkeleton 1.2s ease-in-out infinite 0.4s;"></div>
+      <div style="background:#e9e5df;border-radius:16px;height:200px;animation:ikSkeleton 1.2s ease-in-out infinite 0.5s;"></div>
+    </div>
+  </div>
 
   
 
@@ -899,8 +847,13 @@
 <!-- TOAST -->
 <div class="toast fixed bottom-6 right-6 bg-[#1a1f2e] border border-saffron rounded-xl py-3.5 px-[22px] text-white text-[0.9rem] font-semibold z-[9999] opacity-0 translate-y-5 transition-all duration-300 pointer-events-none" id="toast"></div>
 
-<script src="js/api.js"></script>
-<script src="js/firebase.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/app.js"></script>
+<!-- SDKs -->
+<script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Custom JS -->
+<script defer src="/js/api.js"></script>
+<script defer src="/js/firebase.js"></script>
+<script defer src="/js/auth.js"></script>
+<script defer src="/js/app.js"></script>
 </body>

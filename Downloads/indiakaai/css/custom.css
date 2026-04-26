@@ -434,3 +434,44 @@ body {
 .adsense-wrapper.ad-failed {
   display: none;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BLOG POST READER — PROSE STYLES
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.prose-blog p {
+  color: #1f2937;
+  line-height: 1.85;
+  margin-bottom: 1.1rem;
+  font-size: 0.97rem;
+}
+
+.prose-blog h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.55rem;
+  color: #111827;
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.02em;
+  border-left: 4px solid #078a52;
+  padding-left: 0.75rem;
+}
+
+.prose-blog strong {
+  font-weight: 600;
+  color: #111827;
+}
+
+#page-blog-post .page {
+  padding-top: 0;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SKELETON LOADER ANIMATION
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@keyframes ikSkeleton {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
