@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import type { Tool, Category } from '@/types';
+import type { Tool } from '@/types';
 import { CATEGORIES } from '@/data/tools';
 import ToolCard from './ToolCard';
 
@@ -21,7 +21,7 @@ export default function ToolGrid({ tools, externalSearch = '' }: Props) {
   useEffect(() => { setActiveCat(catParam); }, [catParam]);
 
   const filtered = useMemo(() => {
-    const q = search.toLowerCase();
+    const q = search.trim().toLowerCase();
     return tools.filter(t => {
       const catMatch = activeCat === 'All' || t.cat === activeCat;
       const searchMatch = !q || t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.cat.toLowerCase().includes(q);
@@ -29,20 +29,29 @@ export default function ToolGrid({ tools, externalSearch = '' }: Props) {
     });
   }, [tools, activeCat, search]);
 
+  function handleCat(cat: string) {
+    setActiveCat(cat);
+    const url = new URL(window.location.href);
+    if (cat === 'All') url.searchParams.delete('cat');
+    else url.searchParams.set('cat', cat);
+    window.history.replaceState({}, '', url.toString());
+  }
+
   return (
-    <section className="max-w-[1400px] mx-auto px-4 sm:px-6 pb-12 sm:pb-16">
-      {/* Category tabs */}
-      <div className="py-6 sm:py-8">
-        <div className="text-[0.7rem] font-bold mb-3 text-warm-charcoal tracking-[0.08em] uppercase">Browse by Category</div>
-        <div className="flex gap-1.5 sm:gap-2 flex-wrap">
+    <section className="max-w-[1400px] mx-auto px-4 sm:px-6">
+
+      {/* Category filter */}
+      <div className="py-6 sm:py-8 border-b border-oat-border/60">
+        <p className="text-[0.65rem] font-bold text-warm-silver uppercase tracking-[0.12em] mb-3">Browse by Category</p>
+        <div className="flex gap-2 flex-wrap">
           {CATEGORIES.map(cat => (
             <button
               key={cat}
-              onClick={() => setActiveCat(cat)}
-              className={`px-3 sm:px-4 py-1.5 sm:py-2 text-[0.8rem] sm:text-[0.85rem] font-medium rounded-lg sm:rounded-xl border-2 cursor-pointer whitespace-nowrap transition-all duration-200 hover:border-matcha-600 hover:-rotate-1 hover:-translate-y-0.5 ${
+              onClick={() => handleCat(cat)}
+              className={`px-3.5 py-1.5 text-[0.8rem] font-semibold rounded-xl border-2 cursor-pointer whitespace-nowrap transition-all duration-150 ${
                 activeCat === cat
-                  ? 'bg-clay-white border-matcha-600 text-clay-black font-semibold -rotate-1 -translate-y-0.5'
-                  : 'bg-clay-white border-oat-border text-warm-charcoal'
+                  ? 'bg-clay-black text-white border-clay-black'
+                  : 'bg-white text-warm-charcoal border-oat-border hover:border-clay-black hover:text-clay-black'
               }`}
             >
               {cat}
@@ -51,25 +60,37 @@ export default function ToolGrid({ tools, externalSearch = '' }: Props) {
         </div>
       </div>
 
-      {/* Grid label */}
-      <div className="flex items-center justify-between mb-4">
-        <span className="text-[0.75rem] font-bold text-warm-charcoal uppercase tracking-[0.08em]">
-          {activeCat === 'All' ? 'All Tools' : activeCat}
-        </span>
-        <span className="text-[0.75rem] font-medium text-warm-silver">{filtered.length} tools</span>
+      {/* Header row */}
+      <div className="flex items-center justify-between py-5">
+        <div>
+          <h2 className="font-semibold text-[1rem] text-clay-black">
+            {search ? `Search: "${search}"` : activeCat === 'All' ? 'All AI Tools' : `${activeCat} Tools`}
+          </h2>
+          <p className="text-[0.75rem] text-warm-silver mt-0.5">{filtered.length} tools found</p>
+        </div>
+        {(search || activeCat !== 'All') && (
+          <button
+            onClick={() => { setSearch(''); handleCat('All'); }}
+            className="text-[0.78rem] font-medium text-warm-charcoal border border-oat-border rounded-lg px-3 py-1.5 hover:border-clay-black hover:text-clay-black transition-all cursor-pointer"
+          >
+            Clear filters ×
+          </button>
+        )}
       </div>
 
       {/* Grid */}
       {filtered.length === 0 ? (
-        <div className="text-center py-20">
-          <div className="text-4xl mb-4">🔍</div>
-          <p className="text-warm-charcoal font-medium">No tools found for "{search}"</p>
-          <button onClick={() => { setSearch(''); setActiveCat('All'); }} className="mt-4 text-matcha-600 text-sm font-semibold underline">
-            Clear filters
+        <div className="text-center py-24">
+          <div className="text-5xl mb-4">🔍</div>
+          <p className="text-clay-black font-semibold text-[1rem] mb-1">No tools found</p>
+          <p className="text-warm-charcoal text-[0.88rem]">Try a different keyword or category</p>
+          <button onClick={() => { setSearch(''); handleCat('All'); }}
+            className="mt-5 text-matcha-600 text-sm font-semibold underline cursor-pointer">
+            Clear search
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-16">
           {filtered.map(tool => <ToolCard key={tool.id} tool={tool} />)}
         </div>
       )}

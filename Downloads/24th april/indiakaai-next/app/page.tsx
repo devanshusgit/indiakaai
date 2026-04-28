@@ -27,7 +27,7 @@ export default async function HomePage() {
   return (
     <>
       <Navbar />
-      <main className="pt-[58px]">
+      <main className="pt-[60px]">
         <Hero toolCount={tools.length} />
         <Suspense fallback={<div className="text-center py-20 text-warm-charcoal">Loading tools…</div>}>
           <ToolGrid tools={tools} />
