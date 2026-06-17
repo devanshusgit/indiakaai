@@ -1,4 +1,5 @@
-import Entropy from '../components/Entropy'
+import { FallingPattern } from '@/components/ui/falling-pattern'
+import { OriginButton } from '@/components/ui/origin-button'
 
 const stats = [
   { value: '3 Days', label: 'to deliver an 11-minute episode' },
@@ -34,8 +35,16 @@ export default function Home({ setActiveSection }) {
     <div>
       {/* ── Hero ── */}
       <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
-          <Entropy size={Math.min(window.innerWidth, 900)} />
+        <div className="absolute inset-0 pointer-events-none">
+          <FallingPattern className="h-full w-full" />
+          {/* vignette so hero copy stays legible over the pattern */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(ellipse at center, transparent 0%, var(--background) 78%)',
+            }}
+          />
         </div>
         <div className="relative z-10 text-center max-w-4xl mx-auto px-6 py-24">
           <p className="section-label mb-5">Mumbai · India · Est. 2024</p>
@@ -47,9 +56,9 @@ export default function Home({ setActiveSection }) {
             Combining creative direction with proprietary AI production technology, we build custom animation pipelines trained on your IP — your characters, your style, your world.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <button className="btn-primary" onClick={() => setActiveSection('works')}>See Our Work</button>
-            <button className="btn-secondary" onClick={() => setActiveSection('technology')}>Explore Vartool</button>
-            <button className="btn-secondary" onClick={() => setActiveSection('contact')}>Get in Touch</button>
+            <OriginButton onClick={() => setActiveSection('works')}>See Our Work</OriginButton>
+            <OriginButton onClick={() => setActiveSection('technology')}>Explore Vartool</OriginButton>
+            <OriginButton onClick={() => setActiveSection('contact')}>Get in Touch</OriginButton>
           </div>
         </div>
       </div>
