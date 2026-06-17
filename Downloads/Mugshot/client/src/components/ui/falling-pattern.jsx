@@ -105,6 +105,7 @@ export function FallingPattern({
         className="absolute inset-0 z-[1]"
         style={{
           backdropFilter: `blur(${blurIntensity})`,
+          filter: 'brightness(4)',
           backgroundImage: `radial-gradient(circle at 50% 50%, transparent 0, transparent 2px, ${backgroundColor} 2px)`,
           backgroundSize: `${8 * density}px ${8 * density}px`,
         }}

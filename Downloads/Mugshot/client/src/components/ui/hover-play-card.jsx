@@ -95,9 +95,10 @@ export default function HoverPlayCard({
       <div className="relative aspect-video bg-black cursor-pointer" onClick={handleIconClick}>
         <video
           ref={videoRef}
-          src={src}
+          src={poster ? src : `${src}#t=0.5`}
           poster={poster}
           loop={loop}
+          preload="metadata"
           playsInline
           className="w-full h-full object-cover"
         />

@@ -37,12 +37,12 @@ export default function Home({ setActiveSection }) {
       <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <FallingPattern className="h-full w-full" />
-          {/* vignette so hero copy stays legible over the pattern */}
+          {/* soft vignette so hero copy stays legible while the pattern shows through */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                'radial-gradient(ellipse at center, transparent 0%, var(--background) 78%)',
+                'radial-gradient(ellipse at center, transparent 30%, color-mix(in srgb, var(--background) 80%, transparent) 100%)',
             }}
           />
         </div>
