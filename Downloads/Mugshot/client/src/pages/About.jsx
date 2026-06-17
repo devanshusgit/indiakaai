@@ -1,4 +1,5 @@
 import { ShaderAnimation } from '../components/ShaderAnimation'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
 const team = [
   {
@@ -83,15 +84,21 @@ export default function About() {
         <div className="max-w-7xl mx-auto">
           <p className="section-label mb-4">Team</p>
           <h2 className="section-title mb-8">Core team</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <Accordion type="single" collapsible className="border-t border-border">
             {team.map((member, i) => (
-              <div key={i} className="card">
-                <h3 className="font-semibold text-foreground mb-1">{member.name}</h3>
-                <p className="text-xs font-medium mb-3" style={{ color: 'var(--primary)' }}>{member.role}</p>
-                <p className="body-text text-sm">{member.bio}</p>
-              </div>
+              <AccordionItem key={i} value={`team-${i}`}>
+                <AccordionTrigger>
+                  <span className="flex flex-col gap-1 md:flex-row md:items-baseline md:gap-4">
+                    <span className="text-lg">{member.name}</span>
+                    <span className="text-xs font-medium" style={{ color: 'var(--primary)' }}>{member.role}</span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="body-text text-sm">{member.bio}</p>
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
       </section>
 

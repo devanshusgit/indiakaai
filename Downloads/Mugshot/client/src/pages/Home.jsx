@@ -1,5 +1,6 @@
 import { FallingPattern } from '@/components/ui/falling-pattern'
 import { OriginButton } from '@/components/ui/origin-button'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
 const stats = [
   { value: '3 Days', label: 'to deliver an 11-minute episode' },
@@ -87,18 +88,24 @@ export default function Home({ setActiveSection }) {
       <section className="section-padding border-t border-border" style={{ backgroundColor: 'var(--card)' }}>
         <div className="max-w-7xl mx-auto">
           <p className="section-label mb-4">Services</p>
-          <h2 className="section-title mb-10">What we build</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <h2 className="section-title mb-8">What we build</h2>
+          <Accordion type="single" collapsible className="border-t border-border">
             {services.map((s, i) => (
-              <div key={i} className="card hover:border-primary transition-colors duration-200">
-                <span className="block text-sm font-semibold mb-4" style={{ color: 'var(--primary)' }}>
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="text-lg font-semibold mb-2">{s.title}</h3>
-                <p className="body-text text-sm">{s.desc}</p>
-              </div>
+              <AccordionItem key={i} value={`service-${i}`}>
+                <AccordionTrigger>
+                  <span className="flex items-baseline gap-4">
+                    <span className="text-sm font-semibold" style={{ color: 'var(--primary)' }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span className="text-lg">{s.title}</span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="body-text text-sm md:pl-10">{s.desc}</p>
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
       </section>
 
@@ -107,20 +114,24 @@ export default function Home({ setActiveSection }) {
         <div className="max-w-7xl mx-auto">
           <p className="section-label mb-4">Original IP</p>
           <h2 className="section-title mb-3">We also create original worlds</h2>
-          <p className="body-text mb-10">
+          <p className="body-text mb-8">
             Mugshot Studios develops original animated IP for the global market. Our debut slate is being presented at MIFA Annecy 2026.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Accordion type="single" collapsible className="border-t border-border">
             {originalIP.map((ip, i) => (
-              <div key={i} className="card">
-                <span className="inline-block text-xs font-semibold px-2.5 py-1 rounded-full mb-4" style={{ backgroundColor: 'var(--secondary)', color: 'var(--secondary-foreground)' }}>
-                  {ip.status}
-                </span>
-                <h3 className="text-2xl font-bold mb-2">{ip.title}</h3>
-                <p className="body-text text-sm">{ip.meta}</p>
-              </div>
+              <AccordionItem key={i} value={`ip-${i}`}>
+                <AccordionTrigger>
+                  <span className="text-lg">{ip.title}</span>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <span className="inline-block text-xs font-semibold px-2.5 py-1 rounded-full mb-3" style={{ backgroundColor: 'var(--secondary)', color: 'var(--secondary-foreground)' }}>
+                    {ip.status}
+                  </span>
+                  <p className="body-text text-sm">{ip.meta}</p>
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
       </section>
     </div>

@@ -1,3 +1,5 @@
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+
 const steps = [
   {
     num: '01',
@@ -59,16 +61,22 @@ export default function Technology() {
       <section className="section-padding border-b border-border" style={{ backgroundColor: 'var(--card)' }}>
         <div className="max-w-7xl mx-auto">
           <p className="section-label mb-4">How It Works</p>
-          <h2 className="section-title mb-10">From script to screen. In days, not months.</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <h2 className="section-title mb-8">From script to screen. In days, not months.</h2>
+          <Accordion type="single" collapsible className="border-t border-border">
             {steps.map((step, i) => (
-              <div key={i} className="card">
-                <p className="text-4xl font-bold mb-4" style={{ color: 'var(--border)' }}>{step.num}</p>
-                <h3 className="text-base font-semibold mb-2">{step.title}</h3>
-                <p className="body-text text-sm">{step.desc}</p>
-              </div>
+              <AccordionItem key={i} value={`step-${i}`}>
+                <AccordionTrigger>
+                  <span className="flex items-baseline gap-4">
+                    <span className="text-sm font-semibold" style={{ color: 'var(--primary)' }}>{step.num}</span>
+                    <span className="text-base md:text-lg">{step.title}</span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="body-text text-sm md:pl-10">{step.desc}</p>
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
       </section>
 

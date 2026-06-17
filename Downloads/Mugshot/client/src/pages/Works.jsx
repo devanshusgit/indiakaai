@@ -1,4 +1,5 @@
 import HoverPlayCard from '@/components/ui/hover-play-card'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
 const videoWorks = [
   {
@@ -87,15 +88,21 @@ export default function Works() {
         <div className="max-w-7xl mx-auto">
           <p className="section-label mb-4">Projects</p>
           <h2 className="section-title mb-8">All productions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <Accordion type="single" collapsible className="border-t border-border">
             {projects.map((p, i) => (
-              <div key={i} className="card">
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">{p.type}</p>
-                <h3 className="font-bold mb-2">{p.title}</h3>
-                <p className="body-text text-sm">{p.desc}</p>
-              </div>
+              <AccordionItem key={i} value={`project-${i}`}>
+                <AccordionTrigger>
+                  <span className="flex flex-col gap-1 md:flex-row md:items-baseline md:gap-4">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground md:w-32 md:shrink-0">{p.type}</span>
+                    <span className="text-base md:text-lg">{p.title}</span>
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="body-text text-sm md:pl-36">{p.desc}</p>
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         </div>
       </section>
     </div>
