@@ -1,6 +1,6 @@
-import { useState, useRef } from 'react'
+import HoverPlayCard from '@/components/ui/hover-play-card'
 
-const videos = [
+const videoWorks = [
   {
     title: 'PINK',
     type: 'Showreel',
@@ -18,14 +18,12 @@ const videos = [
     type: 'Animation',
     desc: 'Trailer sample demonstrating high-energy action animation produced through the Vartool pipeline.',
     src: null,
-    youtubeUrl: null,
   },
   {
     title: 'THE BEGINNING — Trailer',
     type: 'Original IP',
     desc: 'Official trailer for an original Mugshot Studios production currently in development.',
     src: null,
-    youtubeUrl: null,
   },
 ]
 
@@ -62,77 +60,21 @@ const otherWorks = [
   },
 ]
 
-function VideoCard({ video }) {
-  const [playing, setPlaying] = useState(false)
-  const videoRef = useRef(null)
-
-  const togglePlay = () => {
-    if (!videoRef.current) return
-    if (playing) {
-      videoRef.current.pause()
-      setPlaying(false)
-    } else {
-      videoRef.current.play()
-      setPlaying(true)
-    }
-  }
-
-  // No local src — show a "coming soon" placeholder
-  if (!video.src) {
-    return (
-      <div className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800">
-        <div className="relative aspect-video bg-black flex items-center justify-center">
-          <div className="text-center px-6">
-            <div className="w-16 h-16 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-gray-500 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-            <p className="text-gray-500 text-sm">Video coming soon</p>
-          </div>
-        </div>
-        <div className="p-5">
-          <div className="text-xs text-gray-500 uppercase tracking-widest mb-1">{video.type}</div>
-          <h3 className="text-lg font-bold mb-2">{video.title}</h3>
-          <p className="text-gray-400 text-sm">{video.desc}</p>
-        </div>
-      </div>
-    )
-  }
-
+function ComingSoonCard({ title, type, desc }) {
   return (
-    <div className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800 group">
-      <div className="relative aspect-video bg-black cursor-pointer" onClick={togglePlay}>
-        <video
-          ref={videoRef}
-          src={video.src}
-          className="w-full h-full object-cover"
-          preload="metadata"
-          onEnded={() => setPlaying(false)}
-        />
-        {!playing && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/50 group-hover:bg-black/40 transition-colors">
-            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
-              <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </div>
-        )}
-        {playing && (
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
-            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
-              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-              </svg>
-            </div>
-          </div>
-        )}
+    <div className="rounded-xl overflow-hidden border border-border flex flex-col" style={{ backgroundColor: 'var(--card)' }}>
+      <div className="aspect-video flex flex-col items-center justify-center gap-3" style={{ backgroundColor: 'var(--muted)' }}>
+        <div className="w-14 h-14 rounded-full flex items-center justify-center border border-border" style={{ backgroundColor: 'var(--background)' }}>
+          <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--muted-foreground)' }}>
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+        <p className="text-xs" style={{ color: 'var(--muted-foreground)' }}>Video coming soon</p>
       </div>
-      <div className="p-5">
-        <div className="text-xs text-gray-500 uppercase tracking-widest mb-1">{video.type}</div>
-        <h3 className="text-lg font-bold mb-2">{video.title}</h3>
-        <p className="text-gray-400 text-sm">{video.desc}</p>
+      <div className="p-5 flex flex-col gap-1">
+        {type && <div className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted-foreground)' }}>{type}</div>}
+        <h3 className="text-lg font-bold">{title}</h3>
+        {desc && <p className="text-sm" style={{ color: 'var(--muted-foreground)' }}>{desc}</p>}
       </div>
     </div>
   )
@@ -142,27 +84,44 @@ export default function Works() {
   return (
     <div className="section-padding max-w-7xl mx-auto">
       <h1 className="text-5xl font-bold mb-4">Our Work</h1>
-      <p className="text-xl text-gray-300 mb-12">From original IP to contracted productions — here's what we build.</p>
+      <p className="text-xl mb-12" style={{ color: 'var(--muted-foreground)' }}>
+        From original IP to contracted productions — here's what we build.
+      </p>
 
       {/* Video Showcase */}
       <div className="mb-16">
-        <h2 className="text-2xl font-bold mb-8 text-gray-200">Video Showcase</h2>
+        <h2 className="text-2xl font-bold mb-8">Video Showcase</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {videos.map((video, idx) => (
-            <VideoCard key={idx} video={video} />
-          ))}
+          {videoWorks.map((video, idx) =>
+            video.src ? (
+              <HoverPlayCard
+                key={idx}
+                src={video.src}
+                title={video.title}
+                type={video.type}
+                desc={video.desc}
+                loop={false}
+              />
+            ) : (
+              <ComingSoonCard key={idx} title={video.title} type={video.type} desc={video.desc} />
+            )
+          )}
         </div>
       </div>
 
       {/* Other Projects */}
       <div>
-        <h2 className="text-2xl font-bold mb-8 text-gray-200">Projects</h2>
+        <h2 className="text-2xl font-bold mb-8">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {otherWorks.map((work, idx) => (
-            <div key={idx} className="bg-gray-900 p-6 rounded-lg card-hover border border-gray-800">
-              <div className="text-sm text-gray-500 mb-2">{work.type}</div>
+            <div
+              key={idx}
+              className="p-6 rounded-lg card-hover border border-border"
+              style={{ backgroundColor: 'var(--card)' }}
+            >
+              <div className="text-sm mb-2" style={{ color: 'var(--muted-foreground)' }}>{work.type}</div>
               <h3 className="text-xl font-bold mb-3">{work.title}</h3>
-              <p className="text-gray-400">{work.desc}</p>
+              <p style={{ color: 'var(--muted-foreground)' }}>{work.desc}</p>
             </div>
           ))}
         </div>
