@@ -1,27 +1,75 @@
+import { useState } from 'react'
+
+const NAV_ITEMS = ['home', 'technology', 'works', 'about', 'contact']
+
 export default function Navigation({ activeSection, setActiveSection }) {
-  const sections = ['home', 'technology', 'works', 'about', 'contact']
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const handleNav = (section) => {
+    setActiveSection(section)
+    setMenuOpen(false)
+  }
 
   return (
-    <nav className="fixed top-0 z-50 w-full backdrop-blur border-b border-border" style={{ backgroundColor: 'color-mix(in srgb, var(--background) 85%, transparent)' }}>
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="font-bold text-2xl" style={{ color: 'var(--primary)' }}>Mugshot Studios</div>
-        <div className="flex gap-8 text-sm">
-          {sections.map(section => (
+    <nav className="fixed top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        {/* Logo */}
+        <button
+          onClick={() => handleNav('home')}
+          className="text-lg font-bold tracking-tight text-foreground hover:text-primary transition-colors"
+        >
+          MUGSHOT STUDIOS
+        </button>
+
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-1">
+          {NAV_ITEMS.map(item => (
             <button
-              key={section}
-              onClick={() => setActiveSection(section)}
-              className="capitalize font-medium transition-colors"
-              style={{
-                color: activeSection === section ? 'var(--primary)' : 'var(--muted-foreground)',
-              }}
-              onMouseEnter={e => e.target.style.color = 'var(--foreground)'}
-              onMouseLeave={e => e.target.style.color = activeSection === section ? 'var(--primary)' : 'var(--muted-foreground)'}
+              key={item}
+              onClick={() => handleNav(item)}
+              className={`px-4 py-2 rounded-md text-sm font-medium capitalize transition-colors ${
+                activeSection === item
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+              }`}
             >
-              {section}
+              {item}
             </button>
           ))}
         </div>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
+          onClick={() => setMenuOpen(v => !v)}
+          aria-label="Toggle menu"
+        >
+          <div className="w-5 flex flex-col gap-1.5">
+            <span className={`block h-0.5 bg-current transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block h-0.5 bg-current transition-all ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block h-0.5 bg-current transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          </div>
+        </button>
       </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="md:hidden border-t border-border bg-background px-6 py-4 flex flex-col gap-1">
+          {NAV_ITEMS.map(item => (
+            <button
+              key={item}
+              onClick={() => handleNav(item)}
+              className={`w-full text-left px-4 py-3 rounded-md text-sm font-medium capitalize transition-colors ${
+                activeSection === item
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+              }`}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+      )}
     </nav>
   )
 }

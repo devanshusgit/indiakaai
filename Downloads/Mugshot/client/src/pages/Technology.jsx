@@ -1,116 +1,121 @@
+const steps = [
+  {
+    num: '01',
+    title: 'Custom Training',
+    desc: 'We train Vartool exclusively on your existing content — your characters, your style, your visual language become the foundation.',
+  },
+  {
+    num: '02',
+    title: 'Shot Division',
+    desc: 'Your script is broken into individual shots with detailed staging notes — character blocking, expressions, backgrounds, and action.',
+  },
+  {
+    num: '03',
+    title: 'Shotbot Prompt Generation',
+    desc: "Vartool's built-in engine reads each shot and automatically generates precise production prompts for every frame.",
+  },
+  {
+    num: '04',
+    title: 'Frame Generation',
+    desc: 'Shotbot generates frame images for each shot — positioned and staged exactly as specified.',
+  },
+  {
+    num: '05',
+    title: 'Self-Evaluation Loop',
+    desc: "Vartool evaluates its own output. If a frame doesn't meet quality standards, it automatically regenerates.",
+  },
+  {
+    num: '06',
+    title: 'Video & Render',
+    desc: 'Completed shots move through editing and final render pipeline — sound design, compositing, colour grade.',
+  },
+]
+
+const comparisonRows = [
+  { feature: 'Delivery Speed', traditional: '6–9 months', publicAI: 'Fast but inconsistent', mugshot: '4 days per episode', good: true },
+  { feature: 'Cost', traditional: 'Very high', publicAI: 'Low but generic', mugshot: 'Fraction of traditional', good: true },
+  { feature: 'IP Security', traditional: 'Secure', publicAI: 'NOT secure', mugshot: '100% private', good: true },
+  { feature: 'Visual Consistency', traditional: 'High', publicAI: 'Low — generic output', mugshot: 'Exact match to your IP', good: true },
+]
+
 export default function Technology() {
   return (
     <div>
-      {/* Hero */}
-      <section className="section-padding max-w-7xl mx-auto">
-        <h1 className="text-5xl font-bold mb-4">Vartool</h1>
-        <p className="text-xl text-gray-300 mb-8">The Production System That Learns Your IP</p>
-        <p className="text-gray-400 text-lg leading-relaxed max-w-3xl">
-          Vartool is Mugshot Studios' proprietary end-to-end AI production system. It is not a public AI tool. It is not
-          licensed software. It is a closed, private, custom-trained pipeline built specifically around each client's
-          content and it changes what is possible in animation production.
-        </p>
+      {/* ── Hero ── */}
+      <section className="section-padding border-b border-border">
+        <div className="max-w-7xl mx-auto">
+          <p className="section-label mb-4">Proprietary Technology</p>
+          <h1 className="page-title mb-4">Vartool</h1>
+          <p className="text-xl font-medium mb-6" style={{ color: 'var(--primary)' }}>
+            The Production System That Learns Your IP
+          </p>
+          <p className="body-text max-w-2xl text-base">
+            Vartool is Mugshot Studios' proprietary end-to-end AI production system. It is not a public AI tool. It is not licensed software. It is a closed, private, custom-trained pipeline built specifically around each client's content — and it changes what is possible in animation production.
+          </p>
+        </div>
       </section>
 
-      {/* How It Works */}
-      <section className="section-padding bg-gray-900">
+      {/* ── How It Works ── */}
+      <section className="section-padding border-b border-border" style={{ backgroundColor: 'var(--card)' }}>
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12">From Script to Screen. In Days, Not Months.</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                num: '1',
-                title: 'Custom Training',
-                desc: 'We train Vartool exclusively on your existing content. Your characters, your style, your visual language become the foundation.',
-              },
-              {
-                num: '2',
-                title: 'Shot Division',
-                desc: 'Your script is broken into individual shots with detailed staging notes — character blocking, expressions, backgrounds, and action.',
-              },
-              {
-                num: '3',
-                title: 'Shotbot Prompt Generation',
-                desc: 'Vartool\'s built-in engine reads each shot and automatically generates precise production prompts for every frame.',
-              },
-              {
-                num: '4',
-                title: 'Frame Generation',
-                desc: 'Shotbot generates frame images for each shot — positioned and staged exactly as specified.',
-              },
-              {
-                num: '5',
-                title: 'Self-Evaluation Loop',
-                desc: 'Vartool evaluates its own output. If a frame doesn\'t meet quality standards, it automatically regenerates.',
-              },
-              {
-                num: '6',
-                title: 'Video & Render',
-                desc: 'Completed shots move through editing and final render pipeline — sound design, compositing, colour grade.',
-              },
-            ].map((step, idx) => (
-              <div key={idx} className="bg-black border border-gray-800 p-6 rounded-lg">
-                <div className="text-3xl font-bold text-gray-500 mb-3">Step {step.num}</div>
-                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                <p className="text-gray-400">{step.desc}</p>
+          <p className="section-label mb-4">How It Works</p>
+          <h2 className="section-title mb-10">From script to screen. In days, not months.</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {steps.map((step, i) => (
+              <div key={i} className="card">
+                <p className="text-4xl font-bold mb-4" style={{ color: 'var(--border)' }}>{step.num}</p>
+                <h3 className="text-base font-semibold mb-2">{step.title}</h3>
+                <p className="body-text text-sm">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Security */}
-      <section className="section-padding max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold mb-6">Your Data. Your IP. Nobody Else's.</h2>
-        <p className="text-gray-400 text-lg leading-relaxed max-w-3xl mb-6">
-          When you work with Mugshot Studios, your content stays private. Always. Your episodes, character designs,
-          scripts, and production assets are processed exclusively within our closed Vartool system. They never touch a
-          public AI model.
-        </p>
-        <p className="text-xl italic text-gray-300">"Your characters. Your style. Your data. Our AI. Nobody else's."</p>
+      {/* ── Security ── */}
+      <section className="section-padding border-b border-border">
+        <div className="max-w-7xl mx-auto max-w-2xl">
+          <p className="section-label mb-4">IP Security</p>
+          <h2 className="section-title mb-5">Your data. Your IP. Nobody else's.</h2>
+          <p className="body-text mb-8">
+            When you work with Mugshot Studios, your content stays private. Always. Your episodes, character designs, scripts, and production assets are processed exclusively within our closed Vartool system. They never touch a public AI model.
+          </p>
+          <blockquote className="border-l-2 pl-6" style={{ borderColor: 'var(--primary)' }}>
+            <p className="text-lg font-medium italic">"Your characters. Your style. Your data. Our AI. Nobody else's."</p>
+          </blockquote>
+        </div>
       </section>
 
-      {/* Comparison */}
-      <section className="section-padding bg-gray-900">
+      {/* ── Comparison ── */}
+      <section className="section-padding" style={{ backgroundColor: 'var(--card)' }}>
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12">Vartool vs The Alternatives</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b border-gray-700">
-                <tr>
-                  <th className="pb-4 font-semibold">Feature</th>
-                  <th className="pb-4 font-semibold">Traditional Studio</th>
-                  <th className="pb-4 font-semibold">Public AI Tools</th>
-                  <th className="pb-4 font-semibold">Mugshot + Vartool</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-800">
-                <tr>
-                  <td className="py-4">Delivery Speed</td>
-                  <td className="py-4 text-gray-400">6–9 months</td>
-                  <td className="py-4 text-gray-400">Fast but inconsistent</td>
-                  <td className="py-4 text-green-400">4 days per episode ✓</td>
-                </tr>
-                <tr>
-                  <td className="py-4">Cost</td>
-                  <td className="py-4 text-gray-400">Very high</td>
-                  <td className="py-4 text-gray-400">Low but generic</td>
-                  <td className="py-4 text-green-400">Fraction of traditional ✓</td>
-                </tr>
-                <tr>
-                  <td className="py-4">IP Security</td>
-                  <td className="py-4 text-gray-400">Secure</td>
-                  <td className="py-4 text-red-400">NOT secure</td>
-                  <td className="py-4 text-green-400">100% private ✓</td>
-                </tr>
-                <tr>
-                  <td className="py-4">Visual Consistency</td>
-                  <td className="py-4 text-gray-400">High</td>
-                  <td className="py-4 text-gray-400">Low — generic output</td>
-                  <td className="py-4 text-green-400">Exact match to your IP ✓</td>
-                </tr>
-              </tbody>
-            </table>
+          <p className="section-label mb-4">Comparison</p>
+          <h2 className="section-title mb-10">Vartool vs the alternatives</h2>
+          <div className="rounded-xl border border-border overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border" style={{ backgroundColor: 'var(--muted)' }}>
+                    <th className="text-left px-6 py-4 font-semibold text-foreground">Feature</th>
+                    <th className="text-left px-6 py-4 font-semibold text-muted-foreground">Traditional Studio</th>
+                    <th className="text-left px-6 py-4 font-semibold text-muted-foreground">Public AI Tools</th>
+                    <th className="text-left px-6 py-4 font-semibold" style={{ color: 'var(--primary)' }}>Mugshot + Vartool</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row, i) => (
+                    <tr key={i} className="border-b border-border last:border-0">
+                      <td className="px-6 py-4 font-medium text-foreground">{row.feature}</td>
+                      <td className="px-6 py-4 text-muted-foreground">{row.traditional}</td>
+                      <td className="px-6 py-4 text-muted-foreground">{row.publicAI}</td>
+                      <td className="px-6 py-4 font-medium" style={{ color: 'var(--primary)' }}>
+                        {row.mugshot} ✓
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>

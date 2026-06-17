@@ -1,117 +1,118 @@
 import Entropy from '../components/Entropy'
 
-export default function Home() {
+const stats = [
+  { value: '3 Days', label: 'to deliver an 11-minute episode' },
+  { value: '100%', label: 'private — your IP never leaves our system' },
+  { value: '4', label: 'continents with active partnerships' },
+]
+
+const services = [
+  {
+    icon: '🎨',
+    title: 'Custom Animation Production',
+    desc: '2D and 3D animation for TV series, streaming platforms, and digital content — trained on your existing IP for complete visual consistency.',
+  },
+  {
+    icon: '⚡',
+    title: 'AI-Accelerated Pipeline',
+    desc: 'Our proprietary Vartool system delivers broadcast-quality episodes faster than any traditional studio, without compromising quality.',
+  },
+  {
+    icon: '🎬',
+    title: 'Live Action & Hybrid',
+    desc: 'AI-assisted live action production for features, short films, and hybrid animation-live action formats.',
+  },
+]
+
+const originalIP = [
+  { title: 'THE FIXERS', meta: '26 × 11 min · 3D Animation · Ages 4–7', status: 'In production' },
+  { title: 'WONDER WORLD', meta: '26 × 11 min · 3D Animation · Ages 6–10', status: 'In production' },
+]
+
+export default function Home({ setActiveSection }) {
   return (
     <div>
-      {/* Hero */}
-      <div className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 opacity-40">
-          <Entropy size={Math.min(window.innerWidth, 800)} />
+      {/* ── Hero ── */}
+      <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <Entropy size={Math.min(window.innerWidth, 900)} />
         </div>
-        <div className="relative z-10 text-center max-w-3xl mx-auto px-4">
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight" style={{ color: 'var(--foreground)' }}>
-            We don't make animation. We make YOUR animation.
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-6 py-24">
+          <p className="section-label mb-5">Mumbai · India · Est. 2024</p>
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
+            We don't make animation.<br />
+            We make <span style={{ color: 'var(--primary)' }}>your</span> animation.
           </h1>
-          <p className="text-xl mb-8" style={{ color: 'var(--muted-foreground)' }}>
-            Mumbai-based animation studio combining creative direction with proprietary AI production technology. We
-            build custom animation pipelines trained on your IP — your characters, your style, your world.
+          <p className="body-text text-lg max-w-2xl mx-auto mb-10">
+            Combining creative direction with proprietary AI production technology, we build custom animation pipelines trained on your IP — your characters, your style, your world.
           </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <button className="btn-primary">See Our Work</button>
-            <button className="btn-secondary">Explore Vartool</button>
-            <button className="btn-secondary">Get in Touch</button>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <button className="btn-primary" onClick={() => setActiveSection('works')}>See Our Work</button>
+            <button className="btn-secondary" onClick={() => setActiveSection('technology')}>Explore Vartool</button>
+            <button className="btn-secondary" onClick={() => setActiveSection('contact')}>Get in Touch</button>
           </div>
         </div>
       </div>
 
-      {/* Stats Strip */}
-      <div className="py-12 px-4" style={{ backgroundColor: 'var(--muted)' }}>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          {[
-            { icon: '🎬', stat: '11-Minute Episode', sub: 'Delivered in 3 Days' },
-            { icon: '🔒', stat: '100% Private', sub: 'Your data never touches a public AI system' },
-            { icon: '🌍', stat: 'Active Projects', sub: 'Europe · Canada · UK · India' },
-          ].map((item, i) => (
-            <div key={i}>
-              <div className="text-4xl font-bold mb-2">{item.icon}</div>
-              <div style={{ color: 'var(--foreground)' }}>
-                {item.stat}
-                <br />
-                <span className="text-sm" style={{ color: 'var(--muted-foreground)' }}>{item.sub}</span>
-              </div>
+      {/* ── Stats ── */}
+      <div className="border-y border-border" style={{ backgroundColor: 'var(--card)' }}>
+        <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
+          {stats.map((s, i) => (
+            <div key={i} className="py-8 md:py-0 px-0 md:px-10 first:pl-0 last:pr-0 text-center">
+              <p className="text-3xl font-bold mb-1" style={{ color: 'var(--primary)' }}>{s.value}</p>
+              <p className="text-sm body-text">{s.label}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* What We Do */}
-      <section className="section-padding max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">We Don't Make Generic Animation. We Make Yours.</h2>
-        <p className="text-lg leading-relaxed max-w-3xl" style={{ color: 'var(--muted-foreground)' }}>
-          Every studio can produce animation. What Mugshot Studios does differently is build a production system
-          trained specifically on your IP — your characters, your visual language, your world. The output isn't
-          approximate. It isn't AI-generic. It is animation that looks and feels exactly like your show.
-        </p>
-        <p className="text-lg leading-relaxed max-w-3xl mt-4" style={{ color: 'var(--muted-foreground)' }}>
-          We work with broadcasters, distributors, independent producers, and brands who need high-quality animation
-          produced consistently, quickly, and at a cost that makes ambitious series commercially viable.
-        </p>
+      {/* ── What We Do ── */}
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto">
+          <p className="section-label mb-4">What We Do</p>
+          <h2 className="section-title max-w-2xl mb-5">We don't make generic animation. We make yours.</h2>
+          <p className="body-text max-w-2xl">
+            Every studio can produce animation. What Mugshot Studios does differently is build a production system trained specifically on your IP — your characters, your visual language, your world. The output isn't approximate. It is animation that looks and feels exactly like your show.
+          </p>
+        </div>
       </section>
 
-      {/* Services */}
-      <section className="section-padding" style={{ backgroundColor: 'var(--card)' }}>
+      {/* ── Services ── */}
+      <section className="section-padding border-t border-border" style={{ backgroundColor: 'var(--card)' }}>
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12">Services</h2>
+          <p className="section-label mb-4">Services</p>
+          <h2 className="section-title mb-10">What we build</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: '🎨',
-                title: 'Custom Animation Production',
-                desc: '2D and 3D animation for TV series, streaming platforms, YouTube, and digital content. Trained on your existing IP for complete visual consistency.',
-              },
-              {
-                icon: '⚡',
-                title: 'AI-Accelerated Pipeline',
-                desc: 'Our proprietary Vartool system delivers broadcast-quality episodes faster than any traditional studio. Without compromising quality.',
-              },
-              {
-                icon: '🎬',
-                title: 'Live Action & Hybrid',
-                desc: 'AI-assisted live action production for features, short films, and hybrid animation-live action formats.',
-              },
-            ].map((service, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-lg card-hover border border-border"
-                style={{ backgroundColor: 'var(--background)' }}
-              >
-                <div className="text-3xl mb-3">{service.icon}</div>
-                <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                <p style={{ color: 'var(--muted-foreground)' }}>{service.desc}</p>
+            {services.map((s, i) => (
+              <div key={i} className="card hover:border-primary transition-colors duration-200">
+                <div className="text-3xl mb-4">{s.icon}</div>
+                <h3 className="text-lg font-semibold mb-2">{s.title}</h3>
+                <p className="body-text text-sm">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Original IP */}
-      <section className="section-padding max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold mb-6">We Also Create Original Worlds</h2>
-        <p className="text-lg mb-10" style={{ color: 'var(--muted-foreground)' }}>
-          Mugshot Studios develops original animated IP for the global market. Our debut slate features two original
-          series being presented at MIFA Annecy 2026.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[
-            { title: 'THE FIXERS', desc: '26 x 11 minutes | 3D Animation | Ages 4–7', status: 'Currently in production' },
-            { title: 'WONDER WORLD', desc: '26 x 11 minutes | 3D Animation | Ages 6–10', status: 'Currently in production' },
-          ].map((ip, idx) => (
-            <div key={idx} className="p-6 rounded-lg border border-border" style={{ backgroundColor: 'var(--card)' }}>
-              <h3 className="text-2xl font-bold mb-2">{ip.title}</h3>
-              <p className="mb-3" style={{ color: 'var(--muted-foreground)' }}>{ip.desc}</p>
-              <p className="text-sm" style={{ color: 'var(--muted-foreground)' }}>{ip.status}</p>
-            </div>
-          ))}
+      {/* ── Original IP ── */}
+      <section className="section-padding border-t border-border">
+        <div className="max-w-7xl mx-auto">
+          <p className="section-label mb-4">Original IP</p>
+          <h2 className="section-title mb-3">We also create original worlds</h2>
+          <p className="body-text mb-10">
+            Mugshot Studios develops original animated IP for the global market. Our debut slate is being presented at MIFA Annecy 2026.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {originalIP.map((ip, i) => (
+              <div key={i} className="card">
+                <span className="inline-block text-xs font-semibold px-2.5 py-1 rounded-full mb-4" style={{ backgroundColor: 'var(--secondary)', color: 'var(--secondary-foreground)' }}>
+                  {ip.status}
+                </span>
+                <h3 className="text-2xl font-bold mb-2">{ip.title}</h3>
+                <p className="body-text text-sm">{ip.meta}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>

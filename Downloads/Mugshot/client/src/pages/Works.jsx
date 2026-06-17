@@ -16,7 +16,7 @@ const videoWorks = [
   {
     title: 'SWAT KAT — Sample Trailer',
     type: 'Animation',
-    desc: 'Trailer sample demonstrating high-energy action animation produced through the Vartool pipeline.',
+    desc: 'High-energy action animation produced through the Vartool pipeline.',
     src: null,
   },
   {
@@ -27,54 +27,30 @@ const videoWorks = [
   },
 ]
 
-const otherWorks = [
-  {
-    title: 'WONDER WORLD',
-    type: 'Original IP',
-    desc: 'A living magical amusement park island. Three children. One unforgettable villain. 52 x 11 minutes.',
-  },
-  {
-    title: 'THE FIXERS',
-    type: 'Original IP',
-    desc: '26 x 11 minutes | 3D Animation | Ages 4–7. Currently in production.',
-  },
-  {
-    title: 'OPAL PRODUCTION CONTRACT',
-    type: 'Client Work',
-    desc: 'Contracted animation production for Opal Production SRL, Romania. Delivering broadcast-quality episodes using Vartool.',
-  },
-  {
-    title: 'CSIR-AMPRI DOCUMENTARIES',
-    type: 'Documentary',
-    desc: "Science communication series for India's premier materials research institute.",
-  },
-  {
-    title: 'THE FOURTH WALL',
-    type: 'Original IP',
-    desc: 'A surreal thriller about characters trapped inside an AI-generated world. In development.',
-  },
-  {
-    title: 'INS ANJDIP FILM',
-    type: 'Documentary',
-    desc: '6-minute commissioning documentary film for the Indian Navy.',
-  },
+const projects = [
+  { title: 'WONDER WORLD', type: 'Original IP', desc: 'A living magical amusement park island. Three children. One unforgettable villain. 52 × 11 minutes.' },
+  { title: 'THE FIXERS', type: 'Original IP', desc: '26 × 11 minutes · 3D Animation · Ages 4–7. Currently in production.' },
+  { title: 'OPAL PRODUCTION CONTRACT', type: 'Client Work', desc: 'Contracted animation production for Opal Production SRL, Romania. Broadcast-quality episodes via Vartool.' },
+  { title: 'CSIR-AMPRI DOCUMENTARIES', type: 'Documentary', desc: "Science communication series for India's premier materials research institute." },
+  { title: 'THE FOURTH WALL', type: 'Original IP', desc: 'A surreal thriller about characters trapped inside an AI-generated world. In development.' },
+  { title: 'INS ANJDIP FILM', type: 'Documentary', desc: '6-minute commissioning documentary film for the Indian Navy.' },
 ]
 
 function ComingSoonCard({ title, type, desc }) {
   return (
-    <div className="rounded-xl overflow-hidden border border-border flex flex-col" style={{ backgroundColor: 'var(--card)' }}>
+    <div className="card flex flex-col overflow-hidden p-0">
       <div className="aspect-video flex flex-col items-center justify-center gap-3" style={{ backgroundColor: 'var(--muted)' }}>
-        <div className="w-14 h-14 rounded-full flex items-center justify-center border border-border" style={{ backgroundColor: 'var(--background)' }}>
-          <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--muted-foreground)' }}>
+        <div className="w-14 h-14 rounded-full flex items-center justify-center border border-border" style={{ backgroundColor: 'var(--card)' }}>
+          <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--muted-foreground)' }}>
             <path d="M8 5v14l11-7z" />
           </svg>
         </div>
-        <p className="text-xs" style={{ color: 'var(--muted-foreground)' }}>Video coming soon</p>
+        <p className="text-xs text-muted-foreground">Video coming soon</p>
       </div>
       <div className="p-5 flex flex-col gap-1">
-        {type && <div className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted-foreground)' }}>{type}</div>}
-        <h3 className="text-lg font-bold">{title}</h3>
-        {desc && <p className="text-sm" style={{ color: 'var(--muted-foreground)' }}>{desc}</p>}
+        {type && <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{type}</p>}
+        <h3 className="text-base font-bold">{title}</h3>
+        {desc && <p className="text-sm text-muted-foreground">{desc}</p>}
       </div>
     </div>
   )
@@ -82,50 +58,51 @@ function ComingSoonCard({ title, type, desc }) {
 
 export default function Works() {
   return (
-    <div className="section-padding max-w-7xl mx-auto">
-      <h1 className="text-5xl font-bold mb-4">Our Work</h1>
-      <p className="text-xl mb-12" style={{ color: 'var(--muted-foreground)' }}>
-        From original IP to contracted productions — here's what we build.
-      </p>
-
-      {/* Video Showcase */}
-      <div className="mb-16">
-        <h2 className="text-2xl font-bold mb-8">Video Showcase</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {videoWorks.map((video, idx) =>
-            video.src ? (
-              <HoverPlayCard
-                key={idx}
-                src={video.src}
-                title={video.title}
-                type={video.type}
-                desc={video.desc}
-                loop={false}
-              />
-            ) : (
-              <ComingSoonCard key={idx} title={video.title} type={video.type} desc={video.desc} />
-            )
-          )}
+    <div>
+      {/* ── Header ── */}
+      <section className="section-padding border-b border-border">
+        <div className="max-w-7xl mx-auto">
+          <p className="section-label mb-4">Portfolio</p>
+          <h1 className="page-title mb-3">Our Work</h1>
+          <p className="body-text max-w-xl">
+            From original IP to contracted productions — here's what we build.
+          </p>
         </div>
-      </div>
+      </section>
 
-      {/* Other Projects */}
-      <div>
-        <h2 className="text-2xl font-bold mb-8">Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {otherWorks.map((work, idx) => (
-            <div
-              key={idx}
-              className="p-6 rounded-lg card-hover border border-border"
-              style={{ backgroundColor: 'var(--card)' }}
-            >
-              <div className="text-sm mb-2" style={{ color: 'var(--muted-foreground)' }}>{work.type}</div>
-              <h3 className="text-xl font-bold mb-3">{work.title}</h3>
-              <p style={{ color: 'var(--muted-foreground)' }}>{work.desc}</p>
-            </div>
-          ))}
+      {/* ── Video Showcase ── */}
+      <section className="section-padding border-b border-border" style={{ backgroundColor: 'var(--card)' }}>
+        <div className="max-w-7xl mx-auto">
+          <p className="section-label mb-4">Video Showcase</p>
+          <h2 className="section-title mb-8">See it in motion</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {videoWorks.map((v, i) =>
+              v.src ? (
+                <HoverPlayCard key={i} src={v.src} title={v.title} type={v.type} desc={v.desc} />
+              ) : (
+                <ComingSoonCard key={i} title={v.title} type={v.type} desc={v.desc} />
+              )
+            )}
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* ── Projects ── */}
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto">
+          <p className="section-label mb-4">Projects</p>
+          <h2 className="section-title mb-8">All productions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {projects.map((p, i) => (
+              <div key={i} className="card">
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">{p.type}</p>
+                <h3 className="font-bold mb-2">{p.title}</h3>
+                <p className="body-text text-sm">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

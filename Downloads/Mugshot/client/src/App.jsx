@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Entropy from './components/Entropy'
 import Navigation from './components/Navigation'
 import Home from './pages/Home'
 import Technology from './pages/Technology'
@@ -12,7 +11,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('home')
 
   const sections = {
-    home: <Home />,
+    home: <Home setActiveSection={setActiveSection} />,
     technology: <Technology />,
     works: <Works />,
     about: <About />,
@@ -20,7 +19,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
       <main className="pt-16">
         {sections[activeSection]}
