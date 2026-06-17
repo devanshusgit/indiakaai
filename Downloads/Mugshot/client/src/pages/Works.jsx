@@ -8,22 +8,24 @@ const videos = [
     src: '/PINK.mp4',
   },
   {
+    title: 'TOOPY & BINOO',
+    type: 'Client Work',
+    desc: 'Animation production sample showcasing character animation and style consistency.',
+    src: '/Toopy-Binoo.mp4',
+  },
+  {
     title: 'SWAT KAT — Sample Trailer',
     type: 'Animation',
     desc: 'Trailer sample demonstrating high-energy action animation produced through the Vartool pipeline.',
-    src: '/SWAT-KAT-TRAILER.mp4',
+    src: null,
+    youtubeUrl: null,
   },
   {
     title: 'THE BEGINNING — Trailer',
     type: 'Original IP',
     desc: 'Official trailer for an original Mugshot Studios production currently in development.',
-    src: '/The-Beginning-Trailer.mp4',
-  },
-  {
-    title: 'TOOPY & BINOO',
-    type: 'Client Work',
-    desc: 'Animation production sample showcasing character animation and style consistency.',
-    src: '/Toopy-Binoo.mp4',
+    src: null,
+    youtubeUrl: null,
   },
 ]
 
@@ -73,6 +75,29 @@ function VideoCard({ video }) {
       videoRef.current.play()
       setPlaying(true)
     }
+  }
+
+  // No local src — show a "coming soon" placeholder
+  if (!video.src) {
+    return (
+      <div className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800">
+        <div className="relative aspect-video bg-black flex items-center justify-center">
+          <div className="text-center px-6">
+            <div className="w-16 h-16 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center mx-auto mb-3">
+              <svg className="w-6 h-6 text-gray-500 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+            <p className="text-gray-500 text-sm">Video coming soon</p>
+          </div>
+        </div>
+        <div className="p-5">
+          <div className="text-xs text-gray-500 uppercase tracking-widest mb-1">{video.type}</div>
+          <h3 className="text-lg font-bold mb-2">{video.title}</h3>
+          <p className="text-gray-400 text-sm">{video.desc}</p>
+        </div>
+      </div>
+    )
   }
 
   return (
