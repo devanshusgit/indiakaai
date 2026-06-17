@@ -9,17 +9,14 @@ const stats = [
 
 const services = [
   {
-    icon: '🎨',
     title: 'Custom Animation Production',
     desc: '2D and 3D animation for TV series, streaming platforms, and digital content — trained on your existing IP for complete visual consistency.',
   },
   {
-    icon: '⚡',
     title: 'AI-Accelerated Pipeline',
     desc: 'Our proprietary Vartool system delivers broadcast-quality episodes faster than any traditional studio, without compromising quality.',
   },
   {
-    icon: '🎬',
     title: 'Live Action & Hybrid',
     desc: 'AI-assisted live action production for features, short films, and hybrid animation-live action formats.',
   },
@@ -94,7 +91,9 @@ export default function Home({ setActiveSection }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {services.map((s, i) => (
               <div key={i} className="card hover:border-primary transition-colors duration-200">
-                <div className="text-3xl mb-4">{s.icon}</div>
+                <span className="block text-sm font-semibold mb-4" style={{ color: 'var(--primary)' }}>
+                  {String(i + 1).padStart(2, '0')}
+                </span>
                 <h3 className="text-lg font-semibold mb-2">{s.title}</h3>
                 <p className="body-text text-sm">{s.desc}</p>
               </div>

@@ -60,10 +60,7 @@ export default function About() {
             {/* Jeet */}
             <div className="card overflow-hidden p-0">
               <div className="w-full h-52 flex items-center justify-center" style={{ backgroundColor: 'var(--muted)' }}>
-                <div className="text-center" style={{ color: 'var(--muted-foreground)' }}>
-                  <div className="text-4xl mb-2">📷</div>
-                  <p className="text-xs">Photo coming soon</p>
-                </div>
+                <p className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted-foreground)' }}>Photo coming soon</p>
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-1">Jeet</h3>
@@ -99,9 +96,9 @@ export default function About() {
       </section>
 
       {/* ── Address ── */}
-      <section className="py-10 px-6">
-        <div className="max-w-7xl mx-auto flex items-center gap-3">
-          <span className="text-lg">📍</span>
+      <section className="py-10 px-6 border-t border-border">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">Studio</p>
           <p className="text-sm text-muted-foreground">Unit 112, IJMIMA Complex, Off Link Road, Malad West, Mumbai 400064, India</p>
         </div>
       </section>

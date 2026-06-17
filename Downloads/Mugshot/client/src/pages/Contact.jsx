@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
 const contactDetails = [
-  { label: 'Email', value: 'admin@mugshotstudios.com', icon: '✉' },
-  { label: 'Phone / WhatsApp', value: '+91 9833979711', icon: '📱' },
-  { label: 'Location', value: 'Unit 112, Ijmima Complex, Off Link Road, Malad West, Mumbai, India', icon: '📍' },
+  { label: 'Email', value: 'admin@mugshotstudios.com' },
+  { label: 'Phone / WhatsApp', value: '+91 9833979711' },
+  { label: 'Location', value: 'Unit 112, Ijmima Complex, Off Link Road, Malad West, Mumbai, India' },
 ]
 
 export default function Contact() {
@@ -56,7 +56,6 @@ export default function Contact() {
           <div className="md:col-span-2 flex flex-col gap-4">
             {contactDetails.map((item, i) => (
               <div key={i} className="card">
-                <p className="text-lg mb-2">{item.icon}</p>
                 <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">{item.label}</p>
                 <p className="text-sm font-medium text-foreground">{item.value}</p>
               </div>

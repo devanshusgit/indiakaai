@@ -109,7 +109,7 @@ export default function Technology() {
                       <td className="px-6 py-4 text-muted-foreground">{row.traditional}</td>
                       <td className="px-6 py-4 text-muted-foreground">{row.publicAI}</td>
                       <td className="px-6 py-4 font-medium" style={{ color: 'var(--primary)' }}>
-                        {row.mugshot} ✓
+                        {row.mugshot}
                       </td>
                     </tr>
                   ))}

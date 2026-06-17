@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Play, Pause } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 
@@ -112,19 +111,18 @@ export default function HoverPlayCard({
               className="absolute inset-0 flex items-center justify-center pointer-events-none"
             >
               <Button
-                size="icon"
                 variant="ghost"
                 onClick={(e) => { e.stopPropagation(); handleIconClick() }}
-                className="pointer-events-auto bg-black/20 hover:bg-black/40 text-white rounded-full w-16 h-16"
+                className="pointer-events-auto bg-black/30 hover:bg-black/50 text-white rounded-full px-6 h-11 text-sm font-semibold uppercase tracking-widest"
                 aria-label={isPlaying ? "Pause video" : "Play video"}
               >
-                {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8" />}
+                {isPlaying ? "Pause" : "Play"}
               </Button>
             </motion.div>
           )}
         </AnimatePresence>
-        <div className="absolute left-3 bottom-3 text-xs bg-black/30 text-white px-2 py-1 rounded-full">
-          {isPlaying ? "▶ Playing" : "⏸ Paused"}
+        <div className="absolute left-3 bottom-3 text-xs bg-black/40 text-white px-3 py-1 rounded-full uppercase tracking-widest">
+          {isPlaying ? "Playing" : "Paused"}
         </div>
       </div>
       {(title || desc) && (

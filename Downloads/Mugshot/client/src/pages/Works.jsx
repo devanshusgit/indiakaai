@@ -39,13 +39,8 @@ const projects = [
 function ComingSoonCard({ title, type, desc }) {
   return (
     <div className="card flex flex-col overflow-hidden p-0">
-      <div className="aspect-video flex flex-col items-center justify-center gap-3" style={{ backgroundColor: 'var(--muted)' }}>
-        <div className="w-14 h-14 rounded-full flex items-center justify-center border border-border" style={{ backgroundColor: 'var(--card)' }}>
-          <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--muted-foreground)' }}>
-            <path d="M8 5v14l11-7z" />
-          </svg>
-        </div>
-        <p className="text-xs text-muted-foreground">Video coming soon</p>
+      <div className="aspect-video flex items-center justify-center" style={{ backgroundColor: 'var(--muted)' }}>
+        <p className="text-xs uppercase tracking-widest text-muted-foreground">Video coming soon</p>
       </div>
       <div className="p-5 flex flex-col gap-1">
         {type && <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{type}</p>}
