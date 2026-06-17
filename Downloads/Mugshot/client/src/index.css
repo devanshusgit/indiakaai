@@ -6,30 +6,6 @@
 
 @layer base {
   :root {
-    --card: #fcfcfc;
-    --ring: #644a40;
-    --input: #d8d8d8;
-    --muted: #efefef;
-    --accent: #e8e8e8;
-    --border: #d8d8d8;
-    --radius: 0.5rem;
-    --primary: #644a40;
-    --sidebar: #fbfbfb;
-    --secondary: #ffdfb5;
-    --background: #f9f9f9;
-    --foreground: #202020;
-    --destructive: #e54d2e;
-    --popover: #fcfcfc;
-    --card-foreground: #202020;
-    --muted-foreground: #646464;
-    --accent-foreground: #202020;
-    --popover-foreground: #202020;
-    --primary-foreground: #ffffff;
-    --secondary-foreground: #582d1d;
-    --destructive-foreground: #ffffff;
-  }
-
-  .dark {
     --card: #191919;
     --ring: #ffe0c2;
     --input: #333333;
