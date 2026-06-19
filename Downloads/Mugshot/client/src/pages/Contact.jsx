@@ -1,9 +1,17 @@
 import { useState } from 'react'
+import { ContactInfo, SocialLinks } from '@/components/ui/contact-info'
 
 const contactDetails = [
-  { label: 'Email', value: 'admin@mugshotstudios.com' },
-  { label: 'Phone / WhatsApp', value: '+91 9833979711' },
-  { label: 'Location', value: 'Unit 112, Ijmima Complex, Off Link Road, Malad West, Mumbai, India' },
+  { icon: 'email', label: 'Email', value: 'admin@mugshotstudios.com', href: 'mailto:admin@mugshotstudios.com' },
+  { icon: 'phone', label: 'Phone / WhatsApp', value: '+91 9833979711', href: 'tel:+919833979711' },
+  { icon: 'location', label: 'Location', value: 'Unit 112, Ijmima Complex, Off Link Road, Malad West, Mumbai, India' },
+]
+
+const socialLinks = [
+  { icon: 'youtube', href: 'https://youtube.com', label: 'YouTube' },
+  { icon: 'instagram', href: 'https://instagram.com', label: 'Instagram' },
+  { icon: 'linkedin', href: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: 'whatsapp', href: 'https://wa.me/919833979711', label: 'WhatsApp' },
 ]
 
 export default function Contact() {
@@ -53,13 +61,24 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-12">
 
           {/* Contact Info */}
-          <div className="md:col-span-2 flex flex-col gap-4">
-            {contactDetails.map((item, i) => (
-              <div key={i} className="card">
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">{item.label}</p>
-                <p className="text-sm font-medium text-foreground">{item.value}</p>
-              </div>
-            ))}
+          <div className="md:col-span-2 flex flex-col gap-6">
+            <div className="card flex flex-col gap-5">
+              {contactDetails.map((item, i) => (
+                <ContactInfo
+                  key={i}
+                  icon={item.icon}
+                  label={item.label}
+                  value={item.value}
+                  href={item.href}
+                />
+              ))}
+            </div>
+
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Follow us</p>
+              <SocialLinks links={socialLinks} size="md" />
+            </div>
+
             <div className="card" style={{ backgroundColor: 'var(--secondary)', borderColor: 'var(--secondary)' }}>
               <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--secondary-foreground)', opacity: 0.7 }}>
                 Currently attending
