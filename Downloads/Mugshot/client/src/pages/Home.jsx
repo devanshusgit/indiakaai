@@ -50,7 +50,10 @@ export default function Home({ setActiveSection }) {
             We don't make animation.<br />
             We make <span style={{ color: 'var(--primary)' }}>your</span> animation.
           </h1>
-          <p className="body-text text-lg max-w-2xl mx-auto mb-10">
+          <p
+            className="text-lg leading-relaxed max-w-2xl mx-auto mb-10"
+            style={{ color: 'rgba(238,238,238,0.88)', textShadow: '0 1px 16px rgba(0,0,0,0.75)' }}
+          >
             Combining creative direction with proprietary AI production technology, we build custom animation pipelines trained on your IP — your characters, your style, your world.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">

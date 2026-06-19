@@ -21,7 +21,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-border px-6 py-4 max-w-7xl mx-auto flex items-center justify-between">
-        <p className="text-xs text-muted-foreground">&copy; 2024 Mugshot Studios. All rights reserved.</p>
+        <p className="text-xs text-muted-foreground">&copy; 2026 Mugshot Studios. All rights reserved.</p>
         <p className="text-xs text-muted-foreground">Currently at MIFA Annecy — June 2026</p>
       </div>
     </footer>
