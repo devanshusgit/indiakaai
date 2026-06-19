@@ -27,14 +27,29 @@ export function ContactInfo({ icon, label, value, href, size = 'md', className }
     <span className="text-sm font-medium text-foreground">{value}</span>
   )
 
+  const iconBox = (
+    <span
+      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border transition-colors group-hover:border-primary"
+      style={{ backgroundColor: 'var(--muted)', color: 'var(--primary)' }}
+    >
+      <Icon icon={icon} size={16} />
+    </span>
+  )
+
   return (
     <div className={cn('flex items-start gap-3', className)}>
-      <span
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border"
-        style={{ backgroundColor: 'var(--muted)', color: 'var(--primary)' }}
-      >
-        <Icon icon={icon} size={16} />
-      </span>
+      {href ? (
+        <a
+          href={href}
+          className="group"
+          aria-label={`${label}: ${value}`}
+          {...(/^https?:\/\//.test(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {iconBox}
+        </a>
+      ) : (
+        iconBox
+      )}
       <div className="flex flex-col">
         <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{label}</span>
         {valueEl}

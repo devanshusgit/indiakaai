@@ -31,6 +31,7 @@ export default function Footer() {
             icon="location"
             label="Studio"
             value="Unit 112, IJMIMA Complex, Off Link Road, Malad West, Mumbai 400064, India"
+            href="https://share.google/Nhfs5AMX6JqS6eWSS"
           />
         </div>
       </div>

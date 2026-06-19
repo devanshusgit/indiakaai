@@ -48,15 +48,40 @@ export function ContactCard({
   )
 }
 
-function ContactInfo({ icon: Icon, label, value, className, ...props }) {
+function ContactInfo({ icon: Icon, label, value, href, className, ...props }) {
+  const iconBox = (
+    <div className="bg-muted/40 group-hover:bg-primary/15 rounded-lg p-3 transition-colors">
+      <Icon className="h-5 w-5 group-hover:text-primary transition-colors" />
+    </div>
+  )
+  const isExternal = href && /^https?:\/\//.test(href)
   return (
     <div className={cn('flex items-center gap-3 py-3', className)} {...props}>
-      <div className="bg-muted/40 rounded-lg p-3">
-        <Icon className="h-5 w-5" />
-      </div>
+      {href ? (
+        <a
+          href={href}
+          className="group"
+          aria-label={`${label}: ${value}`}
+          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {iconBox}
+        </a>
+      ) : (
+        iconBox
+      )}
       <div>
         <p className="font-medium">{label}</p>
-        <p className="text-muted-foreground text-xs">{value}</p>
+        {href ? (
+          <a
+            href={href}
+            className="text-muted-foreground hover:text-primary text-xs transition-colors hover:underline"
+            {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
+            {value}
+          </a>
+        ) : (
+          <p className="text-muted-foreground text-xs">{value}</p>
+        )}
       </div>
     </div>
   )

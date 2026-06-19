@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/button'
 import { SocialLinks } from '@/components/ui/contact-info'
 
 const contactInfo = [
-  { icon: MailIcon, label: 'Email', value: 'admin@mugshotstudios.com' },
-  { icon: PhoneIcon, label: 'Phone / WhatsApp', value: '+91 9833979711' },
-  { icon: MapPinIcon, label: 'Address', value: 'Malad West, Mumbai, India' },
+  { icon: MailIcon, label: 'Email', value: 'admin@mugshotstudios.com', href: 'mailto:admin@mugshotstudios.com' },
+  { icon: PhoneIcon, label: 'Phone / WhatsApp', value: '+91 9833979711', href: 'tel:+919833979711' },
+  { icon: MapPinIcon, label: 'Address', value: 'Malad West, Mumbai, India', href: 'https://share.google/Nhfs5AMX6JqS6eWSS' },
 ]
 
 const socialLinks = [
