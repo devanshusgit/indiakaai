@@ -1,3 +1,5 @@
+import tailwindcssAnimate from 'tailwindcss-animate'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
@@ -60,7 +62,15 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      boxShadow: {
+        'tooltip-b':
+          '8px 10px 10px -13px rgba(255,255,255,1), -8px 9px 10px -13px rgba(255,255,255,1), 0px 23px 40px -10px rgba(255,255,255,1)',
+        'tooltip-t':
+          '8px -10px 10px -13px rgba(255,255,255,1), -8px -9px 10px -13px rgba(255,255,255,1), 0px -23px 40px -10px rgba(255,255,255,1)',
+        'tooltip-r': '-12px 0px 12px -10px rgba(255,255,255,1)',
+        'tooltip-l': '12px 0px 12px -10px rgba(255,255,255,1)',
+      },
     },
   },
-  plugins: [],
+  plugins: [tailwindcssAnimate],
 }

@@ -1,4 +1,5 @@
 import { Icon, IconButton } from '@/components/ui/icon'
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/lamp-tooltip'
 import { cn } from '@/lib/utils'
 
 /**
@@ -54,15 +55,19 @@ export function SocialLinks({ links, size = 'md', variant = 'social', className 
   return (
     <div className={cn('flex flex-wrap items-center gap-2', className)}>
       {links.map((link) => (
-        <IconButton
-          key={link.label}
-          icon={link.icon}
-          href={link.href}
-          label={link.label}
-          variant={variant}
-          size={size}
-          iconOnly
-        />
+        <Tooltip key={link.label}>
+          <TooltipTrigger asChild>
+            <IconButton
+              icon={link.icon}
+              href={link.href}
+              label={link.label}
+              variant={variant}
+              size={size}
+              iconOnly
+            />
+          </TooltipTrigger>
+          <TooltipContent side="top">{link.label}</TooltipContent>
+        </Tooltip>
       ))}
     </div>
   )

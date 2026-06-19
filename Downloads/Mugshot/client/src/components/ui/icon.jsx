@@ -1,3 +1,4 @@
+import * as React from 'react'
 import {
   FiMapPin,
   FiPhone,
@@ -121,7 +122,7 @@ const sizeClasses = {
  * Props: icon, label, href, size ('sm'|'md'|'lg'), color, variant, iconOnly,
  *        external, iconPosition ('left'|'right'), plus native a/button props.
  */
-export function IconButton({
+export const IconButton = React.forwardRef(function IconButton({
   icon,
   label,
   href,
@@ -134,7 +135,7 @@ export function IconButton({
   className,
   children,
   ...props
-}) {
+}, ref) {
   const s = sizeClasses[size] ?? sizeClasses.md
   const text = children ?? label
   const showText = !iconOnly && text
@@ -166,6 +167,7 @@ export function IconButton({
     const isExternal = external ?? /^https?:\/\//.test(href)
     return (
       <a
+        ref={ref}
         href={href}
         className={base}
         aria-label={a11yLabel}
@@ -178,8 +180,8 @@ export function IconButton({
   }
 
   return (
-    <button type="button" className={base} aria-label={a11yLabel} {...props}>
+    <button ref={ref} type="button" className={base} aria-label={a11yLabel} {...props}>
       {content}
     </button>
   )
-}
+})
