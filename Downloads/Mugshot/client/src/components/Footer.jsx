@@ -1,11 +1,11 @@
 import { ContactInfo, SocialLinks } from '@/components/ui/contact-info'
 
 const socialLinks = [
-  { icon: 'youtube', href: 'https://youtube.com', label: 'YouTube' },
-  { icon: 'instagram', href: 'https://instagram.com', label: 'Instagram' },
-  { icon: 'linkedin', href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: 'facebook', href: 'https://facebook.com', label: 'Facebook' },
-  { icon: 'twitter', href: 'https://x.com', label: 'X (Twitter)' },
+  { icon: 'youtube', label: 'YouTube', comingSoon: true },
+  { icon: 'instagram', label: 'Instagram', comingSoon: true },
+  { icon: 'linkedin', label: 'LinkedIn', comingSoon: true },
+  { icon: 'facebook', label: 'Facebook', comingSoon: true },
+  { icon: 'twitter', label: 'X (Twitter)', comingSoon: true },
   { icon: 'whatsapp', href: 'https://wa.me/919833979711', label: 'WhatsApp' },
 ]
 

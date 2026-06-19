@@ -54,21 +54,26 @@ export function SocialLinks({ links, size = 'md', variant = 'social', className 
   if (!links?.length) return null
   return (
     <div className={cn('flex flex-wrap items-center gap-2', className)}>
-      {links.map((link) => (
-        <Tooltip key={link.label}>
-          <TooltipTrigger asChild>
-            <IconButton
-              icon={link.icon}
-              href={link.href}
-              label={link.label}
-              variant={variant}
-              size={size}
-              iconOnly
-            />
-          </TooltipTrigger>
-          <TooltipContent side="top">{link.label}</TooltipContent>
-        </Tooltip>
-      ))}
+      {links.map((link) => {
+        const tooltip = link.comingSoon ? 'Coming soon' : link.label
+        return (
+          <Tooltip key={link.label}>
+            <TooltipTrigger asChild>
+              <IconButton
+                icon={link.icon}
+                // Coming-soon platforms render as a non-navigating button.
+                href={link.comingSoon ? undefined : link.href}
+                label={link.comingSoon ? `${link.label} — coming soon` : link.label}
+                variant={variant}
+                size={size}
+                iconOnly
+                className={link.comingSoon ? 'opacity-50 cursor-default' : undefined}
+              />
+            </TooltipTrigger>
+            <TooltipContent side="top">{tooltip}</TooltipContent>
+          </Tooltip>
+        )
+      })}
     </div>
   )
 }

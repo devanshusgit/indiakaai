@@ -8,9 +8,9 @@ const contactDetails = [
 ]
 
 const socialLinks = [
-  { icon: 'youtube', href: 'https://youtube.com', label: 'YouTube' },
-  { icon: 'instagram', href: 'https://instagram.com', label: 'Instagram' },
-  { icon: 'linkedin', href: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: 'youtube', label: 'YouTube', comingSoon: true },
+  { icon: 'instagram', label: 'Instagram', comingSoon: true },
+  { icon: 'linkedin', label: 'LinkedIn', comingSoon: true },
   { icon: 'whatsapp', href: 'https://wa.me/919833979711', label: 'WhatsApp' },
 ]
 
