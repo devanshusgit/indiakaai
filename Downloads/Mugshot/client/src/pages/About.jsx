@@ -3,6 +3,11 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
 
 const team = [
   {
+    name: 'Jeet',
+    role: 'Creative Director / Writer',
+    bio: 'Jeet comes from a theatre background and has been actively working in the creative industry since 2009. Over the years, he has worked as a screenwriter for leading platforms and channels including Sony TV, Disney+ Hotstar, Zee TV, and Sun TV. He has also served as Creative Head for multiple content production houses, leading projects from concept to execution. Along with television and digital content, he brings strong experience in animation writing as well. Creating, developing, and executing engaging content across formats is his core strength.',
+  },
+  {
     name: 'Samrat Dixit',
     role: 'Production Head',
     bio: '4+ years across animation, live action, and brand films. Heads AI-assisted animation and live action production.',
