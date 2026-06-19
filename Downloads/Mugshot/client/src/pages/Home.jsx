@@ -34,24 +34,29 @@ export default function Home({ setActiveSection }) {
       <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <FallingPattern className="h-full w-full" />
-          {/* soft vignette so hero copy stays legible while the pattern shows through */}
+          {/* darkening overlay — keeps the pattern faint and the copy crisp */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                'radial-gradient(ellipse at center, transparent 30%, color-mix(in srgb, var(--background) 80%, transparent) 100%)',
+                'radial-gradient(ellipse at center, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.88) 100%)',
             }}
           />
         </div>
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-6 py-24">
+        <div className="relative z-10 text-center max-w-5xl mx-auto px-6 py-24">
           <p className="section-label mb-5">Mumbai · India · Est. 2024</p>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
-            We don't make animation.<br />
-            We make <span style={{ color: 'var(--primary)' }}>your</span> animation.
+          <h1
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 text-white"
+            style={{ textShadow: '0 2px 24px rgba(0,0,0,0.85)' }}
+          >
+            <span className="block md:whitespace-nowrap">We don't make animation.</span>
+            <span className="block md:whitespace-nowrap">
+              We make <span style={{ color: 'var(--primary)' }}>your</span> animation.
+            </span>
           </h1>
           <p
             className="text-lg leading-relaxed max-w-2xl mx-auto mb-10"
-            style={{ color: 'rgba(238,238,238,0.88)', textShadow: '0 1px 16px rgba(0,0,0,0.75)' }}
+            style={{ color: 'rgba(255,255,255,0.95)', textShadow: '0 2px 18px rgba(0,0,0,0.9)' }}
           >
             Combining creative direction with proprietary AI production technology, we build custom animation pipelines trained on your IP — your characters, your style, your world.
           </p>
