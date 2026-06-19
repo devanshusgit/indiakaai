@@ -18,13 +18,13 @@ const videoWorks = [
     title: 'SWAT KAT — Sample Trailer',
     type: 'Animation',
     desc: 'High-energy action animation produced through the Vartool pipeline.',
-    src: null,
+    src: '/SWAT-KAT-TRAILER.mp4',
   },
   {
     title: 'THE BEGINNING — Trailer',
     type: 'Original IP',
     desc: 'Official trailer for an original Mugshot Studios production currently in development.',
-    src: null,
+    src: '/The-Beginning-Trailer.mp4',
   },
 ]
 
