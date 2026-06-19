@@ -7,24 +7,28 @@ const people = [
   {
     name: 'Vivek Shukla',
     role: 'Founder & Director',
+    photo: '/images/FOUNDR.jpg',
     bio: "Filmmaker, writer, and animation creator with a vision to make broadcast-quality animation accessible to producers worldwide through technology. Vivek leads Mugshot Studios' creative direction, international partnerships, and the ongoing development of the Vartool production system.",
     linkedin: 'https://www.linkedin.com/',
   },
   {
     name: 'Jeet',
     role: 'Creative Director / Writer',
+    photo: '/images/Jeet.jpg',
     bio: 'Theatre-rooted screenwriter working in the creative industry since 2009 — across Sony TV, Disney+ Hotstar, Zee TV, and Sun TV. Has served as Creative Head for multiple production houses, leading projects from concept to execution, with strong experience in animation writing.',
     linkedin: 'https://www.linkedin.com/',
   },
   {
     name: 'Samrat Dixit',
     role: 'Production Head',
+    photo: '/images/Samrat.jpg',
     bio: '4+ years across animation, live action, and brand films. Heads AI-assisted animation and live action production.',
     linkedin: 'https://www.linkedin.com/',
   },
   {
     name: 'Manav Mishra',
     role: 'CTO',
+    photo: '/images/CTO.jpg',
     bio: 'Leads technology vision, building AI-driven creative tools and scalable production platforms.',
     linkedin: 'https://www.linkedin.com/',
   },
@@ -64,13 +68,12 @@ export default function About() {
             {people.map((person, i) => (
               <GlowCard key={i} glowColor="orange" customSize className="w-full min-h-[230px]">
                 <div className="flex flex-col">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mb-5"
-                    style={{ backgroundColor: 'var(--secondary)', color: 'var(--secondary-foreground)' }}
-                    aria-hidden="true"
-                  >
-                    {person.name.charAt(0)}
-                  </div>
+                  <img
+                    src={person.photo}
+                    alt={person.name}
+                    loading="lazy"
+                    className="w-20 h-20 rounded-full object-cover object-top mb-5 border border-border"
+                  />
                   <h3 className="text-xl font-bold mb-1">{person.name}</h3>
                   <p className="text-sm font-medium mb-4" style={{ color: 'var(--primary)' }}>{person.role}</p>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)', opacity: 0.82 }}>{person.bio}</p>
