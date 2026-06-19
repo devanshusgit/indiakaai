@@ -1,5 +1,4 @@
 import { FallingPattern } from '@/components/ui/falling-pattern'
-import { OriginButton } from '@/components/ui/origin-button'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
 const stats = [
@@ -57,9 +56,9 @@ export default function Home({ setActiveSection }) {
             Combining creative direction with proprietary AI production technology, we build custom animation pipelines trained on your IP — your characters, your style, your world.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <OriginButton onClick={() => setActiveSection('works')}>See Our Work</OriginButton>
-            <OriginButton onClick={() => setActiveSection('technology')}>Explore Vartool</OriginButton>
-            <OriginButton onClick={() => setActiveSection('contact')}>Get in Touch</OriginButton>
+            <button className="btn-primary" onClick={() => setActiveSection('works')}>See Our Work</button>
+            <button className="btn-secondary" style={{ backgroundColor: 'var(--card)' }} onClick={() => setActiveSection('technology')}>Explore Vartool</button>
+            <button className="btn-secondary" style={{ backgroundColor: 'var(--card)' }} onClick={() => setActiveSection('contact')}>Get in Touch</button>
           </div>
         </div>
       </div>
