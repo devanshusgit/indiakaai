@@ -66,11 +66,11 @@ export default function Home({ setActiveSection }) {
             <span className="block md:whitespace-nowrap">We don't make animation.</span>
             <span className="block md:whitespace-nowrap">
               We make{' '}
-              <span className="relative inline-block">
+              <span className="relative inline-block mx-1">
                 <span style={{ color: 'var(--primary)' }}>your</span>
                 <motion.svg
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                  style={{ width: '160%', height: '210%' }}
+                  className="absolute left-1/2 top-[54%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                  style={{ width: '122%', height: '132%' }}
                   viewBox="0 0 200 80"
                   preserveAspectRatio="none"
                   initial="hidden"
@@ -78,10 +78,10 @@ export default function Home({ setActiveSection }) {
                   aria-hidden="true"
                 >
                   <motion.path
-                    d="M 48 16 C 100 4, 158 8, 182 30 C 198 46, 172 66, 112 71 C 52 76, 14 64, 17 40 C 19 22, 34 14, 56 11"
+                    d="M 46 14 C 100 4, 156 8, 184 28 C 200 44, 174 66, 110 72 C 50 77, 12 64, 16 38 C 18 20, 34 12, 54 10"
                     fill="none"
                     stroke="var(--primary)"
-                    strokeWidth="3"
+                    strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     vectorEffect="non-scaling-stroke"
