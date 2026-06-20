@@ -45,20 +45,26 @@ export default function Technology() {
     <div>
       {/* ── Hero ── */}
       <section className="section-padding border-b border-border">
-        <div className="max-w-7xl mx-auto">
-          <p className="section-label mb-4">Proprietary Technology</p>
-          <h1 className="sr-only">Vartool</h1>
-          <img
-            src="/images/vartool-ai-logo.png"
-            alt="Vartool AI"
-            className="h-16 md:h-20 w-auto mb-6"
-          />
-          <p className="text-xl font-medium mb-6" style={{ color: 'var(--primary)' }}>
-            The Production System That Learns Your IP
-          </p>
-          <p className="body-text max-w-2xl text-base">
-            Vartool is Mugshot Studios' proprietary end-to-end AI production system. It is not a public AI tool. It is not licensed software. It is a closed, private, custom-trained pipeline built specifically around each client's content — and it changes what is possible in animation production.
-          </p>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left — copy */}
+          <div>
+            <p className="section-label mb-4">Proprietary Technology</p>
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              The production system that learns your IP
+            </h1>
+            <p className="body-text text-base max-w-xl">
+              Vartool is Mugshot Studios' proprietary, end-to-end AI production system — not a public tool, not licensed software. It's a closed, private pipeline, custom-trained on each client's content, that redefines what's possible in animation production.
+            </p>
+          </div>
+
+          {/* Right — logo */}
+          <div className="flex justify-center lg:justify-end">
+            <img
+              src="/images/vartool-ai-logo.png"
+              alt="Vartool AI"
+              className="w-full max-w-md h-auto"
+            />
+          </div>
         </div>
       </section>
 
