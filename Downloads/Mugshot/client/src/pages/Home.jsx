@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { FallingPattern } from '@/components/ui/falling-pattern'
+import { CountUp } from '@/components/ui/count-up'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
 // hand-drawn circle that sketches itself around a word
@@ -16,9 +17,9 @@ const drawCircle = {
 }
 
 const stats = [
-  { value: '3 Days', label: 'to deliver an 11-minute episode' },
-  { value: '100%', label: 'private — your IP never leaves our system' },
-  { value: '4', label: 'continents with active partnerships' },
+  { to: 3, suffix: ' Days', label: 'to deliver an 11-minute episode' },
+  { to: 100, suffix: '%', label: 'private — your IP never leaves our system' },
+  { to: 4, suffix: '', label: 'continents with active partnerships' },
 ]
 
 const services = [
@@ -111,7 +112,9 @@ export default function Home({ setActiveSection }) {
         <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
           {stats.map((s, i) => (
             <div key={i} className="py-8 md:py-0 px-0 md:px-10 first:pl-0 last:pr-0 text-center">
-              <p className="text-3xl font-bold mb-1" style={{ color: 'var(--primary)' }}>{s.value}</p>
+              <p className="text-3xl font-bold mb-1" style={{ color: 'var(--primary)' }}>
+                <CountUp to={s.to} suffix={s.suffix} />
+              </p>
               <p className="text-sm body-text">{s.label}</p>
             </div>
           ))}
