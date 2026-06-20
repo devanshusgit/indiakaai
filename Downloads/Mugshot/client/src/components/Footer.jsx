@@ -14,7 +14,7 @@ export default function Footer() {
     <footer className="border-t border-border bg-card mt-24">
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <p className="font-bold text-lg text-foreground mb-2">MUGSHOT STUDIOS</p>
+          <img src="/images/mugshot-logo.png" alt="Mugshot Studios" className="h-20 w-auto mb-4" />
           <p className="text-sm text-muted-foreground leading-relaxed mb-5">
             AI animation production studio.<br />Mumbai, India.
           </p>
