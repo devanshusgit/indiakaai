@@ -66,11 +66,11 @@ export default function Home({ setActiveSection }) {
             <span className="block md:whitespace-nowrap">We don't make animation.</span>
             <span className="block md:whitespace-nowrap">
               We make{' '}
-              <span className="relative inline-block mx-1">
+              <span className="relative inline-block mx-2">
                 <span style={{ color: 'var(--primary)' }}>your</span>
                 <motion.svg
-                  className="absolute left-1/2 top-[54%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-                  style={{ width: '122%', height: '132%' }}
+                  className="absolute left-1/2 top-[58%] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                  style={{ width: '138%', height: '162%' }}
                   viewBox="0 0 200 80"
                   preserveAspectRatio="none"
                   initial="hidden"

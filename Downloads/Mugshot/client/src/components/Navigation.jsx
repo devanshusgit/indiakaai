@@ -16,10 +16,11 @@ export default function Navigation({ activeSection, setActiveSection }) {
         {/* Logo */}
         <button
           onClick={() => handleNav('home')}
-          className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+          className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
           aria-label="Mugshot Studios — Home"
         >
           <img src="/images/mugshot-logo.png" alt="Mugshot Studios" className="h-10 w-auto" />
+          <span className="text-base md:text-lg font-bold tracking-tight text-foreground">MUGSHOT STUDIOS</span>
         </button>
 
         {/* Desktop Nav */}
