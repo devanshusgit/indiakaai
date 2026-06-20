@@ -1,5 +1,19 @@
+import { motion } from 'framer-motion'
 import { FallingPattern } from '@/components/ui/falling-pattern'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+
+// hand-drawn circle that sketches itself around a word
+const drawCircle = {
+  hidden: { pathLength: 0, opacity: 0 },
+  visible: {
+    pathLength: 1,
+    opacity: 1,
+    transition: {
+      pathLength: { delay: 0.7, duration: 1.8, ease: [0.43, 0.13, 0.23, 0.96] },
+      opacity: { delay: 0.7, duration: 0.4 },
+    },
+  },
+}
 
 const stats = [
   { value: '3 Days', label: 'to deliver an 11-minute episode' },
@@ -34,12 +48,12 @@ export default function Home({ setActiveSection }) {
       <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <FallingPattern className="h-full w-full" />
-          {/* darkening overlay — keeps the pattern faint and the copy crisp */}
+          {/* balanced darkening overlay — pattern stays visible, copy stays crisp */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                'radial-gradient(ellipse at center, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.88) 100%)',
+                'radial-gradient(ellipse at center, rgba(12,12,12,0.32) 0%, rgba(12,12,12,0.72) 100%)',
             }}
           />
         </div>
@@ -51,7 +65,31 @@ export default function Home({ setActiveSection }) {
           >
             <span className="block md:whitespace-nowrap">We don't make animation.</span>
             <span className="block md:whitespace-nowrap">
-              We make <span style={{ color: 'var(--primary)' }}>your</span> animation.
+              We make{' '}
+              <span className="relative inline-block">
+                <span style={{ color: 'var(--primary)' }}>your</span>
+                <motion.svg
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                  style={{ width: '160%', height: '210%' }}
+                  viewBox="0 0 200 80"
+                  preserveAspectRatio="none"
+                  initial="hidden"
+                  animate="visible"
+                  aria-hidden="true"
+                >
+                  <motion.path
+                    d="M 48 16 C 100 4, 158 8, 182 30 C 198 46, 172 66, 112 71 C 52 76, 14 64, 17 40 C 19 22, 34 14, 56 11"
+                    fill="none"
+                    stroke="var(--primary)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    vectorEffect="non-scaling-stroke"
+                    variants={drawCircle}
+                  />
+                </motion.svg>
+              </span>{' '}
+              animation.
             </span>
           </h1>
           <p

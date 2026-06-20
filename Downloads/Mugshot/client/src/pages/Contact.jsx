@@ -29,25 +29,14 @@ export default function Contact() {
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault()
-    setStatus('sending')
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
-      if (res.ok) {
-        setStatus('success')
-        setFormData({ name: '', email: '', message: '' })
-        setTimeout(() => setStatus(null), 5000)
-      } else {
-        setStatus('error')
-      }
-    } catch {
-      setStatus('error')
-    }
+    // Open the visitor's own email app with a pre-filled message to us.
+    const subject = `New enquiry from ${formData.name} — Mugshot Studios`
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    window.location.href = `mailto:admin@mugshotstudios.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    setStatus('opened')
+    setTimeout(() => setStatus(null), 8000)
   }
 
   return (
@@ -71,17 +60,12 @@ export default function Contact() {
               <Label htmlFor="message">Message</Label>
               <Textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={4} placeholder="Tell us about your project..." />
             </div>
-            <Button className="w-full" type="submit" disabled={status === 'sending'}>
-              {status === 'sending' ? 'Sending…' : 'Send Message'}
+            <Button className="w-full" type="submit">
+              Send Message
             </Button>
-            {status === 'success' && (
+            {status === 'opened' && (
               <div className="rounded-md px-4 py-3 text-sm font-medium" style={{ backgroundColor: 'var(--secondary)', color: 'var(--secondary-foreground)' }}>
-                Thank you! We'll be in touch within 24 hours.
-              </div>
-            )}
-            {status === 'error' && (
-              <div className="rounded-md px-4 py-3 text-sm font-medium" style={{ backgroundColor: 'rgba(229,77,46,0.15)', color: 'var(--destructive)' }}>
-                Something went wrong. Please email us directly at admin@mugshotstudios.com
+                Your email app is opening — just press send to deliver your message. If nothing opened, email us at admin@mugshotstudios.com
               </div>
             )}
           </form>
