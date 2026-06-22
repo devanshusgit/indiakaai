@@ -22,7 +22,7 @@ const people = [
   },
   {
     name: 'Manav Mishra',
-    role: 'Chief Technology Officer, Mugshot Studios Pvt. Ltd.',
+    role: 'Chief Technology Officer',
     photo: '/images/CTO.jpg',
     bio: 'Manav leads the technology vision at Mugshot Studios, building AI-driven creative tools, automation systems, and scalable production platforms. He focuses on combining storytelling, software engineering, and artificial intelligence to transform modern media production.',
   },
