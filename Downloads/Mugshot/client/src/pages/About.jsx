@@ -1,36 +1,30 @@
 import { ShaderAnimation } from '../components/ShaderAnimation'
 import { GlowCard } from '@/components/ui/glow-card'
-import { IconButton } from '@/components/ui/icon'
 
-// TODO: replace the placeholder LinkedIn URLs with each person's real profile.
 const people = [
   {
     name: 'Vivek Shukla',
     role: 'Founder & Director',
     photo: '/images/FOUNDR.jpg',
     bio: "Filmmaker, writer, and animation creator with a vision to make broadcast-quality animation accessible to producers worldwide through technology. Vivek leads Mugshot Studios' creative direction, international partnerships, and the ongoing development of the Vartool production system.",
-    linkedin: 'https://www.linkedin.com/',
   },
   {
     name: 'Jeet',
     role: 'Creative Director / Writer',
     photo: '/images/Jeet.jpg',
     bio: 'Theatre-rooted screenwriter working in the creative industry since 2009 — across Sony TV, Disney+ Hotstar, Zee TV, and Sun TV. Has served as Creative Head for multiple production houses, leading projects from concept to execution, with strong experience in animation writing.',
-    linkedin: 'https://www.linkedin.com/',
   },
   {
     name: 'Samrat Dixit',
     role: 'Production Head',
     photo: '/images/Samrat.jpg',
     bio: '4+ years across animation, live action, and brand films. Heads AI-assisted animation and live action production.',
-    linkedin: 'https://www.linkedin.com/',
   },
   {
     name: 'Manav Mishra',
-    role: 'CTO',
+    role: 'Chief Technology Officer, Mugshot Studios Pvt. Ltd.',
     photo: '/images/CTO.jpg',
-    bio: 'Leads technology vision, building AI-driven creative tools and scalable production platforms.',
-    linkedin: 'https://www.linkedin.com/',
+    bio: 'Manav leads the technology vision at Mugshot Studios, building AI-driven creative tools, automation systems, and scalable production platforms. He focuses on combining storytelling, software engineering, and artificial intelligence to transform modern media production.',
   },
 ]
 
@@ -51,7 +45,7 @@ export default function About() {
         <div className="max-w-3xl mx-auto">
           <p className="section-label mb-4">Our Story</p>
           <p className="body-text mb-5">
-            Mugshot Studios is a Mumbai-based animation and content production studio incorporated in August 2024. In less than two years we have built active international partnerships across four continents, developed a proprietary AI production system unlike anything else in the animation industry, and created original IP now being presented at the world's most prestigious animation market.
+            Mugshot Studios is a Mumbai-based animation and content production studio incorporated in August 2024. In less than two years we have built active international partnerships across four continents, developed a proprietary AI production system unlike anything else in the animation industry, and created original IP for the global market.
           </p>
           <p className="body-text">
             We are not a traditional service studio. We are not a generic AI tool provider. We are a creative technology studio — where human storytelling and intelligent production systems work together to produce content that is faster, cheaper, and more faithful to each client's creative vision than anything a traditional pipeline can offer.
@@ -77,17 +71,6 @@ export default function About() {
                   <h3 className="text-xl font-bold mb-1">{person.name}</h3>
                   <p className="text-sm font-medium mb-4" style={{ color: 'var(--primary)' }}>{person.role}</p>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground)', opacity: 0.82 }}>{person.bio}</p>
-                </div>
-                <div className="flex items-center justify-between pt-2">
-                  <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--muted-foreground)' }}>Connect</span>
-                  <IconButton
-                    icon="linkedin"
-                    href={person.linkedin}
-                    label={`${person.name} on LinkedIn`}
-                    iconOnly
-                    variant="social"
-                    external
-                  />
                 </div>
               </GlowCard>
             ))}

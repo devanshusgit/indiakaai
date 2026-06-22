@@ -163,7 +163,7 @@ export default function Home({ setActiveSection }) {
           <p className="section-label mb-4">Original IP</p>
           <h2 className="section-title mb-3">We also create original worlds</h2>
           <p className="body-text mb-8">
-            Mugshot Studios develops original animated IP for the global market. Our debut slate is being presented at MIFA Annecy 2026.
+            Mugshot Studios develops original animated IP for the global market. Our debut slate features two original series currently in production.
           </p>
           <Accordion type="single" collapsible className="border-t border-border">
             {originalIP.map((ip, i) => (

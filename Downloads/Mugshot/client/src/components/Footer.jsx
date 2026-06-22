@@ -3,7 +3,6 @@ import { ContactInfo, SocialLinks } from '@/components/ui/contact-info'
 const socialLinks = [
   { icon: 'youtube', label: 'YouTube', comingSoon: true },
   { icon: 'instagram', label: 'Instagram', comingSoon: true },
-  { icon: 'linkedin', label: 'LinkedIn', comingSoon: true },
   { icon: 'facebook', label: 'Facebook', comingSoon: true },
   { icon: 'twitter', label: 'X (Twitter)', comingSoon: true },
   { icon: 'whatsapp', href: 'https://wa.me/919833979711', label: 'WhatsApp' },
@@ -35,9 +34,8 @@ export default function Footer() {
           />
         </div>
       </div>
-      <div className="border-t border-border px-6 py-4 max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+      <div className="border-t border-border px-6 py-4 max-w-7xl mx-auto">
         <p className="text-xs text-muted-foreground">&copy; 2026 Mugshot Studios. All rights reserved.</p>
-        <p className="text-xs text-muted-foreground">Currently at MIFA Annecy — June 2026</p>
       </div>
     </footer>
   )

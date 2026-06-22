@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MailIcon, PhoneIcon, MapPinIcon } from 'lucide-react'
+import { MailIcon, PhoneIcon } from 'lucide-react'
 import { ContactCard } from '@/components/ui/contact-card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -10,13 +10,11 @@ import { SocialLinks } from '@/components/ui/contact-info'
 const contactInfo = [
   { icon: MailIcon, label: 'Email', value: 'admin@mugshotstudios.com', href: 'mailto:admin@mugshotstudios.com' },
   { icon: PhoneIcon, label: 'Phone / WhatsApp', value: '+91 9833979711', href: 'tel:+919833979711' },
-  { icon: MapPinIcon, label: 'Address', value: 'Malad West, Mumbai, India', href: 'https://share.google/Nhfs5AMX6JqS6eWSS' },
 ]
 
 const socialLinks = [
   { icon: 'youtube', label: 'YouTube', comingSoon: true },
   { icon: 'instagram', label: 'Instagram', comingSoon: true },
-  { icon: 'linkedin', label: 'LinkedIn', comingSoon: true },
   { icon: 'whatsapp', href: 'https://wa.me/919833979711', label: 'WhatsApp' },
 ]
 
@@ -71,16 +69,10 @@ export default function Contact() {
           </form>
         </ContactCard>
 
-        {/* Social + event note */}
-        <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Follow us</p>
-            <SocialLinks links={socialLinks} size="md" />
-          </div>
-          <div className="rounded-lg px-4 py-3" style={{ backgroundColor: 'var(--secondary)', color: 'var(--secondary-foreground)' }}>
-            <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ opacity: 0.7 }}>Currently attending</p>
-            <p className="font-semibold text-sm">MIFA Annecy — June 2026</p>
-          </div>
+        {/* Social */}
+        <div className="mt-10">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Follow us</p>
+          <SocialLinks links={socialLinks} size="md" />
         </div>
       </div>
     </div>
