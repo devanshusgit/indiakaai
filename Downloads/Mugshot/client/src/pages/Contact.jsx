@@ -13,8 +13,6 @@ const contactInfo = [
 ]
 
 const socialLinks = [
-  { icon: 'youtube', label: 'YouTube', comingSoon: true },
-  { icon: 'instagram', label: 'Instagram', comingSoon: true },
   { icon: 'whatsapp', href: 'https://wa.me/919833979711', label: 'WhatsApp' },
 ]
 
