@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MailIcon, PhoneIcon } from 'lucide-react'
+import { MailIcon, PhoneIcon, MapPinIcon } from 'lucide-react'
 import { ContactCard } from '@/components/ui/contact-card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -10,6 +10,7 @@ import { SocialLinks } from '@/components/ui/contact-info'
 const contactInfo = [
   { icon: MailIcon, label: 'Email', value: 'admin@mugshotstudios.com', href: 'mailto:admin@mugshotstudios.com' },
   { icon: PhoneIcon, label: 'Phone / WhatsApp', value: '+91 9833979711', href: 'tel:+919833979711' },
+  { icon: MapPinIcon, label: 'Address', value: 'Unit 112, IJMIMA Complex, Off Link Road, Malad West, Mumbai 400064, India', href: 'https://share.google/Nhfs5AMX6JqS6eWSS' },
 ]
 
 const socialLinks = [
