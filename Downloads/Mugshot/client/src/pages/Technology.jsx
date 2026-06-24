@@ -1,52 +1,57 @@
-import { BrainCircuit, LayoutGrid, Bot, ImagePlus, RefreshCw, Clapperboard } from 'lucide-react'
+import { useState } from 'react'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
 const steps = [
   {
     num: '01',
     title: 'Custom Training',
-    Icon: BrainCircuit,
+    icon: '/images/icons/custom-training.png',
     desc: 'We train Vartool exclusively on your existing content — your characters, your style, your visual language become the foundation.',
   },
   {
     num: '02',
     title: 'Shot Division',
-    Icon: LayoutGrid,
+    icon: '/images/icons/shot-division.png',
     desc: 'Your script is broken into individual shots with detailed staging notes — character blocking, expressions, backgrounds, and action.',
   },
   {
     num: '03',
     title: 'Shotbot Prompt Generation',
-    Icon: Bot,
+    icon: '/images/icons/prompt-generation.png',
     desc: "Vartool's built-in engine reads each shot and automatically generates precise production prompts for every frame.",
   },
   {
     num: '04',
     title: 'Frame Generation',
-    Icon: ImagePlus,
+    icon: '/images/icons/frame-generation.png',
     desc: 'Shotbot generates frame images for each shot — positioned and staged exactly as specified.',
   },
   {
     num: '05',
     title: 'Self-Evaluation Loop',
-    Icon: RefreshCw,
+    icon: '/images/icons/self-evaluation.png',
     desc: "Vartool evaluates its own output. If a frame doesn't meet quality standards, it automatically regenerates.",
   },
   {
     num: '06',
     title: 'Video & Render',
-    Icon: Clapperboard,
+    icon: '/images/icons/video-render.png',
     desc: 'Completed shots move through editing and final render pipeline — sound design, compositing, colour grade.',
   },
 ]
 
-function StepIcon({ Icon }) {
+function StepIcon({ src }) {
+  const [failed, setFailed] = useState(false)
   return (
     <span
       className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border"
       style={{ backgroundColor: 'var(--background)' }}
     >
-      <Icon className="h-5 w-5" strokeWidth={2} style={{ color: 'var(--primary)' }} />
+      {failed ? (
+        <span className="block h-4 w-4 rounded-sm border border-dashed" style={{ borderColor: 'var(--primary)', opacity: 0.55 }} />
+      ) : (
+        <img src={src} alt="" onError={() => setFailed(true)} className="h-7 w-7 object-contain" />
+      )}
     </span>
   )
 }
@@ -96,7 +101,7 @@ export default function Technology() {
               <AccordionItem key={i} value={`step-${i}`}>
                 <AccordionTrigger>
                   <span className="flex items-center gap-4">
-                    <StepIcon Icon={step.Icon} />
+                    <StepIcon src={step.icon} />
                     <span className="text-sm font-semibold" style={{ color: 'var(--primary)' }}>{step.num}</span>
                     <span className="text-base md:text-lg">{step.title}</span>
                   </span>
