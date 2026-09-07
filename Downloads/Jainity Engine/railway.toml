@@ -1,0 +1,5 @@
+[build]
+watchPatterns = ["janity/backend/**", "JANITY-frontend/**"]
+
+[deploy]
+startCommand = "cd janity/backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
